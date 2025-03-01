@@ -1,0 +1,9 @@
+{
+  "FormattingOptions": {
+    "TabSize": 4,
+    "IndentationSize": 4,
+    "InsertSpaces": true,
+    "NewLine": "\n",
+    "MaxLineLength": 70
+  }
+}
