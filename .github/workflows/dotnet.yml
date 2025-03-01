@@ -38,5 +38,5 @@ jobs:
 
     # Run unit tests
     - name: Run unit tests
-      run: dotnet test TrackerApp/Project/TrackerAppProject.sln --no-build --verbosity normal
+      run: dotnet test TrackerAppProject/TrackerAppProject.sln --no-build --verbosity normal
 
