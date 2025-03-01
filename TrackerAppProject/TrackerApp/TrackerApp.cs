@@ -1,12 +1,5 @@
 ﻿using System;
 
-
-// static string GetUserInput(){
-//     Console.WriteLine("Please enter emotion, or 'quit' to end:");
-//     string userinput = Console.ReadLine() ?? string.Empty;
-//     return userinput;
-// }
-
 string GetUserInput(string prompt, List<string> options, string defaultOption)
 {
     if (!options.Contains(defaultOption))
@@ -20,8 +13,9 @@ string GetUserInput(string prompt, List<string> options, string defaultOption)
     string input = Console.ReadLine() ?? String.Empty;
 
     return (string.IsNullOrEmpty(input)) ? defaultOption : input;
-
 }
+
+
 bool ProcessUserInput(string userinput)
 {
     Console.WriteLine($"User entered: {userinput}.");
