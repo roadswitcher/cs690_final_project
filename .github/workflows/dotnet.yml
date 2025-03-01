@@ -30,13 +30,13 @@ jobs:
 
     # Restore dependencies
     - name: Restore dependencies
-      run: dotnet restore TrackerAppProject.sln
+      run: dotnet restore TrackerAppProject/TrackerAppProject.sln
 
     # Build the solution
     - name: Build the solution
-      run: dotnet build TrackerAppProject.sln --no-restore
+      run: dotnet build TrackerAppProject/TrackerAppProject.sln --no-restore
 
     # Run unit tests
     - name: Run unit tests
-      run: dotnet test TrackerAppProject.sln --no-build --verbosity normal
+      run: dotnet test TrackerApp/Project/TrackerAppProject.sln --no-build --verbosity normal
 
