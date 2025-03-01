@@ -1,9 +1,9 @@
 namespace TrackerApp.Tests;
 
-public class UnitTest1
+public class CoreFunctionalityTests
 {
     [Fact]
-    public void Test1()
+    public void TestEnteringDefaultEmotion()
     {
 
     }
