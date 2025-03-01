@@ -11,4 +11,4 @@ Issues : https://github.com/roadswitcher/cs690_final_project/issues
 # Punchlist
 
 - [x] Protect the main branch, get set up for Gitflow
-- [ ] Get actions set up for Unit Testing
+- [x] Get actions set up for Unit Testing
