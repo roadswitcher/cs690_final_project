@@ -33,13 +33,10 @@ bool still_running = true;
 
 while (still_running)
 {
-    // TODO
-    // - display prompt
-    // - get the input
+
     List<string> emotions = new List<string> { "Happy", "Sad", "Mad", "Indifferent" };
     string prompt = "Enter an emotion, or 'quit' to exit the app: ";
     string userinput = GetUserInput(prompt, emotions, "Happy");
-    // - process the input
+
     still_running = ProcessUserInput(userinput);
-    // - record relevant data in datastore ( handle within processUserInput ?)
 }

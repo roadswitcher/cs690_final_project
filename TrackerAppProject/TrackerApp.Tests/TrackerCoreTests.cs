@@ -1,10 +1,14 @@
-namespace TrackerApp.Tests;
+using System;
+using System.Collections.Generic;
+using Xunit;
+using Moq;
 
-public class CoreFunctionalityTests
+public class TrackerCoreTests
 {
     [Fact]
-    public void TestEnteringDefaultEmotion()
+    public void DummyTest()
     {
 
     }
+
 }
