@@ -12,3 +12,4 @@ Issues : https://github.com/roadswitcher/cs690_final_project/issues
 
 - [x] Protect the main branch, get set up for Gitflow
 - [x] Get actions set up for Unit Testing
+- [x] Mocked up a flowchart
