@@ -1,42 +1,68 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 
-string GetUserInput(string prompt, List<string> options, string defaultOption)
+
+public static class TrackerLauncher
 {
-    if (!options.Contains(defaultOption))
+    public static int Main(string[] args)
     {
-        throw new ArgumentException("ERROR: Default option not provided.");
-    }
+        var app = new TrackerApp();
 
-    Console.Write(prompt);
-    Console.Write($"[{defaultOption}]");
-
-    string input = Console.ReadLine() ?? String.Empty;
-
-    return (string.IsNullOrEmpty(input)) ? defaultOption : input;
-}
-
-
-bool ProcessUserInput(string userinput)
-{
-    Console.WriteLine($"User entered: {userinput}.");
-
-    if (String.Equals(userinput, "quit", StringComparison.OrdinalIgnoreCase))
-    {
-        return false;
-    }
-    else
-    {
-        return true;
+        return app.Run(args);
     }
 }
-bool still_running = true;
 
-while (still_running)
+class TrackerApp
 {
+    public int Run(string[] args)
+    {
+        AnsiConsole.Markup("[bold yellow]Hello World![/]");
+        AnsiConsole.WriteLine();
 
-    List<string> emotions = new List<string> { "Happy", "Sad", "Mad", "Indifferent" };
-    string prompt = "Enter an emotion, or 'quit' to exit the app: ";
-    string userinput = GetUserInput(prompt, emotions, "Happy");
+        var name = AnsiConsole.Ask<string>("What's your [green]name[/]?");
+        AnsiConsole.MarkupLine($"[blue]Nice to meet you, {name}[/]");
 
-    still_running = ProcessUserInput(userinput);
+        return 0;
+    }
 }
+
+// string GetUserInput(string prompt, List<string> options, string defaultOption)
+// {
+//     if (!options.Contains(defaultOption))
+//     {
+//         throw new ArgumentException("ERROR: Default option not provided.");
+//     }
+
+//     Console.Write(prompt);
+//     Console.Write($"[{defaultOption}]");
+
+//     string input = Console.ReadLine() ?? String.Empty;
+
+//     return (string.IsNullOrEmpty(input)) ? defaultOption : input;
+// }
+
+
+// bool ProcessUserInput(string userinput)
+// {
+//     Console.WriteLine($"User entered: {userinput}.");
+
+//     if (String.Equals(userinput, "quit", StringComparison.OrdinalIgnoreCase))
+//     {
+//         return false;
+//     }
+//     else
+//     {
+//         return true;
+//     }
+// }
+// bool still_running = true;
+
+// while (still_running)
+// {
+
+//     List<string> emotions = new List<string> { "Happy", "Sad", "Mad", "Indifferent" };
+//     string prompt = "Enter an emotion, or 'quit' to exit the app: ";
+//     string userinput = GetUserInput(prompt, emotions, "Happy");
+
+//     still_running = ProcessUserInput(userinput);
+// }
