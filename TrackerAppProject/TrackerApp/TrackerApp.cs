@@ -26,8 +26,5 @@ class TrackerApp
             stillRunning = UserInputHandler.ProcessUserInput(userInput);
         }
 
-        // TODO: Add shutdown logic
-        // TODO: Stretch goal:  capture exception, ensure orderly shutdown?
-
     }
 }
