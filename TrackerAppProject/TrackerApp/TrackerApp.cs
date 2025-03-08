@@ -1,10 +1,10 @@
-﻿using Spectre.Console;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 
 class TrackerApp
 {
-    public int Run(string[] args)
+    public static int Run(string[] args)
     {
 
         AnsiConsole.Clear();
@@ -32,7 +32,7 @@ class TrackerApp
         return 0;
     }
 
-    private void RunMoodTracker()
+    private static void RunMoodTracker()
     {
         bool stillRunning = true;
 
@@ -40,7 +40,7 @@ class TrackerApp
         {
             List<string> emotions = new() { "Happy", "Sad", "Mad", "Indifferent" };
             string prompt = "Enter an emotion, or 'quit' to exit the app: ";
-            string userInput = UserInputHandler.GetUserInput(prompt, emotions, "Happy");
+            string userInput = UserInputHandler.GetMoodUpdate(prompt, emotions, "Happy");
 
             stillRunning = UserInputHandler.ProcessUserInput(userInput);
         }
@@ -50,3 +50,4 @@ class TrackerApp
 
     }
 }
+
