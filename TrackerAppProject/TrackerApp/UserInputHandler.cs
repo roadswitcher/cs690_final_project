@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 public static class UserInputHandler
 {
-    public static string GetMoodUpdate(
-        string prompt, List<string> options, string defaultOption)
+    public static string GetUserInput(string prompt, List<string> options, string defaultOption)
     {
         if (!options.Contains(defaultOption))
         {

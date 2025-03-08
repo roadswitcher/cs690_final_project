@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 class TrackerApp
 {
-    public static int Run(string[] args)
+    public int Run(string[] args)
     {
 
         TrackerUtils.WelcomeScreen(args);
@@ -13,7 +13,7 @@ class TrackerApp
         return 0;
     }
 
-    private static void RunMoodTracker()
+    private void RunMoodTracker()
     {
         bool stillRunning = true;
 
@@ -21,7 +21,7 @@ class TrackerApp
         {
             List<string> emotions = new() { "Happy", "Sad", "Mad", "Indifferent" };
             string prompt = "Enter an emotion, or 'quit' to exit the app: ";
-            string userInput = UserInputHandler.GetMoodUpdate(prompt, emotions, "Happy");
+            string userInput = UserInputHandler.GetUserInput(prompt, emotions, "Happy");
 
             stillRunning = UserInputHandler.ProcessUserInput(userInput);
         }
@@ -31,4 +31,3 @@ class TrackerApp
 
     }
 }
-

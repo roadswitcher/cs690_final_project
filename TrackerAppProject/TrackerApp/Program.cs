@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 
 public static class TrackerLauncher
 {
     public static int Main(string[] args)
     {
         var app = new TrackerApp();
-        return TrackerApp.Run(args);
+        return app.Run(args);
     }
 }

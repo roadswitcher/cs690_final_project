@@ -5,7 +5,7 @@ public static class TrackerUtils
 {
   public static void WelcomeScreen(string[] args)
   {
-    AnsiConsole.Clear();
+    //AnsiConsole.Clear();
 
 #if DEBUG
     int consoleWidth = AnsiConsole.Profile.Width;
