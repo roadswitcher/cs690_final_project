@@ -14,7 +14,7 @@ direction TD
 
     class MoodTracker {
 	    - user: User
-	    - moodEntries: MoodEntry[]
+	    - moodEntries: MoodEntry[0..N]
     }
 
     User "1" --* MoodTracker : owns
