@@ -1,0 +1,9 @@
+graph TD
+ApplicationEntryPoint["Application Entry Point"] --> InitializeDataHandler["Initialize DataHandler"]
+InitializeDataHandler --> UserInputHandling["UserInputHandler"]
+UserInputHandling -- Mood/Trigger Update Entry --> DataHandler["DataHandler"]
+DataHandler --> StoreMoodData["Store Mood Data"]
+UserInputHandling -- View Stats --> MoodReportGeneration["ReportGenerator"]
+MoodReportGeneration --> DataHandler
+UserInputHandling -- Exit --> TerminateApplication["Terminate Application"]
+DataHandler --> MoodReportGeneration
