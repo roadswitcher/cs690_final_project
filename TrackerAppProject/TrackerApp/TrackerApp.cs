@@ -7,7 +7,6 @@ class TrackerApp
   public int Run(string[] args)
   {
 
-
     AnsiConsole.Clear();
 
     // TODO: Look up how to pass debug flags in, wrap these messages
