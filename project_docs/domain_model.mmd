@@ -1,0 +1,30 @@
+classDiagram
+direction TD
+
+    class User {
+	    - id: int
+	    - name: string
+    }
+
+    class MoodEntry {
+	    - id: Date
+	    - mood: string
+	    - externalTrigger: string [0..1]
+    }
+
+    class MoodTracker {
+	    - user: User
+	    - moodEntries: MoodEntry[]
+    }
+
+    User "1" --* MoodTracker : owns
+    MoodTracker "1" --* MoodEntry : contains
+
+	style User :,stroke-width:2px,stroke-dasharray: 0,fill:#FFFFFF,stroke:#000000
+	style MoodEntry :,stroke-width:2px,stroke-dasharray: 0,fill:#FFFFFF,stroke:#000000
+	style MoodTracker :,stroke-width:2px,stroke-dasharray: 0,fill:#FFFFFF,stroke:#000000
+
+	classDef default :, stroke-width:2px, stroke-dasharray: 0, fill:#FFFFFF, stroke:#000000
+
+
+

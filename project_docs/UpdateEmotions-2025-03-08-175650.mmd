@@ -1,0 +1,21 @@
+sequenceDiagram
+participant User as User
+participant App as TrackerApp
+participant Datastore as DataHandler
+
+Note over User,App: User selects "Update Mood"
+User->>App: Request mood update
+App->>User: Prompt for mood input
+User->>App: Enter mood data
+
+App->>Datastore: Store mood data
+Datastore-->>App: Confirm mood data storage
+
+opt User provides trigger info
+App->>User: Prompt for trigger input
+User->>App: Enter trigger data
+App->>Datastore: Store trigger data
+Datastore-->>App: Confirm trigger data storage
+end
+
+App->>User: Display main menu
