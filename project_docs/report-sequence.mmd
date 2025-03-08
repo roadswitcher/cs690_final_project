@@ -1,0 +1,11 @@
+sequenceDiagram
+participant User as User
+participant App as TrackerApp
+participant Datastore as DataHandler
+
+Note over User,App: User selects "View Data"
+User->>App: Request data view
+App->>Datastore: Retrieve mood data
+Datastore-->>App: Return mood data
+App->>User: Display mood statistics
+App->>User: Display main menu
