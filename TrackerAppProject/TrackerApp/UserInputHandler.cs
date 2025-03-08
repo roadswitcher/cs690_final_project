@@ -3,24 +3,24 @@ using System.Collections.Generic;
 
 public static class UserInputHandler
 {
-  public static string GetUserInput(string prompt, List<string> options, string defaultOption)
-  {
-    if (!options.Contains(defaultOption))
+    public static string GetUserInput(string prompt, List<string> options, string defaultOption)
     {
-      throw new ArgumentException("ERROR: Default option not provided.");
+        if (!options.Contains(defaultOption))
+        {
+            throw new ArgumentException("ERROR: Default option not provided.");
+        }
+
+        Console.Write(prompt);
+        Console.Write($"[{defaultOption}] ");
+
+        string input = Console.ReadLine() ?? string.Empty;
+        return string.IsNullOrEmpty(input) ? defaultOption : input;
     }
 
-    Console.Write(prompt);
-    Console.Write($"[{defaultOption}] ");
+    public static bool ProcessUserInput(string userInput)
+    {
+        Console.WriteLine($"User entered: {userInput}.");
 
-    string input = Console.ReadLine() ?? string.Empty;
-    return string.IsNullOrEmpty(input) ? defaultOption : input;
-  }
-
-  public static bool ProcessUserInput(string userInput)
-  {
-    Console.WriteLine($"User entered: {userInput}.");
-
-    return !string.Equals(userInput, "quit", StringComparison.OrdinalIgnoreCase);
-  }
+        return !string.Equals(userInput, "quit", StringComparison.OrdinalIgnoreCase);
+    }
 }
