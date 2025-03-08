@@ -1,10 +1,14 @@
-namespace TrackerApp.Tests;
+using System;
+using System.Collections.Generic;
+using Xunit;
+using Moq;
 
-public class UnitTest1
+public class TrackerCoreTests
 {
     [Fact]
-    public void Test1()
+    public void DummyTest()
     {
 
     }
+
 }
