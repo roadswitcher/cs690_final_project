@@ -1,0 +1,16 @@
+graph TD
+classDef default fill:white,stroke:black
+    A["Launch Application"] --> B{"Datastore Exists?"}
+    B -- Yes --> C["Open Datastore File"]
+    B -- No --> D["Create Datastore File"]
+    D --> C
+    C --> E["Main Loop"]
+    E --> F{"User Selection"}
+    F -- Update Mood --> G["Get User Mood Data"]
+    G --> H["Store Data"]
+    H --> E
+    F -- View Stats --> I["Report Generator"]
+    I --> E
+    F -- Exit --> J["Handle Graceful Shutdown"]
+    J --> K["Terminate Application"]
+  

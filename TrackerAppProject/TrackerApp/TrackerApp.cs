@@ -1,4 +1,4 @@
-using Spectre.Console;
+﻿using Spectre.Console;
 using System;
 using System.Collections.Generic;
 
@@ -10,11 +10,12 @@ class TrackerApp
 
     AnsiConsole.Clear();
 
-    // TODO: Look up how to pass debug flags in, wrap these messages 
+    // TODO: Look up how to pass debug flags in, wrap these messages
+#if DEBUG
     int consoleWidth = AnsiConsole.Profile.Width;
     AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
     AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
-
+#endif
 
     AnsiConsole.Write(
         new FigletText("Welcome!")
