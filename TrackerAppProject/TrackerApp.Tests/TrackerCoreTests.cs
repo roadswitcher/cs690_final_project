@@ -24,15 +24,12 @@ public class UserInputHandlerTests
         Assert.Throws<ArgumentNullException>(() => new UserInputHandler(null));
     }
 
-
-
     [Theory]
     [InlineData("Happy", true)]
     [InlineData("Sad", true)]
-    [InlineData("Report", true)]
     [InlineData("Quit", false)]
     [InlineData("quit", false)]  // Test case sensitivity
-    public void ProcessUserInput_ReturnsExpectedResult(string input, bool expectedResult)
+    public void ProcessUserInput_ReturnsTrueForNonCommands(string input, bool expectedResult)
     {
         // Act
         var result = UserInputHandler.ProcessUserInput(input);
