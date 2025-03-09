@@ -27,6 +27,6 @@ public static class UserInputHandler
     {
         Console.WriteLine($"User entered: {userInput}.");
 
-        return !string.Equals(userInput, "quit", StringComparison.OrdinalIgnoreCase);
+        return !string.Equals(userInput, "Quit", StringComparison.OrdinalIgnoreCase);
     }
 }
