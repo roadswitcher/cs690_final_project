@@ -1,32 +1,31 @@
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
-public class UserInputHandler
+public class UserInputHandler(IAnsiConsole console)
 {
-    private readonly IAnsiConsole _console;
-
-    public UserInputHandler(IAnsiConsole console)
-    {
-        _console = console ?? throw new ArgumentNullException(nameof(console));
-    }
+    private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
     public string GetUserMood(List<string> moods)
     {
         return _console.Prompt(
-    new SelectionPrompt<string>()
-        .Title("Update your emotion from the following list[red], or select 'Report' or 'Exit'.[/]")
-        .PageSize(20)
-        .MoreChoicesText("[grey]Use up/down arrows for more choices[/]")
-        .AddChoices(moods)
+            new SelectionPrompt<string>()
+                .Title("Update your emotion from the following list[red], or select 'Report' or 'Exit'.[/]")
+                .PageSize(20)
+                .MoreChoicesText("[grey]Use up/down arrows for more choices[/]")
+                .AddChoices(moods)
         );
     }
     public string GetUserInput(List<string> options)
     {
-        return _console.Prompt(
+
+        var userinput = _console.Prompt(
             new SelectionPrompt<string>()
                 .Title("Update Mood, View Data, or Quit?")
                 .AddChoices("Update Mood", "View Data", "Quit"));
+
+        return userinput;
 
     }
 

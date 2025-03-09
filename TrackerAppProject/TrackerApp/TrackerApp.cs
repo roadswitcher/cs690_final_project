@@ -27,7 +27,7 @@ class TrackerApp
 
         while (stillRunning)
         {
-            List<string> emotions = new() { "Happy", "Sad", "Mad", "Indifferent", "Quit" };
+            List<string> emotions = ["Happy", "Sad", "Mad", "Indifferent", "Quit"];
 
             string userInput = _userInputHandler.GetUserInput(emotions);
 
