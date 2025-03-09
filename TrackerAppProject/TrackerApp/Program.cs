@@ -1,5 +1,5 @@
-﻿using System;
-using Spectre.Console;
+﻿using Spectre.Console;
+using System;
 
 public static class TrackerLauncher
 {

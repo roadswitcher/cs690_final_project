@@ -6,7 +6,6 @@ public class UserInputHandler
 {
     private readonly IAnsiConsole _console;
 
-    // Dependency injection for IAnsiConsole allows easier testing
     public UserInputHandler(IAnsiConsole console)
     {
         _console = console ?? throw new ArgumentNullException(nameof(console));

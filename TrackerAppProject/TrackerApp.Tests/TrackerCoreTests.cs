@@ -14,4 +14,3 @@ public class BasicPipelineDummyTest
         Assert.True(true); // Placeholder test
     }
 }
-
