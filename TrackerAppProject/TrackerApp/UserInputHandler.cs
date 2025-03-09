@@ -64,10 +64,5 @@ namespace TrackerApp
             }
         }
 
-        public static bool ProcessUserInput(string userInput)
-        {
-            Console.WriteLine($"User entered: {userInput}.");
-            return !string.Equals(userInput, "Quit", StringComparison.OrdinalIgnoreCase);
-        }
     }
 }
