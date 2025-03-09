@@ -14,6 +14,17 @@ namespace TrackerApp
             _console = console ?? throw new ArgumentNullException(nameof(console));
         }
 
+        public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
+        {
+            string mood = _console.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[bold green]What is your current mood?[/]")
+                    .AddChoices(trackedEmotions));
+
+            string trigger = "foo";
+            
+            return new MoodRecord(mood, trigger);
+        }
         public object GetUserInput(List<string> trackedEmotions)
         {
             var choice = Markup.Remove(_console.Prompt(
@@ -26,10 +37,13 @@ namespace TrackerApp
             {
                 return choice;
             }
-            else
+            else if (choice == "Report")
             {
-                Console.WriteLine("Not Exit");
                 return choice;
+            } else
+            {
+                Console.WriteLine("Updating!");
+                return GetMoodRecordUpdate(trackedEmotions);
             }
         }
 

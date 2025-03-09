@@ -1,26 +1,27 @@
 ﻿using Spectre.Console;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Dynamic;
 
 namespace TrackerApp
 {
+    public class MoodRecord
+    {
+        public string Mood { get; }
+        public string? Trigger { get; }
+    
+        public MoodRecord(string mood, string? trigger = null)
+        {
+            Mood = mood;
+            Trigger = trigger;
+        }
+    }
+    
     class Tracker
     {
         private readonly IAnsiConsole _console;
         private readonly UserInputHandler _userInputHandler;
-
-        public class MoodRecord
-        {
-            public string Mood { get; }
-            public string? Trigger { get; }
-
-            public MoodRecord(string mood, string? trigger = null)
-            {
-                Mood = mood;
-                Trigger = trigger;
-            }
-        }
 
         public Tracker(IAnsiConsole console)
         {
@@ -35,16 +36,7 @@ namespace TrackerApp
             RunMoodTracker();
             return 0;
         }
-
-        public void DebugPrint(string message)
-        {
-#if DEBUG
-            Console.WriteLine(message);
-#else
-        // Nothing happens in Release mode
-#endif
-        }
-
+        
         private void RunMoodTracker()
         {
             bool stillRunning = true;
@@ -52,18 +44,19 @@ namespace TrackerApp
 
             while (stillRunning)
             {
-                List<string> trackedEmotions = new() { "Happy", "Sad", "Mad", "Indifferent" };
+                List<string> trackedEmotions = new() { "Happy", "Sad", "Mad", "Wistful", "Indifferent" };
 
                 var userInput = _userInputHandler.GetUserInput(trackedEmotions);
 
                 if (userInput is string choice)
                 {
-                    DebugPrint($"User picked: {choice}");
+                    Console.WriteLine($"User picked: {choice}");
                     stillRunning = !string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
                 }
                 else if (userInput is MoodRecord mood)
                 {
-                    // TODO: Update/store user mood
+                    Console.WriteLine($"Mood: {mood.Mood}");
+                    Console.WriteLine($"Trigger: {mood.Trigger}");
                 }
 
                 // stillRunning = UserInputHandler.ProcessUserInput(userInput);

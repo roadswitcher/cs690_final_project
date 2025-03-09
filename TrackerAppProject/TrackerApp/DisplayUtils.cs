@@ -5,23 +5,15 @@ namespace TrackerApp
 {
     public static class TrackerUtils
     {
-        public static void ScreamPrint(string message)
-        {
-            // Utility print function for messages used during DEBUG mode
-            #if DEBUG
-            AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
-            #else
-            // Noop
-            #endif
-        }
         public static void WelcomeScreen(string[] args)
         {
             //AnsiConsole.Clear();
-            
-            int consoleWidth = AnsiConsole.Profile.Width;
-            ScreamPrint($"Console Width: {consoleWidth}");
-            ScreamPrint($"Args length: {args.Length}");
 
+#if DEBUG
+            int consoleWidth = AnsiConsole.Profile.Width;
+            AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
+            AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
+#endif
 
             AnsiConsole.Write(
                 new FigletText("Welcome!")
