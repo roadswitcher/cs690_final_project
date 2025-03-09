@@ -15,12 +15,13 @@ namespace TrackerApp
             AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
 #endif
 
-            AnsiConsole.Write(
-                new FigletText("MoodTracker")
-                    .Centered()
-                    .Color(Color.Cyan1)
-            );
+            // AnsiConsole.Write(
+            //     new FigletText("MoodTracker")
+            //         .Centered()
+            //         .Color(Color.Cyan1)
+            // );
 
+            AnsiConsole.Write(new Rule("[cyan1]Welcome To MoodTracker[/]").Centered().RuleStyle("green"));
             AnsiConsole.Write(
                 new Rule("[bold green]Let's Get Started[/]")
                     .Centered()

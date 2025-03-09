@@ -16,12 +16,27 @@ namespace TrackerApp
 
         public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
         {
+
+            AnsiConsole.Write(new Rule("[cyan1]Mood Update[/]").LeftJustified().RuleStyle("cyan2"));
             string mood = _console.Prompt(
                 new SelectionPrompt<string>()
                     .Title("[bold green]What is your current mood?[/]")
                     .AddChoices(trackedEmotions));
 
-            string trigger = "foo";
+            AnsiConsole.Write(new Rule("[cyan1]External Factors[/]").LeftJustified().RuleStyle("cyan2"));
+            bool triggerPresent = _console.Prompt(
+                new TextPrompt<bool>("Any triggers/factors to report?")
+                .AddChoice(true).AddChoice(false).DefaultValue(false).WithConverter(triggerPresent => triggerPresent ? "y" : "n")
+                );
+            Console.WriteLine(triggerPresent ? "There was actually something, yes" : "Nope, nothing to report");
+
+            var trigger = "";
+            if (triggerPresent)
+            {
+                trigger = _console.Prompt(
+                    new TextPrompt<string>("Provide more detail: ")
+                    );
+            }
 
             return new MoodRecord(mood, trigger);
         }
