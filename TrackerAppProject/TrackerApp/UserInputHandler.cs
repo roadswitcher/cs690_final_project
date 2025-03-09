@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
+using Spectre.Console;
 
 public static class UserInputHandler
 {
-    public static string GetUserInput(string prompt, List<string> options, string defaultOption)
+    public static string GetUserInput(
+        List<string> options, string defaultOption)
     {
         if (!options.Contains(defaultOption))
         {
             throw new ArgumentException("ERROR: Default option not provided.");
         }
-
-        Console.Write(prompt);
+        string prompt = "Enter an emotion, or 'quit' to exit the app: ";
+        Console.Write($"{prompt}");
         Console.Write($"[{defaultOption}] ");
 
         string input = Console.ReadLine() ?? string.Empty;

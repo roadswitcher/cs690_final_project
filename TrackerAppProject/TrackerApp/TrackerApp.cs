@@ -20,8 +20,8 @@ class TrackerApp
         while (stillRunning)
         {
             List<string> emotions = new() { "Happy", "Sad", "Mad", "Indifferent" };
-            string prompt = "Enter an emotion, or 'quit' to exit the app: ";
-            string userInput = UserInputHandler.GetUserInput(prompt, emotions, "Happy");
+
+            string userInput = UserInputHandler.GetUserInput(emotions, "Happy");
 
             stillRunning = UserInputHandler.ProcessUserInput(userInput);
         }
