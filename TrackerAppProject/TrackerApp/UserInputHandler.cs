@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Tracker
+namespace TrackerApp
 {
     public class UserInputHandler
     {
@@ -16,7 +16,6 @@ namespace Tracker
 
         public object GetUserInput(List<string> trackedEmotions)
         {
-
             var choice = Markup.Remove(_console.Prompt(
                 new SelectionPrompt<string>()
                     .Title("[green]Update[/] mood, [aqua]Report[/] data, or [red]Exit[/] app?")
@@ -33,6 +32,7 @@ namespace Tracker
                 return choice;
             }
         }
+
         public static bool ProcessUserInput(string userInput)
         {
             Console.WriteLine($"User entered: {userInput}.");

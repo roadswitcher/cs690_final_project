@@ -1,19 +1,27 @@
 using Spectre.Console;
 using System;
 
-namespace Tracker
+namespace TrackerApp
 {
     public static class TrackerUtils
     {
+        public static void ScreamPrint(string message)
+        {
+            // Utility print function for messages used during DEBUG mode
+            #if DEBUG
+            AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
+            #else
+            // Noop
+            #endif
+        }
         public static void WelcomeScreen(string[] args)
         {
             //AnsiConsole.Clear();
-
-#if DEBUG
+            
             int consoleWidth = AnsiConsole.Profile.Width;
-            AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
-            AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
-#endif
+            ScreamPrint($"Console Width: {consoleWidth}");
+            ScreamPrint($"Args length: {args.Length}");
+
 
             AnsiConsole.Write(
                 new FigletText("Welcome!")
@@ -26,8 +34,6 @@ namespace Tracker
                     .Centered()
                     .RuleStyle("green")
             );
-
         }
     }
-
 }
