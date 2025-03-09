@@ -1,29 +1,33 @@
 using Spectre.Console;
 using System;
 
-public static class TrackerUtils
+namespace Tracker
 {
-    public static void WelcomeScreen(string[] args)
+    public static class TrackerUtils
     {
-        //AnsiConsole.Clear();
+        public static void WelcomeScreen(string[] args)
+        {
+            //AnsiConsole.Clear();
 
 #if DEBUG
-        int consoleWidth = AnsiConsole.Profile.Width;
-        AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
-        AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
+            int consoleWidth = AnsiConsole.Profile.Width;
+            AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
+            AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
 #endif
 
-        AnsiConsole.Write(
-            new FigletText("Welcome!")
-                .Centered()
-                .Color(Color.Cyan1)
-        );
+            AnsiConsole.Write(
+                new FigletText("Welcome!")
+                    .Centered()
+                    .Color(Color.Cyan1)
+            );
 
-        AnsiConsole.Write(
-            new Rule("[bold green]Let's Get Started[/]")
-                .Centered()
-                .RuleStyle("green")
-        );
+            AnsiConsole.Write(
+                new Rule("[bold green]Let's Get Started[/]")
+                    .Centered()
+                    .RuleStyle("green")
+            );
 
+        }
     }
+
 }

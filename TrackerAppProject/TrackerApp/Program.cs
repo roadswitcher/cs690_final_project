@@ -1,11 +1,14 @@
 ﻿using Spectre.Console;
 using System;
 
-public static class TrackerLauncher
+namespace Tracker
 {
-    public static int Main(string[] args)
+    public static class TrackerLauncher
     {
-        var app = new TrackerApp(AnsiConsole.Console);
-        return app.Run(args);
+        public static int Main(string[] args)
+        {
+            var app = new TrackerApp(AnsiConsole.Console);
+            return app.Run(args);
+        }
     }
 }
