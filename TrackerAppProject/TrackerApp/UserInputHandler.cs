@@ -7,10 +7,6 @@ public static class UserInputHandler
     public static string GetUserInput(
         List<string> options, string defaultOption)
     {
-        if (!options.Contains(defaultOption))
-        {
-            throw new ArgumentException("ERROR: Default option not provided.");
-        }
         string prompt = "Enter an emotion, or 'quit' to exit the app: ";
         Console.Write($"{prompt}");
         Console.Write($"[{defaultOption}] ");
