@@ -39,10 +39,10 @@ namespace TrackerApp
 
         private void RunMoodTracker()
         {
-            bool stillRunning = true;
+            bool shouldAppDie = false;
 
 
-            while (stillRunning)
+            while (!shouldAppDie)
             {
                 List<string> trackedEmotions = new() { "Happy", "Sad", "Mad", "Wistful", "Indifferent" };
 
@@ -51,15 +51,14 @@ namespace TrackerApp
                 if (userInput is string choice)
                 {
                     Console.WriteLine($"User picked: {choice}");
-                    stillRunning = !string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
+                    shouldAppDie = string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
                 }
                 else if (userInput is MoodRecord mood)
                 {
                     Console.WriteLine($"Mood: {mood.Mood}");
                     Console.WriteLine($"Trigger: {mood.Trigger}");
                 }
-
-                // stillRunning = UserInputHandler.ProcessUserInput(userInput);
+                
             }
         }
     }
