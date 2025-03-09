@@ -7,7 +7,7 @@ namespace TrackerApp
     {
         public static void WelcomeScreen(string[] args)
         {
-            //AnsiConsole.Clear();
+            AnsiConsole.Clear();
 
 #if DEBUG
             int consoleWidth = AnsiConsole.Profile.Width;
@@ -16,7 +16,7 @@ namespace TrackerApp
 #endif
 
             AnsiConsole.Write(
-                new FigletText("Welcome!")
+                new FigletText("MoodTracker")
                     .Centered()
                     .Color(Color.Cyan1)
             );
