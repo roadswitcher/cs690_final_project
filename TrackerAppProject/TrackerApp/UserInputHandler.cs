@@ -14,29 +14,22 @@ public class UserInputHandler
 
     public object GetUserInput(List<string> options)
     {
-        // var choice = = _console.Prompt(
-        //     new SelectionPrompt<string>()
-        //         .Title("Update your emotion from the following list[red], or select 'Report' or 'Exit'.[/]")
-        //         .PageSize(20)
-        //         .MoreChoicesText("[grey]Use up/down arrows for more choices[/]")
-        //         .AddChoices(options)
-        // );
-        var choice = _console.Prompt(
+
+        var choice = Markup.Remove(_console.Prompt(
             new SelectionPrompt<string>()
                 .Title("[green]Update[/] mood, [aqua]Report[/] data, or [red]Exit[/] app?")
                 .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Exit[/]")
-        );
+        ));
 
-        // switch (choice)
-        // {
-        //     case "Exit", "Report":
-        //         return choice;
-
-        //     case "Update":
-        //         var response = GetMoodUpdate
-        // }
-
-        return Markup.Remove(choice);
+        if (choice == "Exit")
+        {
+            return choice;
+        }
+        else
+        {
+            Console.WriteLine("Not Exit");
+            return choice;
+        }
     }
 
     public static bool ProcessUserInput(string userInput)
