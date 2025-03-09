@@ -22,9 +22,10 @@ namespace TrackerApp
                     .AddChoices(trackedEmotions));
 
             string trigger = "foo";
-            
+
             return new MoodRecord(mood, trigger);
         }
+
         public object GetUserInput(List<string> trackedEmotions)
         {
             var choice = Markup.Remove(_console.Prompt(
@@ -40,7 +41,8 @@ namespace TrackerApp
             else if (choice == "Report")
             {
                 return choice;
-            } else
+            }
+            else
             {
                 Console.WriteLine("Updating!");
                 return GetMoodRecordUpdate(trackedEmotions);

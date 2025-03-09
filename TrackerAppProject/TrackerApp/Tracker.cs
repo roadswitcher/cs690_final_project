@@ -10,14 +10,14 @@ namespace TrackerApp
     {
         public string Mood { get; }
         public string? Trigger { get; }
-    
+
         public MoodRecord(string mood, string? trigger = null)
         {
             Mood = mood;
             Trigger = trigger;
         }
     }
-    
+
     class Tracker
     {
         private readonly IAnsiConsole _console;
@@ -36,7 +36,7 @@ namespace TrackerApp
             RunMoodTracker();
             return 0;
         }
-        
+
         private void RunMoodTracker()
         {
             bool stillRunning = true;
