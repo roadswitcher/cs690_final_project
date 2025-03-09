@@ -7,12 +7,6 @@ public static class UserInputHandler
     public static string GetUserInput(
         List<string> options)
     {
-        // string prompt = "Enter an emotion, or 'quit' to exit the app: ";
-        // Console.Write($"{prompt}");
-        // Console.Write($"[{defaultOption}] ");
-
-        // string input = Console.ReadLine() ?? string.Empty;
-
         var input = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
             .Title("Update your emotion from the following list[red], or select 'Report' or 'Exit'.[/]")
