@@ -17,7 +17,7 @@ public class BasicPipelineDummyTest
 
 public class TrackerAppUserInputTests
 {
-    [Fact]
+
     [Fact]
     public void AskForMood_ShouldReturnUserInput_WhenSimulatingKeyPresses()
     {
