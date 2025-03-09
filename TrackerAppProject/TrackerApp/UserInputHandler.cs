@@ -1,26 +1,30 @@
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 
-public static class UserInputHandler
+public class UserInputHandler
 {
-    public static string GetUserInput(string prompt, List<string> options, string defaultOption)
+    private readonly IAnsiConsole _console;
+
+    public UserInputHandler(IAnsiConsole console)
     {
-        if (!options.Contains(defaultOption))
-        {
-            throw new ArgumentException("ERROR: Default option not provided.");
-        }
+        _console = console ?? throw new ArgumentNullException(nameof(console));
+    }
 
-        Console.Write(prompt);
-        Console.Write($"[{defaultOption}] ");
-
-        string input = Console.ReadLine() ?? string.Empty;
-        return string.IsNullOrEmpty(input) ? defaultOption : input;
+    public string GetUserInput(List<string> options)
+    {
+        return _console.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Update your emotion from the following list[red], or select 'Report' or 'Exit'.[/]")
+                .PageSize(20)
+                .MoreChoicesText("[grey]Use up/down arrows for more choices[/]")
+                .AddChoices(options)
+        );
     }
 
     public static bool ProcessUserInput(string userInput)
     {
         Console.WriteLine($"User entered: {userInput}.");
-
-        return !string.Equals(userInput, "quit", StringComparison.OrdinalIgnoreCase);
+        return !string.Equals(userInput, "Quit", StringComparison.OrdinalIgnoreCase);
     }
 }

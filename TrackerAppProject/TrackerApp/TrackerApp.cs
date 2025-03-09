@@ -4,29 +4,18 @@ using System.Collections.Generic;
 
 class TrackerApp
 {
+    private readonly IAnsiConsole _console;
+    private readonly UserInputHandler _userInputHandler;
+
+    public TrackerApp(IAnsiConsole console)
+    {
+        _console = console ?? throw new ArgumentNullException(nameof(console));
+        _userInputHandler = new UserInputHandler(_console);
+    }
+
     public int Run(string[] args)
     {
-
-        AnsiConsole.Clear();
-
-        // TODO: Look up how to pass debug flags in, wrap these messages
-#if DEBUG
-        int consoleWidth = AnsiConsole.Profile.Width;
-        AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
-        AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
-#endif
-
-        AnsiConsole.Write(
-            new FigletText("Welcome!")
-                .Centered()
-                .Color(Color.Cyan1)
-        );
-
-        AnsiConsole.Write(
-            new Rule("[bold green]Let's Get Started[/]")
-                .Centered()
-                .RuleStyle("green")
-        );
+        TrackerUtils.WelcomeScreen(args);
 
         RunMoodTracker();
         return 0;
@@ -38,15 +27,11 @@ class TrackerApp
 
         while (stillRunning)
         {
-            List<string> emotions = new() { "Happy", "Sad", "Mad", "Indifferent" };
-            string prompt = "Enter an emotion, or 'quit' to exit the app: ";
-            string userInput = UserInputHandler.GetUserInput(prompt, emotions, "Happy");
+            List<string> emotions = new() { "Happy", "Sad", "Mad", "Indifferent", "Quit" };
+
+            string userInput = _userInputHandler.GetUserInput(emotions);
 
             stillRunning = UserInputHandler.ProcessUserInput(userInput);
         }
-
-        // TODO: Add shutdown logic
-        // TODO: Stretch goal:  capture exception, ensure orderly shutdown?
-
     }
 }
