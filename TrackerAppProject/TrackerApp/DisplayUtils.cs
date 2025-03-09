@@ -10,7 +10,7 @@ namespace TrackerApp
             AnsiConsole.Clear();
 
 #if DEBUG
-            int consoleWidth = AnsiConsole.Profile.Width;
+            var consoleWidth = AnsiConsole.Profile.Width;
             AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
             AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
 #endif

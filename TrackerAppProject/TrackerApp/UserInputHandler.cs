@@ -5,26 +5,21 @@ using System.Runtime.Serialization;
 
 namespace TrackerApp
 {
-    public class UserInputHandler
+    public class UserInputHandler(IAnsiConsole console)
     {
-        private readonly IAnsiConsole _console;
+        private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
-        public UserInputHandler(IAnsiConsole console)
-        {
-            _console = console ?? throw new ArgumentNullException(nameof(console));
-        }
-
-        public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
+        private MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
         {
 
             AnsiConsole.Write(new Rule("[cyan1]Mood Update[/]").LeftJustified().RuleStyle("cyan2"));
-            string mood = _console.Prompt(
+            var mood = _console.Prompt(
                 new SelectionPrompt<string>()
                     .Title("[bold green]What is your current mood?[/]")
                     .AddChoices(trackedEmotions));
 
             AnsiConsole.Write(new Rule("[cyan1]External Factors[/]").LeftJustified().RuleStyle("cyan2"));
-            bool triggerPresent = _console.Prompt(
+            var triggerPresent = _console.Prompt(
                 new TextPrompt<bool>("Any triggers/factors to report?")
                 .AddChoice(true).AddChoice(false).DefaultValue(false).WithConverter(triggerPresent => triggerPresent ? "y" : "n")
                 );
@@ -49,18 +44,15 @@ namespace TrackerApp
                     .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Exit[/]")
             ));
 
-            if (choice == "Exit")
+            switch (choice)
             {
-                return choice;
-            }
-            else if (choice == "Report")
-            {
-                return choice;
-            }
-            else
-            {
-                Console.WriteLine("Updating!");
-                return GetMoodRecordUpdate(trackedEmotions);
+                case "Exit":
+                    return choice;
+                case "Report":
+                    return choice;
+                default:
+                    Console.WriteLine("Updating!");
+                    return GetMoodRecordUpdate(trackedEmotions);
             }
         }
 

@@ -6,27 +6,20 @@ using System.Dynamic;
 
 namespace TrackerApp
 {
-    public class MoodRecord
+    public class MoodRecord(string mood, string? trigger = null)
     {
-        public string Mood { get; }
-        public string? Trigger { get; }
-
-        public MoodRecord(string mood, string? trigger = null)
-        {
-            Mood = mood;
-            Trigger = trigger;
-        }
+        public string Mood { get; } = mood;
+        public string? Trigger { get; } = trigger;
     }
 
-    class Tracker
+    internal class Tracker
     {
-        private readonly IAnsiConsole _console;
         private readonly UserInputHandler _userInputHandler;
 
         public Tracker(IAnsiConsole console)
         {
-            _console = console ?? throw new ArgumentNullException(nameof(console));
-            _userInputHandler = new UserInputHandler(_console);
+            var console1 = console ?? throw new ArgumentNullException(nameof(console));
+            _userInputHandler = new UserInputHandler(console1);
         }
 
         public int Run(string[] args)
@@ -39,24 +32,25 @@ namespace TrackerApp
 
         private void RunMoodTracker()
         {
-            bool shouldAppDie = false;
+            var shouldAppDie = false;
 
 
             while (!shouldAppDie)
             {
-                List<string> trackedEmotions = new() { "Happy", "Sad", "Mad", "Wistful", "Indifferent" };
+                List<string> trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
 
                 var userInput = _userInputHandler.GetUserInput(trackedEmotions);
 
-                if (userInput is string choice)
+                switch (userInput)
                 {
-                    Console.WriteLine($"User picked: {choice}");
-                    shouldAppDie = string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
-                }
-                else if (userInput is MoodRecord mood)
-                {
-                    Console.WriteLine($"Mood: {mood.Mood}");
-                    Console.WriteLine($"Trigger: {mood.Trigger}");
+                    case string choice:
+                        Console.WriteLine($"User picked: {choice}");
+                        shouldAppDie = string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
+                        break;
+                    case MoodRecord mood:
+                        Console.WriteLine($"Mood: {mood.Mood}");
+                        Console.WriteLine($"Trigger: {mood.Trigger}");
+                        break;
                 }
                 
             }
