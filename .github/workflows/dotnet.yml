@@ -11,32 +11,32 @@ on:
 
   pull_request:
     branches:
-      - main 
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-    # Checkout the code
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    # Set up .NET SDK
-    - name: Set up .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0'
-
-    # Restore dependencies
-    - name: Restore dependencies
-      run: dotnet restore TrackerAppProject/TrackerAppProject.sln
-
-    # Build the solution
-    - name: Build the solution
-      run: dotnet build TrackerAppProject/TrackerAppProject.sln --no-restore
-
-    # Run unit tests
-    - name: Run unit tests
-      run: dotnet test TrackerAppProject/TrackerAppProject.sln --no-build --verbosity normal
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # Set up .NET SDK
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'
+      
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore TrackerAppProject/TrackerAppProject.sln
+      
+      # Build the solution
+      - name: Build the solution
+        run: dotnet build TrackerAppProject/TrackerAppProject.sln --no-restore
+      
+      # Run unit tests
+      - name: Run unit tests
+        run: dotnet test TrackerAppProject/TrackerAppProject.sln --no-build --verbosity normal
 
