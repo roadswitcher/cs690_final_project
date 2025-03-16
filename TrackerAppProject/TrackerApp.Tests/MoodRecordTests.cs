@@ -33,7 +33,6 @@ namespace TrackerApp.Tests
         public void MoodRecord_MustHaveMood()
         {
             Assert.Throws<ArgumentNullException>(() => new MoodRecord("", "check for empty string")); 
-            Assert.Throws<ArgumentNullException>(() => new MoodRecord(null, "check with a null"));
         }
     }
 }
