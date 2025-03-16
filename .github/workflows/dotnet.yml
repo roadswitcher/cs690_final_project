@@ -7,7 +7,7 @@ on:
     branches: [ main, develop, testing/*, feature/*, bugfix/* ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
@@ -24,6 +24,34 @@ jobs:
       
     - name: Build
       run: dotnet build TrackerAppProject/TrackerAppProject.sln --no-restore
-      
-    - name: Test
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: |
+          TrackerAppProject/**/bin/
+          TrackerAppProject/**/obj/
+        retention-days: 1
+
+test:
+     name: Test
+     needs: build
+     runs-on: ubuntu-latest
+     if: "!contains(github.event.head_commit.message, '[skip ci]')"
+     steps:
+     - uses: actions/checkout@v3
+     
+     - name: Setup .NET
+       uses: actions/setup-dotnet@v3
+       with:
+         dotnet-version: '8.0'
+ 
+     # Download the build artifacts
+     - name: Download build artifacts
+       uses: actions/download-artifact@v3
+       with:
+         name: build-artifacts
+         
+     - name: Run tests
       run: dotnet test TrackerAppProject/TrackerAppProject.sln --no-build -l:"console;verbosity=normal"
