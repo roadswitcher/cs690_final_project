@@ -52,10 +52,10 @@ jobs:
        uses: actions/download-artifact@v4
        with:
          name: build-artifacts
-         path: TrackerAppProject # Download to the same base directory structure
+         path: TrackerAppProject
          
      - name: Restore dependencies
        run: dotnet restore TrackerAppProject/TrackerAppProject.sln
          
      - name: Run tests
-       run: dotnet test TrackerAppProject/TrackerAppProject.sln
+       run: dotnet test TrackerAppProject/TrackerAppProject.sln -l "console:verbosity=normal"
