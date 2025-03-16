@@ -7,6 +7,26 @@ namespace TrackerApp.Tests
 {
     public class DataStoreTests
     {
+        private string? _testDataPath;
+        private DataStore _dataStore;
+
+        public DataStoreTests()
+        {
+            // Setup - runs before each test
+            _dataStore = DataStore.Instance;
+
+            // get the data file path with reflection
+            FieldInfo? fieldInfo = typeof(DataStore).GetField("_dataFilePath",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            _testDataPath = (string)fieldInfo?.GetValue(_dataStore);
+
+            // Delete the test file if it exists
+            if (File.Exists(_testDataPath))
+            {
+                File.Delete(_testDataPath);
+            }
+        }
+
         [Fact]
         public void DataStore_Should_Be_Singleton()
         {
@@ -15,6 +35,12 @@ namespace TrackerApp.Tests
 
             Assert.Same(instance1, instance2);
             Assert.Equal(instance1.GetHashCode(), instance2.GetHashCode());
+        }
+
+        [Fact]
+        public void IsNewLaunch_ShouldBeTrue_If_No_Data_Store_Exists()
+        {
+            Assert.True(_dataStore.isFirstLaunch());
         }
     }
 }
