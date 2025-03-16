@@ -6,11 +6,7 @@ using System.Dynamic;
 
 namespace TrackerApp
 {
-    public class MoodRecord(string mood, string? trigger = null)
-    {
-        public string Mood { get; } = mood;
-        public string? Trigger { get; } = trigger;
-    }
+
 
     internal class Tracker
     {
@@ -33,7 +29,11 @@ namespace TrackerApp
         private void RunMoodTracker()
         {
             var shouldAppDie = false;
-
+            
+            // TODO: Login and Datastore
+            // -- if there's no datastore, clean login
+            // -- existing datastore?   who logged in, ask password again
+            
 
             while (!shouldAppDie)
             {
