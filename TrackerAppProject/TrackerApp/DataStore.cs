@@ -11,14 +11,21 @@ namespace TrackerApp
         public string Username { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
     }
-    
+
     public class DataStore
     {
-        private static DataStore _instance;
+        private static DataStore? _instance;
         private static readonly object _lock = new object();
         private string _databaseFilePath;
         private List<MoodRecord> _moodRecords;
         private UserCreds _userCreds;
+
+        private DataStore()
+        {
+            _databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mooddata.json");
+            _moodRecords = new List<MoodRecord>();
+            _userCreds = new UserCreds();
+        }
 
         public static DataStore Instance
         {
@@ -38,6 +45,4 @@ namespace TrackerApp
             }
         }
     }
-    
-    
 }
