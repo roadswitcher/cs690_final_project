@@ -28,11 +28,12 @@ namespace TrackerApp.Tests
 
             Assert.True(record.Timestamp >= before && record.Timestamp <= after);
         }
-        
+
         [Fact]
         public void MoodRecord_MustHaveMood()
         {
             var testRecord = new MoodRecord("", "");
             Assert.Fail();
+        }
     }
 }
