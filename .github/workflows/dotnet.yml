@@ -58,4 +58,4 @@ jobs:
        run: dotnet restore TrackerAppProject/TrackerAppProject.sln
          
      - name: Run tests
-       run: dotnet test TrackerAppProject/TrackerAppProject.sln -l:"console:verbosity=normal"
+       run: dotnet test TrackerAppProject/TrackerAppProject.sln -l:"console;verbosity=normal"
