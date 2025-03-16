@@ -45,6 +45,11 @@ namespace TrackerApp
                 return _instance;
             }
         }
+
+        public bool isFirstLaunch()
+        {
+            return !File.Exists(_databaseFilePath);
+        }
     }
     
     
