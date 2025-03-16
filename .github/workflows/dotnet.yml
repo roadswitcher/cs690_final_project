@@ -2,21 +2,22 @@ name: .NET Tests
 
 on:
   push:
-    branches: [ main, master, testing/*, feature/* ]
+    branches: [ main, develop, testing/*, feature/*, bugfix/* ]
   pull_request:
-    branches: [ main, master, testing/*, feature/* ]
+    branches: [ main, develop, testing/*, feature/*, bugfix/* ]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
+
     - uses: actions/checkout@v3
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: '8.0'
         
     - name: Restore dependencies
       run: dotnet restore TrackerAppProject/TrackerAppProject.sln
