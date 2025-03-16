@@ -16,7 +16,7 @@ namespace TrackerApp.Tests
             Assert.Equal(expectedTrigger, record.Trigger);
             Assert.Equal(expectedTime, record.Timestamp);
         }
-        
+
         [Fact]
         public void MoodRecord_Constructor_IfNoTimeProvided()
         {
@@ -25,11 +25,8 @@ namespace TrackerApp.Tests
 
             var record = new MoodRecord("Happy", "");
             var after = DateTime.UtcNow;
-            
+
             Assert.True(record.Timestamp >= before && record.Timestamp <= after);
         }
-
-
-        
     }
 }
