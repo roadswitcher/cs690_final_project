@@ -2,8 +2,8 @@ namespace TrackerApp
 {
     public class AppData
     {
-        public UserCreds UserCredentials { get; set; } = new UserCreds();
-        public List<MoodRecord> MoodRecords { get; set; } = new List<MoodRecord>();
+        public UserCreds UserCredentials { get; set; } = new();
+        public List<MoodRecord> MoodRecords { get; set; } = new();
     }
 
     public class UserCreds
@@ -15,7 +15,7 @@ namespace TrackerApp
     public class DataStore
     {
         private static DataStore? _instance;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
         private string _databaseFilePath;
         private List<MoodRecord> _moodRecords;
         private UserCreds _userCreds;
@@ -41,6 +41,7 @@ namespace TrackerApp
                         }
                     }
                 }
+
                 return _instance;
             }
         }
