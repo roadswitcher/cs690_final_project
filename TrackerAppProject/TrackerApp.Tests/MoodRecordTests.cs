@@ -28,5 +28,11 @@ namespace TrackerApp.Tests
 
             Assert.True(record.Timestamp >= before && record.Timestamp <= after);
         }
+
+        [Fact]
+        public void MoodRecord_MustHaveMood()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MoodRecord("", "check for empty string")); 
+        }
     }
 }
