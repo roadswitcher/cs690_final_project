@@ -54,4 +54,4 @@ jobs:
          name: build-artifacts
          
      - name: Run tests
-      run: dotnet test TrackerAppProject/TrackerAppProject.sln --no-build -l:"console;verbosity=normal"
+       run: dotnet test TrackerAppProject/TrackerAppProject.sln --no-build -l:"console;verbosity=normal"
