@@ -18,7 +18,8 @@ namespace TrackerApp.Tests
             // get the data file path with reflection
             FieldInfo? fieldInfo = typeof(DataStore).GetField("_dataFilePath",
                 BindingFlags.NonPublic | BindingFlags.Instance);
-            _testDataPath = (string)fieldInfo?.GetValue(_dataStore);
+            var value = fieldInfo?.GetValue(_dataStore);
+            _testDataPath = value != null ? (string)value : string.Empty;
 
             // Delete the test file if it exists
             if (File.Exists(_testDataPath))
