@@ -34,7 +34,7 @@ jobs:
           TrackerAppProject/**/obj/
         retention-days: 1
 
-test:
+  test:
      name: Test
      needs: build
      runs-on: ubuntu-latest
