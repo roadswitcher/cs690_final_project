@@ -9,11 +9,13 @@ namespace TrackerApp
     internal class Tracker
     {
         private readonly UserInputHandler _userInputHandler;
+        private readonly DataStore _dataStore;
 
         public Tracker(IAnsiConsole console)
         {
             IAnsiConsole console1 = console ?? throw new ArgumentNullException(nameof(console));
             _userInputHandler = new UserInputHandler(console1);
+            _dataStore = DataStore.Instance;
         }
 
         public int Run(string[] args)

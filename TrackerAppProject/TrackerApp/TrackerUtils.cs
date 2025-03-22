@@ -27,6 +27,14 @@ namespace TrackerApp
                     .Centered()
                     .RuleStyle("green")
             );
+
+            UserCreds userCredentials = LoginHandler.HandleLogin();
+            
+            DataStore dataStore = DataStore.Instance;
+            dataStore.SetUserCredentials(userCredentials);
+
+            AnsiConsole.MarkupLine($"[green] Logged in as [bold]{userCredentials.Username}[/]");
+            AnsiConsole.WriteLine();
         }
         
     }
