@@ -58,7 +58,26 @@ namespace TrackerApp
             string jsonString = JsonSerializer.Serialize(appData, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_databaseFilePath, jsonString);
         }
-        
+
+        private void LoadData()
+        {
+            if (File.Exists(_databaseFilePath))
+            {
+                string jsonString = File.ReadAllText(_databaseFilePath);
+                AppData? appData = JsonSerializer.Deserialize<AppData>(jsonString);
+
+                if (appData != null)
+                {
+                    _moodRecords = appData.MoodRecords;
+                    _userCreds = appData.UserCredentials;
+                    return;
+                }
+            }
+            
+            // If we get to this point, default values
+            _moodRecords = new List<MoodRecord>();
+            _userCreds = new UserCreds();
+        }
         
         public bool IsFirstLaunch()
         {
