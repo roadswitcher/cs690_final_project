@@ -45,7 +45,7 @@ namespace TrackerApp
             }
         }
 
-        public bool isFirstLaunch()
+        public bool IsFirstLaunch()
         {
             return !File.Exists(_databaseFilePath);
         }
