@@ -29,5 +29,7 @@ namespace TrackerApp
             AnsiConsole.MarkupLine($" Logged in as {userCredentials.Username}");
             AnsiConsole.WriteLine();
         }
+        
     }
+    
 }
