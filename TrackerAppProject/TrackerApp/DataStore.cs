@@ -45,10 +45,28 @@ namespace TrackerApp
             }
         }
 
+        
         public bool IsFirstLaunch()
         {
             return !File.Exists(_databaseFilePath);
         }
+
+        public UserCreds GetUserCredentials()
+        {
+            return _userCreds;
+        }
+
+        public SetUserCredentials(UserCreds userCredentials)
+        {
+            _userCreds = userCredentials;
+            SaveData();
+        }
+        public List<MoodRecord> GetMoodRecords()
+        {
+            return _moodRecords;
+        }
+        
+        
     }
     
     
