@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace TrackerApp
 {
     public class AppData
@@ -45,6 +47,18 @@ namespace TrackerApp
             }
         }
 
+        private void SaveData()
+        {
+            AppData appData = new AppData
+            {
+                UserCredentials = _userCreds, 
+                MoodRecords = _moodRecords
+            };
+            
+            string jsonString = JsonSerializer.Serialize(appData, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(_databaseFilePath, jsonString);
+        }
+        
         
         public bool IsFirstLaunch()
         {
