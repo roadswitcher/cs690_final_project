@@ -31,15 +31,14 @@ namespace TrackerApp
         {
             get
             {
-                if (_instance == null)
+                if (_instance != null)
                 {
-                    lock (_lock)
-                    {
-                        if (_instance == null)
-                        {
-                            _instance = new DataStore();
-                        }
-                    }
+                    return _instance;
+                }
+
+                lock (_lock)
+                {
+                    _instance ??= new DataStore();
                 }
 
                 return _instance;
