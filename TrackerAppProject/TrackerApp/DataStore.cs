@@ -15,7 +15,7 @@ namespace TrackerApp
     public class DataStore
     {
         private static DataStore? _instance;
-        private static readonly object _lock = new();
+        private static readonly object Lock = new();
         private readonly string _databaseFilePath;
         private List<MoodRecord> _moodRecords;
         private UserCreds _userCreds;
@@ -36,7 +36,7 @@ namespace TrackerApp
                     return _instance;
                 }
 
-                lock (_lock)
+                lock (Lock)
                 {
                     _instance ??= new DataStore();
                 }
