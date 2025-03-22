@@ -6,6 +6,7 @@ namespace TrackerApp
     {
         private readonly DataStore _dataStore;
         private readonly UserInputHandler _userInputHandler;
+        private readonly DataStore _dataStore;
 
         public Tracker(IAnsiConsole console)
         {

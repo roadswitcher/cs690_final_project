@@ -1,22 +1,35 @@
+using Spectre.Console;
+
 namespace TrackerApp
 {
     public class LoginHandler
     {
-        public static UserCreds HandleLogin()
+        public static UserCreds HandleLogin(IAnsiConsole? console = null)
         {
             DataStore dataStore = DataStore.Instance;
+            console ??= AnsiConsole.Console;
 
             if (dataStore.IsFirstLaunch())
             {
-                return HandleNewUser();
+                return HandleNewUser(console);
             }
             else
             {
-                return HandleReturningUser();
+                return HandleReturningUser(console);
             }
         }
 
-        private static UserCreds HandleNewUser() { }
+        private static UserCreds HandleNewUser(IAnsiConsole console)
+        {
+            console.MarkupLine("[yellow]First time using the app? Let's set up an account![/]");
+            string username = console.Ask<string>("Enter a username: ");
+            string password = console.Ask<string>("Enter a password: ");
+            string passwordHash = HashPassword(password);
+
+            UserCreds newUser = new UserCreds { Username = username, PasswordHash = passwordHash };
+            AppData appData = new AppData { UserCredentials = newUser, MoodRecords = new List<MoodRecord>() };
+            
+        }
         
         private static UserCreds HandleReturningUser() { }
 

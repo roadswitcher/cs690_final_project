@@ -89,7 +89,7 @@ namespace TrackerApp
             return _userCreds;
         }
 
-        public SetUserCredentials(UserCreds userCredentials)
+        public void SetUserCredentials(UserCreds userCredentials)
         {
             _userCreds = userCredentials;
             SaveData();
@@ -98,7 +98,12 @@ namespace TrackerApp
         {
             return _moodRecords;
         }
-        
+
+        public void AddMoodRecord(MoodRecord moodRecord)
+        {
+            _moodRecords.Add(moodRecord);
+            SaveData();
+        }
         
     }
     
