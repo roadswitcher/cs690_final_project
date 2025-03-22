@@ -6,15 +6,13 @@ using System.Dynamic;
 
 namespace TrackerApp
 {
-
-
     internal class Tracker
     {
         private readonly UserInputHandler _userInputHandler;
 
         public Tracker(IAnsiConsole console)
         {
-            var console1 = console ?? throw new ArgumentNullException(nameof(console));
+            IAnsiConsole console1 = console ?? throw new ArgumentNullException(nameof(console));
             _userInputHandler = new UserInputHandler(console1);
         }
 
@@ -28,18 +26,18 @@ namespace TrackerApp
 
         private void RunMoodTracker()
         {
-            var shouldAppDie = false;
-            
+            bool shouldAppDie = false;
+
             // TODO: Login and Datastore
             // -- if there's no datastore, clean login
             // -- existing datastore?   who logged in, ask password again
-            
+
 
             while (!shouldAppDie)
             {
                 List<string> trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
 
-                var userInput = _userInputHandler.GetUserInput(trackedEmotions);
+                object userInput = _userInputHandler.GetUserInput(trackedEmotions);
 
                 switch (userInput)
                 {
@@ -52,7 +50,6 @@ namespace TrackerApp
                         Console.WriteLine($"Trigger: {mood.Trigger}");
                         break;
                 }
-                
             }
         }
     }
