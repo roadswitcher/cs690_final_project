@@ -16,14 +16,14 @@ namespace TrackerApp
     {
         private static DataStore? _instance;
         private static readonly object _lock = new();
-        private string _databaseFilePath;
+        private readonly string _databaseFilePath;
         private List<MoodRecord> _moodRecords;
         private UserCreds _userCreds;
 
         private DataStore()
         {
-            _databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mooddata.json");
-            _moodRecords = new List<MoodRecord>();
+            _databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mood_data.json");
+            _moodRecords = (List<MoodRecord>) [];
             _userCreds = new UserCreds();
         }
 
