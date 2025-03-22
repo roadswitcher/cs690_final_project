@@ -28,5 +28,7 @@ namespace TrackerApp
                     .RuleStyle("green")
             );
         }
+        
     }
+    
 }
