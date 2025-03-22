@@ -41,7 +41,7 @@ namespace TrackerApp.Tests
         [Fact]
         public void IsNewLaunch_ShouldBeTrue_If_No_Data_Store_Exists()
         {
-            Assert.True(_dataStore.isFirstLaunch());
+            Assert.True(_dataStore.IsFirstLaunch());
         }
     }
 }
