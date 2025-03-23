@@ -42,6 +42,8 @@ namespace TrackerApp
                         Console.WriteLine($"Mood: {mood.Mood}");
                         Console.WriteLine($"Trigger: {mood.Trigger}");
                         _dataStore.AddMoodRecord(mood);
+                        TrackerUtils.DebugMessage(
+                            $" *** Record count: {_dataStore.GetMoodRecordCount()}   Adding mood: {mood.Mood} ***");
                         break;
                 }
             }

@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using System.Text.Json;
 
 namespace TrackerApp
@@ -61,6 +62,7 @@ namespace TrackerApp
                 string jsonString = File.ReadAllText(_databaseFilePath);
                 AppData? appData = JsonSerializer.Deserialize<AppData>(jsonString);
 
+
                 if (appData != null)
                 {
                     _moodRecords = appData.MoodRecords;
@@ -93,6 +95,11 @@ namespace TrackerApp
         public List<MoodRecord> GetMoodRecords()
         {
             return _moodRecords;
+        }
+
+        public int GetMoodRecordCount()
+        {
+            return _moodRecords.Count;
         }
 
         public void AddMoodRecord(MoodRecord moodRecord)
