@@ -12,6 +12,7 @@ namespace TrackerApp
         public int TotalRecords { get; set; }
     }
 
+
     public class ReportHandler(IDataStore dataStore)
     {
         // Give me a link to the DataStore singleton, or an exception if you cannot
@@ -41,4 +42,5 @@ namespace TrackerApp
             return report;
         }
     }
+
 }
