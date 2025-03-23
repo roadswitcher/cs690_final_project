@@ -1,14 +1,11 @@
-using System;
-using System.IO;
 using System.Reflection;
-using Xunit;
 
 namespace TrackerApp.Tests
 {
     public class DataStoreTests
     {
-        private string? _testDataPath;
-        private DataStore _dataStore;
+        private readonly DataStore _dataStore;
+        private readonly string? _testDataPath;
 
         public DataStoreTests()
         {
@@ -18,7 +15,7 @@ namespace TrackerApp.Tests
             // get the data file path with reflection
             FieldInfo? fieldInfo = typeof(DataStore).GetField("_dataFilePath",
                 BindingFlags.NonPublic | BindingFlags.Instance);
-            var value = fieldInfo?.GetValue(_dataStore);
+            object? value = fieldInfo?.GetValue(_dataStore);
             _testDataPath = value != null ? (string)value : string.Empty;
 
             // Delete the test file if it exists
