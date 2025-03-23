@@ -48,7 +48,7 @@ namespace TrackerApp.Tests
         }
         
         [Fact]
-        public void GetDailyReport_ReturnsCorrectRecordsCount()
+        public void GetDailyReport_ReturnsCorrectNumberOfRecords()
         {
             var date = _today;
             
