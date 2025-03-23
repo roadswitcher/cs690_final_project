@@ -5,13 +5,12 @@ namespace TrackerApp.Tests
         [Fact]
         public void MoodRecord_Constructor_SetsProperties()
         {
+            string expectedMood = "Happy";
+            string expectedTrigger = "There was a dog!";
+            DateTime expectedTime = new(2025, 3, 15, 10, 30, 0);
 
-            var expectedMood = "Happy";
-            var expectedTrigger = "There was a dog!";
-            var expectedTime = new DateTime(2025, 3, 15, 10, 30, 0);
-            
-            var record = new MoodRecord(expectedMood, expectedTrigger, expectedTime);
-            
+            MoodRecord record = new(expectedMood, expectedTrigger, expectedTime);
+
             Assert.Equal(expectedMood, record.Mood);
             Assert.Equal(expectedTrigger, record.Trigger);
             Assert.Equal(expectedTime, record.Timestamp);
@@ -20,11 +19,10 @@ namespace TrackerApp.Tests
         [Fact]
         public void MoodRecord_Constructor_IfNoTimeProvided()
         {
+            DateTime before = DateTime.UtcNow;
 
-            var before = DateTime.UtcNow;
-
-            var record = new MoodRecord("Happy", "");
-            var after = DateTime.UtcNow;
+            MoodRecord record = new("Happy", "");
+            DateTime after = DateTime.UtcNow;
 
             Assert.True(record.Timestamp >= before && record.Timestamp <= after);
         }
@@ -32,7 +30,7 @@ namespace TrackerApp.Tests
         [Fact]
         public void MoodRecord_MustHaveMood()
         {
-            Assert.Throws<ArgumentNullException>(() => new MoodRecord("", "check for empty string")); 
+            Assert.Throws<ArgumentNullException>(() => new MoodRecord("", "check for empty string"));
         }
     }
 }
