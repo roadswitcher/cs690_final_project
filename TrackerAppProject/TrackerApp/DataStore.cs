@@ -48,12 +48,8 @@ namespace TrackerApp
 
         private void SaveData()
         {
-            AppData appData = new AppData
-            {
-                UserCredentials = _userCreds, 
-                MoodRecords = _moodRecords
-            };
-            
+            AppData appData = new() { UserCredentials = _userCreds, MoodRecords = _moodRecords };
+
             string jsonString = JsonSerializer.Serialize(appData, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_databaseFilePath, jsonString);
         }
@@ -72,12 +68,12 @@ namespace TrackerApp
                     return;
                 }
             }
-            
+
             // If we get to this point, default values
             _moodRecords = new List<MoodRecord>();
             _userCreds = new UserCreds();
         }
-        
+
         public bool IsFirstLaunch()
         {
             return !File.Exists(_databaseFilePath);
@@ -93,6 +89,7 @@ namespace TrackerApp
             _userCreds = userCredentials;
             SaveData();
         }
+
         public List<MoodRecord> GetMoodRecords()
         {
             return _moodRecords;
@@ -103,8 +100,5 @@ namespace TrackerApp
             _moodRecords.Add(moodRecord);
             SaveData();
         }
-        
     }
-    
-    
 }

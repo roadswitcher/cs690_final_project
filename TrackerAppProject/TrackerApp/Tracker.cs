@@ -1,15 +1,11 @@
 ﻿using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 
 namespace TrackerApp
 {
     internal class Tracker
     {
-        private readonly UserInputHandler _userInputHandler;
         private readonly DataStore _dataStore;
+        private readonly UserInputHandler _userInputHandler;
 
         public Tracker(IAnsiConsole console)
         {
