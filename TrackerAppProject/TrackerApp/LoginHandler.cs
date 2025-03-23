@@ -38,7 +38,7 @@ namespace TrackerApp
             DataStore dataStore = DataStore.Instance;
             dataStore.SetUserCredentials(newUser);
     
-            AnsiConsole.MarkupLine("[green]Account created successfully![/]");
+            AnsiConsole.MarkupLine("Account created successfully!");
             return newUser;
         }
 
@@ -48,7 +48,7 @@ namespace TrackerApp
             UserCreds userCreds = dataStore.GetUserCredentials();
             string storedUsername = userCreds.Username;
             
-            AnsiConsole.MarkupLine($"[yellow]Welcome back, [bold]{storedUsername}[/]![/]");
+            AnsiConsole.MarkupLine($"Welcome back, [bold]{storedUsername}[/]!");
             
             bool isAuthenticated = false;
             
