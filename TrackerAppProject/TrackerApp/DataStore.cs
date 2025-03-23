@@ -5,7 +5,7 @@ namespace TrackerApp
     public class AppData
     {
         public UserCreds UserCredentials { get; set; } = new();
-        public List<MoodRecord> MoodRecords { get; set; } = new();
+        public List<MoodRecord> MoodRecords { get; set; } = [];
     }
 
     public class UserCreds
