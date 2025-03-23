@@ -15,7 +15,11 @@ namespace TrackerApp
         public string PasswordHash { get; set; } = string.Empty;
     }
 
-    public class DataStore
+    public interface IDataStore
+    {
+        List<MoodRecord> GetMoodRecords();
+    }
+    public class DataStore : IDataStore
     {
         private static DataStore? _instance;
         private static readonly object Lock = new();
