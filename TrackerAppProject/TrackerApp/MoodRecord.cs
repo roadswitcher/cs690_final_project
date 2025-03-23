@@ -10,8 +10,8 @@ namespace TrackerApp
             }
 
             Mood = mood;
-            Trigger = trigger != null ? trigger : string.Empty;
-            Timestamp = timestamp != null ? timestamp.Value : DateTime.UtcNow;
+            Trigger = trigger ?? string.Empty;
+            Timestamp = timestamp ?? DateTime.UtcNow;
         }
 
         public MoodRecord()
