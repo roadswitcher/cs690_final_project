@@ -25,8 +25,7 @@ namespace TrackerApp
         private DataStore()
         {
             _databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mood_data.json");
-            _moodRecords = (List<MoodRecord>) [];
-            _userCreds = new UserCreds();
+            LoadData();
         }
 
         public static DataStore Instance
