@@ -4,42 +4,86 @@ namespace TrackerApp
 {
     public class LoginHandler
     {
-        public static UserCreds HandleLogin(IAnsiConsole? console = null)
+        public static UserCreds HandleLogin()
         {
             DataStore dataStore = DataStore.Instance;
-            console ??= AnsiConsole.Console;
 
             if (dataStore.IsFirstLaunch())
             {
-                return HandleNewUser(console);
+                return HandleNewUser();
             }
             else
             {
-                return HandleReturningUser(console);
+                return HandleReturningUser();
             }
         }
 
-        private static UserCreds HandleNewUser(IAnsiConsole console)
+        public static UserCreds HandleNewUser()
         {
-            console.MarkupLine("[yellow]First time using the app? Let's set up an account![/]");
-            string username = console.Ask<string>("Enter a username: ");
-            string password = console.Ask<string>("Enter a password: ");
+            AnsiConsole.MarkupLine("[yellow]First time using the app? Let's set up your account.[/]");
+    
+            string username = AnsiConsole.Ask<string>("[green]Enter a username:[/]");
+            string password = AnsiConsole.Prompt(
+                new TextPrompt<string>("[green]Create a password:[/]")
+                    .Secret());
+    
             string passwordHash = HashPassword(password);
-
-            UserCreds newUser = new UserCreds { Username = username, PasswordHash = passwordHash };
-            AppData appData = new AppData { UserCredentials = newUser, MoodRecords = new List<MoodRecord>() };
+    
+            UserCreds newUser = new UserCreds
+            {
+                Username = username,
+                PasswordHash = passwordHash
+            };
             
+            DataStore dataStore = DataStore.Instance;
+            dataStore.SetUserCredentials(newUser);
+    
+            AnsiConsole.MarkupLine("[green]Account created successfully![/]");
+            return newUser;
         }
-        
-        private static UserCreds HandleReturningUser() { }
+
+        public static UserCreds HandleReturningUser()
+        {
+            DataStore dataStore = DataStore.Instance;
+            UserCreds userCreds = dataStore.GetUserCredentials();
+            string storedUsername = userCreds.Username;
+            
+            AnsiConsole.MarkupLine($"[yellow]Welcome back, [bold]{storedUsername}[/]![/]");
+            
+            bool isAuthenticated = false;
+            
+            while (!isAuthenticated)
+            {
+                string password = AnsiConsole.Prompt(
+                    new TextPrompt<string>("[green]Password:[/]")
+                        .Secret());
+                
+                string passwordHash = HashPassword(password);
+                
+                if (passwordHash == userCreds.PasswordHash)
+                {
+                    AnsiConsole.MarkupLine("[green]Login successful![/]");
+                    isAuthenticated = true;
+                }
+                else
+                {
+                    AnsiConsole.MarkupLine("[red]Incorrect password. Please try again.[/]");
+                }
+            }
+            
+            return userCreds;
+
+        }
 
         private static string HashPassword(string password)
         {
             // Not using crypto at the moment, it's a class project
             // TODO: time permitting, checkout out System.Security to see
             //       what'll work
-            return Convert.ToBase64String(password);
+            // return Convert.ToBase64String(password);
+            return password;
         }
+        
         
         
         
