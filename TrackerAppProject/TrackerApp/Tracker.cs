@@ -30,11 +30,6 @@ namespace TrackerApp
         {
             bool shouldAppDie = false;
 
-            // TODO: Login and Datastore
-            // -- if there's no datastore, clean login
-            // -- existing datastore?   who logged in, ask password again
-
-
             while (!shouldAppDie)
             {
                 List<string> trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
