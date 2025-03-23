@@ -14,8 +14,13 @@ namespace TrackerApp
             Timestamp = timestamp != null ? timestamp.Value : DateTime.UtcNow;
         }
 
-        public string Mood { get; }
-        public string Trigger { get; }
-        public DateTime Timestamp { get; }
+        public MoodRecord()
+        {
+            // Default for deserialization
+        }
+
+        public string Mood { get; set; } = string.Empty;
+        public string Trigger { get; set; } = string.Empty;
+        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     }
 }
