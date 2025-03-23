@@ -31,10 +31,10 @@ namespace TrackerApp
             return report;
         }
 
-        public WeeklyReport GetWeeklyReport(DateTime endDate)
+        public WeeklyReport GetWeeklyReport(DateTime today)
         {
-            var startDate = endDate.Date.AddDays(-7);
-            var records = _dataStore.GetMoodRecords().Where(record => record.Timestamp.Date == DateTime.Now.Date).ToList();
+            var weekAgo = today.Date.AddDays(-6);
+            var records = _dataStore.GetMoodRecords().Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();
             var report = new WeeklyReport { Date = DateTime.Now, TotalRecords = records.Count };
             return report;
         }
