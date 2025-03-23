@@ -14,13 +14,7 @@ namespace TrackerApp
             AnsiConsole.MarkupLine($"[bold yellow]Current Console Width: {consoleWidth}[/]");
             AnsiConsole.MarkupLine($"[bold yellow]Args Length: {args.Length}[/]");
 #endif
-
-            // AnsiConsole.Write(
-            //     new FigletText("MoodTracker")
-            //         .Centered()
-            //         .Color(Color.Cyan1)
-            // );
-
+            
             AnsiConsole.Write(new Rule("[cyan1]Welcome To MoodTracker[/]").Centered().RuleStyle("green"));
             AnsiConsole.Write(
                 new Rule("[bold green]Let's Get Started[/]")
@@ -33,7 +27,7 @@ namespace TrackerApp
             DataStore dataStore = DataStore.Instance;
             dataStore.SetUserCredentials(userCredentials);
 
-            AnsiConsole.MarkupLine($"[green] Logged in as [bold]{userCredentials.Username}[/]");
+            AnsiConsole.MarkupLine($" Logged in as {userCredentials.Username}");
             AnsiConsole.WriteLine();
         }
         
