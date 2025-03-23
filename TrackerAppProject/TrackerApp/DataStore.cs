@@ -20,7 +20,7 @@ namespace TrackerApp
         private static readonly object Lock = new();
         private readonly string _databaseFilePath;
         private List<MoodRecord> _moodRecords;
-        private UserCreds _userCreds;
+        private UserCreds _userCredentials;
 
         private DataStore()
         {
@@ -48,7 +48,7 @@ namespace TrackerApp
 
         private void SaveData()
         {
-            AppData appData = new() { UserCredentials = _userCreds, MoodRecords = _moodRecords };
+            AppData appData = new() { UserCredentials = _userCredentials, MoodRecords = _moodRecords };
 
             string jsonString = JsonSerializer.Serialize(appData, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_databaseFilePath, jsonString);
@@ -64,14 +64,14 @@ namespace TrackerApp
                 if (appData != null)
                 {
                     _moodRecords = appData.MoodRecords;
-                    _userCreds = appData.UserCredentials;
+                    _userCredentials = appData.UserCredentials;
                     return;
                 }
             }
 
             // If we get to this point, default values
             _moodRecords = new List<MoodRecord>();
-            _userCreds = new UserCreds();
+            _userCredentials = new UserCreds();
         }
 
         public bool IsFirstLaunch()
@@ -81,12 +81,12 @@ namespace TrackerApp
 
         public UserCreds GetUserCredentials()
         {
-            return _userCreds;
+            return _userCredentials;
         }
 
         public void SetUserCredentials(UserCreds userCredentials)
         {
-            _userCreds = userCredentials;
+            _userCredentials = userCredentials;
             SaveData();
         }
 
