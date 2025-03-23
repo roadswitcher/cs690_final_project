@@ -45,6 +45,7 @@ namespace TrackerApp
                     case MoodRecord mood:
                         Console.WriteLine($"Mood: {mood.Mood}");
                         Console.WriteLine($"Trigger: {mood.Trigger}");
+                        _dataStore.AddMoodRecord(mood);
                         break;
                 }
             }
