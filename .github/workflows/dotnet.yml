@@ -59,10 +59,3 @@ jobs:
          
      - name: Run tests
        run: dotnet test TrackerAppProject/TrackerAppProject.sln -l:"console;verbosity=normal"
-
-     - name: Test with ReportGenerator
-       run: |
-         dotnet test TrackerAppProject/TrackerAppProject.sln  --logger "trx;LogFileName=test-results.trx"
-         dotnet tool install -g dotnet-reportgenerator-globaltool
-         reportgenerator "-reports:**/TestResults/*.trx" "-targetdir:report" "-reporttypes:MarkdownSummary"
-         cat report/SUMMARY.md >> $GITHUB_STEP_SUMMARY
