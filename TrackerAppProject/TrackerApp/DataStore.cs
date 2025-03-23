@@ -19,8 +19,8 @@ namespace TrackerApp
         private static DataStore? _instance;
         private static readonly object Lock = new();
         private readonly string _databaseFilePath;
-        private List<MoodRecord> _moodRecords;
-        private UserCreds _userCredentials;
+        private List<MoodRecord> _moodRecords = [];
+        private UserCreds _userCredentials = new UserCreds();
 
         private DataStore()
         {
