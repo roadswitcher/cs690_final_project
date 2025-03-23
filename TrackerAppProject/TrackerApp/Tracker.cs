@@ -1,19 +1,17 @@
 ﻿using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 
 namespace TrackerApp
 {
     internal class Tracker
     {
+        private readonly DataStore _dataStore;
         private readonly UserInputHandler _userInputHandler;
 
         public Tracker(IAnsiConsole console)
         {
             IAnsiConsole console1 = console ?? throw new ArgumentNullException(nameof(console));
             _userInputHandler = new UserInputHandler(console1);
+            _dataStore = DataStore.Instance;
         }
 
         public int Run(string[] args)
@@ -27,11 +25,6 @@ namespace TrackerApp
         private void RunMoodTracker()
         {
             bool shouldAppDie = false;
-
-            // TODO: Login and Datastore
-            // -- if there's no datastore, clean login
-            // -- existing datastore?   who logged in, ask password again
-
 
             while (!shouldAppDie)
             {
@@ -48,6 +41,7 @@ namespace TrackerApp
                     case MoodRecord mood:
                         Console.WriteLine($"Mood: {mood.Mood}");
                         Console.WriteLine($"Trigger: {mood.Trigger}");
+                        _dataStore.AddMoodRecord(mood);
                         break;
                 }
             }

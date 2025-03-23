@@ -1,5 +1,4 @@
 ﻿using Spectre.Console;
-using System;
 
 namespace TrackerApp
 {
@@ -7,7 +6,7 @@ namespace TrackerApp
     {
         public static int Main(string[] args)
         {
-            var app = new Tracker(AnsiConsole.Console);
+            Tracker app = new(AnsiConsole.Console);
             return app.Run(args);
         }
     }
