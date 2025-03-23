@@ -70,7 +70,7 @@ namespace TrackerApp
             }
 
             // If we get to this point, default values
-            _moodRecords = new List<MoodRecord>();
+            _moodRecords = [];
             _userCredentials = new UserCreds();
         }
 
