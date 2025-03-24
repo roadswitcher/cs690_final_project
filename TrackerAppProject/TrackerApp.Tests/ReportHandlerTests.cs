@@ -64,7 +64,7 @@ namespace TrackerApp.Tests
         {
             var date = _today;
             var report = _reportHandler.GetWeeklyReport(date);
-            
+
             Assert.Equal(8, report.TotalRecords);
         }
     }

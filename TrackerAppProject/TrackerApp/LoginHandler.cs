@@ -48,9 +48,20 @@ namespace TrackerApp
 
             while (!isAuthenticated)
             {
-                string password = AnsiConsole.Prompt(
-                    new TextPrompt<string>("[green]Password:[/]")
-                        .Secret());
+                string password;
+
+                while (true)
+                {
+                    password = AnsiConsole.Prompt(
+                        new TextPrompt<string>("[green]Password:[/]")
+                            .Secret()
+                            .AllowEmpty());
+
+                    if (!string.IsNullOrWhiteSpace(password))
+                        break;
+
+                    AnsiConsole.MarkupLine("[red]**** Enter a password ****[/]");
+                }
 
                 string passwordHash = HashPassword(password);
 

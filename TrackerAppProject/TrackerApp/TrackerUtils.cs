@@ -6,15 +6,15 @@ namespace TrackerApp
     {
         public static void DebugMessage(string message)
         {
-            #if DEBUG
+#if DEBUG
             AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
-            #endif
+#endif
         }
-        
+
         public static void WelcomeScreen(string[] args)
         {
             AnsiConsole.Clear();
-            
+
             DebugMessage($"Args Length: {args.Length}");
             DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
 
