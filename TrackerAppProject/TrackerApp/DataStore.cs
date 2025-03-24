@@ -19,6 +19,7 @@ namespace TrackerApp
     {
         List<MoodRecord> GetMoodRecords();
     }
+
     public class DataStore : IDataStore
     {
         private static DataStore? _instance;

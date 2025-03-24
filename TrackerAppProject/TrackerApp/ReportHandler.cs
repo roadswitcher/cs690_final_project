@@ -42,5 +42,4 @@ namespace TrackerApp
             return report;
         }
     }
-
 }
