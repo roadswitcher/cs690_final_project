@@ -30,12 +30,17 @@ namespace TrackerApp
             return new MoodRecord(mood, trigger);
         }
 
-        private bool AdminOptions()
+        private string AdminOptions()
         {
+            string option = Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
+                .Title("[bold red]Select Admin Option:[/]")
+                .AddChoices("Remove Last Mood Update", "Remove All Mood Updates", "Exit Admin Options")));
+
+
             // - Clear one record
             // - Clear all recordds
             // - Exit AdminOptions
-            return true;
+            return "";
         }
 
         public object GetUserInput(List<string> trackedEmotions)
