@@ -30,11 +30,19 @@ namespace TrackerApp
             return new MoodRecord(mood, trigger);
         }
 
+        private bool AdminOptions()
+        {
+            // - Clear one record
+            // - Clear all recordds
+            // - Exit AdminOptions
+            return true;
+        }
+
         public object GetUserInput(List<string> trackedEmotions)
         {
             string choice = Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
                 .Title("[green]Update[/] mood, [aqua]Report[/] data, or [red]Exit[/] app?")
-                .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Settings[/]", "[red]Exit[/]")));
+                .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")));
 
             switch (choice)
             {
@@ -45,8 +53,8 @@ namespace TrackerApp
                 case "Update":
                     Console.WriteLine("Updating!");
                     return GetMoodRecordUpdate(trackedEmotions);
-                case "Settings":
-                    return choice;
+                case "Admin Options":
+                    return AdminOptions();
                 default:
                     Console.WriteLine("Unknown choice");
                     return choice;
