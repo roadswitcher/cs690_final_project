@@ -34,7 +34,7 @@ namespace TrackerApp
         {
             string choice = Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
                 .Title("[green]Update[/] mood, [aqua]Report[/] data, or [red]Exit[/] app?")
-                .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Exit[/]")));
+                .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Settings[/]", "[red]Exit[/]")));
 
             switch (choice)
             {
@@ -42,9 +42,14 @@ namespace TrackerApp
                     return choice;
                 case "Report":
                     return choice;
-                default:
+                case "Update":
                     Console.WriteLine("Updating!");
                     return GetMoodRecordUpdate(trackedEmotions);
+                case "Settings":
+                    return choice;
+                default:
+                    Console.WriteLine("Unknown choice");
+                    return choice;
             }
         }
     }
