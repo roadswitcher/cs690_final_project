@@ -6,12 +6,15 @@ namespace TrackerApp
     {
         private readonly DataStore _dataStore;
         private readonly UserInputHandler _userInputHandler;
+        private readonly List<string> _trackedEmotions;
 
         public Tracker(IAnsiConsole console)
         {
             IAnsiConsole console1 = console ?? throw new ArgumentNullException(nameof(console));
             _userInputHandler = new UserInputHandler(console1);
             _dataStore = DataStore.Instance;
+            _trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
+            
         }
 
         public int Run(string[] args)
@@ -24,9 +27,9 @@ namespace TrackerApp
 
         private void RunMoodTracker()
         {
-            bool shouldAppDie = false;
+            bool shouldExit = false;
 
-            while (!shouldAppDie)
+            while (!shouldExit)
             {
                 List<string> trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
 
@@ -36,7 +39,7 @@ namespace TrackerApp
                 {
                     case string choice:
                         Console.WriteLine($"User picked: {choice}");
-                        shouldAppDie = string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
+                        shouldExit = string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
                         break;
                     case MoodRecord mood:
                         Console.WriteLine($"Mood: {mood.Mood}");

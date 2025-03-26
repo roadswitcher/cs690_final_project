@@ -20,7 +20,7 @@ namespace TrackerApp
         {
             AnsiConsole.MarkupLine("[yellow]First time using the app? Let's set up your account.[/]");
 
-            string username = AnsiConsole.Ask<string>("[green]Enter a username:[/]");
+            string username = AnsiConsole.Ask<string>("[green]Enter a username to create an account:[/]");
             string password = AnsiConsole.Prompt(
                 new TextPrompt<string>("[green]Create a password:[/]")
                     .Secret());
