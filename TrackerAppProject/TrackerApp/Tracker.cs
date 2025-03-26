@@ -14,7 +14,6 @@ namespace TrackerApp
             _userInputHandler = new UserInputHandler(console1);
             _dataStore = DataStore.Instance;
             _trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
-            
         }
 
         public int Run(string[] args)
@@ -31,25 +30,48 @@ namespace TrackerApp
 
             while (!shouldExit)
             {
-                List<string> trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
+                string choice = _userInputHandler.GetMainMenuChoice();
 
-                object userInput = _userInputHandler.GetUserInput(trackedEmotions);
-
-                switch (userInput)
+                switch (choice)
                 {
-                    case string choice:
-                        Console.WriteLine($"User picked: {choice}");
-                        shouldExit = string.Equals(choice, "Exit", StringComparison.OrdinalIgnoreCase);
+                    case "Update":
+                        HandleMoodUpdate();
                         break;
-                    case MoodRecord mood:
-                        Console.WriteLine($"Mood: {mood.Mood}");
-                        Console.WriteLine($"Trigger: {mood.Trigger}");
-                        _dataStore.AddMoodRecord(mood);
-                        TrackerUtils.DebugMessage(
-                            $" *** Record count: {_dataStore.GetMoodRecordCount()}   Adding mood: {mood.Mood} ***");
+                    case "Report":
+                        HandleReportGeneration();
+                        break;
+                    case "Admin Options":
+                        HandleAdminOptions();
+                        break;
+                    case "Exit":
+                        shouldExit = true;
                         break;
                 }
             }
+        }
+        
+        private void HandleMoodUpdate()
+        {
+            MoodRecord mood = _userInputHandler.GetMoodRecordUpdate(_trackedEmotions);
+            _dataStore.AddMoodRecord(mood);
+            TrackerUtils.DebugMessage($" *** Mood Record Count: {_dataStore.GetMoodRecordCount()}");
+            TrackerUtils.DebugMessage($" *** Mood Record Update: {mood.Mood} {mood.Trigger}");
+        }
+        
+        private void HandleReportGeneration()
+        {
+            Console.WriteLine("Not yet implemented");
+        }
+        
+        private void HandleAdminOptions()
+        {
+            // string adminChoice = _userInputHandler.GetAdminOption();
+            Console.WriteLine("Not yet implemented");
+            // switch (adminChoice):
+            //
+            // {
+            //     // implement choices
+            // }
         }
     }
 }
