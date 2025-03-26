@@ -58,7 +58,9 @@ namespace TrackerApp
                             .AllowEmpty());
 
                     if (!string.IsNullOrWhiteSpace(password))
+                    {
                         break;
+                    }
 
                     AnsiConsole.MarkupLine("[red]**** Enter a password ****[/]");
                 }

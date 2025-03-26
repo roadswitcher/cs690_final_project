@@ -5,8 +5,8 @@ namespace TrackerApp
     internal class Tracker
     {
         private readonly DataStore _dataStore;
-        private readonly UserInputHandler _userInputHandler;
         private readonly List<string> _trackedEmotions;
+        private readonly UserInputHandler _userInputHandler;
 
         public Tracker(IAnsiConsole console)
         {
@@ -49,7 +49,7 @@ namespace TrackerApp
                 }
             }
         }
-        
+
         private void HandleMoodUpdate()
         {
             MoodRecord mood = _userInputHandler.GetMoodRecordUpdate(_trackedEmotions);
@@ -57,12 +57,12 @@ namespace TrackerApp
             TrackerUtils.DebugMessage($" *** Mood Record Count: {_dataStore.GetMoodRecordCount()}");
             TrackerUtils.DebugMessage($" *** Mood Record Update: {mood.Mood} {mood.Trigger}");
         }
-        
+
         private void HandleReportGeneration()
         {
             Console.WriteLine("Not yet implemented");
         }
-        
+
         private void HandleAdminOptions()
         {
             // string adminChoice = _userInputHandler.GetAdminOption();

@@ -26,19 +26,20 @@ namespace TrackerApp
         public DailyReport GetDailyReport(DateTime date)
         {
             date = date.Date;
-            var records = _dataStore.GetMoodRecords().Where(record => record.Timestamp.Date == date).ToList();
+            List<MoodRecord> records =
+                _dataStore.GetMoodRecords().Where(record => record.Timestamp.Date == date).ToList();
 
-            var report = new DailyReport { Date = date, TotalRecords = records.Count };
+            DailyReport report = new() { Date = date, TotalRecords = records.Count };
 
             return report;
         }
 
         public WeeklyReport GetWeeklyReport(DateTime today)
         {
-            var weekAgo = today.Date.AddDays(-6);
-            var records = _dataStore.GetMoodRecords()
+            DateTime weekAgo = today.Date.AddDays(-6);
+            List<MoodRecord> records = _dataStore.GetMoodRecords()
                 .Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();
-            var report = new WeeklyReport { Date = DateTime.Now, TotalRecords = records.Count };
+            WeeklyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
             return report;
         }
     }

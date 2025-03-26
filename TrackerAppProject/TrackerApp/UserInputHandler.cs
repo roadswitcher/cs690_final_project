@@ -12,7 +12,7 @@ namespace TrackerApp
                 .Title("[green]Update[/] mood, [aqua]Report[/] data, or [red]Exit[/] app?")
                 .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")));
         }
-        
+
         public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
         {
             AnsiConsole.Write(new Rule("[cyan1]Mood Update[/]").LeftJustified().RuleStyle("cyan2"));
@@ -43,6 +43,5 @@ namespace TrackerApp
                 .Title("[bold red]Select Admin Option:[/]")
                 .AddChoices("Remove Last Mood Update", "Remove All Mood Updates", "Exit Admin Options")));
         }
-        
     }
 }

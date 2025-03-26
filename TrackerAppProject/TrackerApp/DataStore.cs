@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 using System.Text.Json;
 
 namespace TrackerApp
@@ -26,7 +25,7 @@ namespace TrackerApp
         private static readonly object Lock = new();
         private readonly string _databaseFilePath;
         private List<MoodRecord> _moodRecords = [];
-        private UserCreds _userCredentials = new UserCreds();
+        private UserCreds _userCredentials = new();
 
         private DataStore()
         {
@@ -50,6 +49,11 @@ namespace TrackerApp
 
                 return _instance;
             }
+        }
+
+        public List<MoodRecord> GetMoodRecords()
+        {
+            return _moodRecords;
         }
 
         private void SaveData()
@@ -95,11 +99,6 @@ namespace TrackerApp
         {
             _userCredentials = userCredentials;
             SaveData();
-        }
-
-        public List<MoodRecord> GetMoodRecords()
-        {
-            return _moodRecords;
         }
 
         public int GetMoodRecordCount()
