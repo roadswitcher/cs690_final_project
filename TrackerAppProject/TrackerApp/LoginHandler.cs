@@ -4,7 +4,7 @@ namespace TrackerApp
 {
     public class LoginHandler
     {
-        public static UserCreds HandleLogin()
+        public static UserAccount HandleLogin()
         {
             DataStore dataStore = DataStore.Instance;
 
@@ -16,18 +16,19 @@ namespace TrackerApp
             return HandleReturningUser();
         }
 
-        public static UserCreds HandleNewUser()
+        public static UserAccount HandleNewUser()
         {
             AnsiConsole.MarkupLine("[yellow]First time using the app? Let's set up your account.[/]");
 
             string username = AnsiConsole.Ask<string>("[green]Enter a username to create an account:[/]");
-            string password = AnsiConsole.Prompt(
-                new TextPrompt<string>("[green]Create a password:[/]")
-                    .Secret());
+            // string password = AnsiConsole.Prompt(
+            //     new TextPrompt<string>("[green]Create a password:[/]")
+            //         .Secret());
+            //
+            // string passwordHash = HashPassword(password);
 
-            string passwordHash = HashPassword(password);
-
-            UserCreds newUser = new() { Username = username, PasswordHash = passwordHash };
+            // UserAccount newUser = new() { Username = username, PasswordHash = passwordHash };
+            UserAccount newUser = new() { Username = username };
 
             DataStore dataStore = DataStore.Instance;
             dataStore.SetUserCredentials(newUser);
@@ -36,56 +37,54 @@ namespace TrackerApp
             return newUser;
         }
 
-        public static UserCreds HandleReturningUser()
+        public static UserAccount HandleReturningUser()
         {
             DataStore dataStore = DataStore.Instance;
-            UserCreds userCreds = dataStore.GetUserCredentials();
-            string storedUsername = userCreds.Username;
+            UserAccount userAccount = dataStore.GetUserCredentials();
+            string storedUsername = userAccount.Username;
 
             AnsiConsole.MarkupLine($"Welcome back, [bold]{storedUsername}[/]!");
 
-            bool isAuthenticated = false;
+            // bool isAuthenticated = false;
+            //
+            // while (!isAuthenticated)
+            // {
+            //     string password;
+            //
+            //     while (true)
+            //     {
+            //         password = AnsiConsole.Prompt(
+            //             new TextPrompt<string>("[green]Password:[/]")
+            //                 .Secret()
+            //                 .AllowEmpty());
+            //
+            //         if (!string.IsNullOrWhiteSpace(password))
+            //         {
+            //             break;
+            //         }
+            //
+            //         AnsiConsole.MarkupLine("[red]**** Enter a password ****[/]");
+            //     }
+            //
+            //     string passwordHash = HashPassword(password);
+            //
+            //     if (passwordHash == userAccount.PasswordHash)
+            //     {
+            //         AnsiConsole.MarkupLine("[green]Login successful![/]");
+            //         isAuthenticated = true;
+            //     }
+            //     else
+            //     {
+            //         AnsiConsole.MarkupLine("[red]Incorrect password. Please try again.[/]");
+            //     }
+            // }
 
-            while (!isAuthenticated)
-            {
-                string password;
-
-                while (true)
-                {
-                    password = AnsiConsole.Prompt(
-                        new TextPrompt<string>("[green]Password:[/]")
-                            .Secret()
-                            .AllowEmpty());
-
-                    if (!string.IsNullOrWhiteSpace(password))
-                    {
-                        break;
-                    }
-
-                    AnsiConsole.MarkupLine("[red]**** Enter a password ****[/]");
-                }
-
-                string passwordHash = HashPassword(password);
-
-                if (passwordHash == userCreds.PasswordHash)
-                {
-                    AnsiConsole.MarkupLine("[green]Login successful![/]");
-                    isAuthenticated = true;
-                }
-                else
-                {
-                    AnsiConsole.MarkupLine("[red]Incorrect password. Please try again.[/]");
-                }
-            }
-
-            return userCreds;
+            return userAccount;
         }
 
         private static string HashPassword(string password)
         {
             // Not using crypto at the moment, it's a class project
-            // TODO: time permitting, checkout out System.Security to see
-            //       what'll work
             // return Convert.ToBase64String(password);
             return password;
         }

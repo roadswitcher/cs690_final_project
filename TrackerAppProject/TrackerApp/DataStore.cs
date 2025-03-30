@@ -4,14 +4,14 @@ namespace TrackerApp
 {
     public class AppData
     {
-        public UserCreds UserCredentials { get; init; } = new();
+        public UserAccount UserCredentials { get; init; } = new();
         public List<MoodRecord> MoodRecords { get; init; } = [];
     }
 
-    public class UserCreds
+    public class UserAccount
     {
         public string Username { get; set; } = string.Empty;
-        public string PasswordHash { get; set; } = string.Empty;
+        // public string PasswordHash { get; set; } = string.Empty;
     }
 
     public interface IDataStore
@@ -25,7 +25,7 @@ namespace TrackerApp
         private static readonly object Lock = new();
         private readonly string _databaseFilePath;
         private List<MoodRecord> _moodRecords = [];
-        private UserCreds _userCredentials = new();
+        private UserAccount _userCredentials = new();
 
         private DataStore()
         {
@@ -82,7 +82,7 @@ namespace TrackerApp
 
             // If we get to this point, default values
             _moodRecords = [];
-            _userCredentials = new UserCreds();
+            _userCredentials = new UserAccount();
         }
 
         public bool IsFirstLaunch()
@@ -90,12 +90,12 @@ namespace TrackerApp
             return !File.Exists(_databaseFilePath);
         }
 
-        public UserCreds GetUserCredentials()
+        public UserAccount GetUserCredentials()
         {
             return _userCredentials;
         }
 
-        public void SetUserCredentials(UserCreds userCredentials)
+        public void SetUserCredentials(UserAccount userCredentials)
         {
             _userCredentials = userCredentials;
             SaveData();
