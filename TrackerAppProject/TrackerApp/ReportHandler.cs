@@ -3,13 +3,19 @@ namespace TrackerApp
     public class DailyReport
     {
         public DateTime Date { get; set; }
-        public int TotalRecords { get; set; }
+        public int TotalRecords { get; init; }
     }
 
     public class WeeklyReport
     {
         public DateTime Date { get; set; }
-        public int TotalRecords { get; set; }
+        public int TotalRecords { get; init; }
+    }
+
+    public class YearlyReport
+    {
+        public DateTime Date { get; set; }
+        public int TotalRecords { get; init; }
     }
 
 
@@ -40,6 +46,15 @@ namespace TrackerApp
             List<MoodRecord> records = _dataStore.GetMoodRecords()
                 .Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();
             WeeklyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
+            return report;
+        }
+        
+        public YearlyReport GetYearlyReport(DateTime today)
+        {
+            DateTime weekAgo = today.Date.AddDays(-365);
+            List<MoodRecord> records = _dataStore.GetMoodRecords()
+                .Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();
+            YearlyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
             return report;
         }
     }

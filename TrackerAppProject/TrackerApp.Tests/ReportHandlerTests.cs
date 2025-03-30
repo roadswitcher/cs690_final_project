@@ -67,5 +67,14 @@ namespace TrackerApp.Tests
 
             Assert.Equal(8, report.TotalRecords);
         }
+        
+        [Fact]
+        public void GetYearlyReport_ReturnsCorrectNumberOfRecords()
+        {
+            var date = _today;
+            var report = _reportHandler.GetWeeklyReport(date);
+
+            Assert.Equal(8, report.TotalRecords);
+        }
     }
 }
