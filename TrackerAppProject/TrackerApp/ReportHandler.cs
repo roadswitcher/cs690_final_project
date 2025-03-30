@@ -4,12 +4,17 @@ namespace TrackerApp
     {
         public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
+        public Dictionary<string, int> MoodDistribution { get; set; } = new();
+        // public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
     }
 
     public class WeeklyReport
     {
         public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
+        public Dictionary<string, int> MoodDistribution { get; set; } = new();
+        // public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
+        // public Dictionary<DayOfWeek, int> DailyBreakdown { get; set; } = new();
     }
 
     public class YearlyReport
@@ -57,5 +62,51 @@ namespace TrackerApp
             YearlyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
             return report;
         }
+        
+        private Dictionary<string, int> GetMoodDistribution(List<MoodRecord> records)
+        {
+            var distribution = new Dictionary<string, int>();
+            
+            foreach (var record in records)
+            {
+                if (!distribution.ContainsKey(record.Mood))
+                {
+                    distribution[record.Mood] = 0;
+                }
+                
+                distribution[record.Mood]++;
+            }
+            
+            return distribution;
+        }
+        
+        private Dictionary<string, int> GetTimeOfDayDistribution(List<MoodRecord> records)
+        {
+            var distribution = new Dictionary<string, int>
+            {
+                { "Morning", 0 },
+                { "Afternoon", 0 },
+                { "Evening", 0 },
+                { "Night", 0 }
+            };
+            
+            foreach (var record in records)
+            {
+                int hour = record.Timestamp.Hour;
+                
+                string timeOfDay = hour switch
+                {
+                    >= 5 and < 12 => "Morning",
+                    >= 12 and < 17 => "Afternoon",
+                    >= 17 and < 21 => "Evening",
+                    _ => "Night"
+                };
+                
+                distribution[timeOfDay]++;
+            }
+            
+            return distribution;
+        }
+
     }
 }
