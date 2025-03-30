@@ -25,7 +25,7 @@ namespace TrackerApp
                     .RuleStyle("green")
             );
 
-            UserCreds userCredentials = LoginHandler.HandleLogin();
+            UserAccount userCredentials = LoginHandler.HandleLogin();
 
             DataStore dataStore = DataStore.Instance;
             dataStore.SetUserCredentials(userCredentials);
