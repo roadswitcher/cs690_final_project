@@ -2,19 +2,19 @@ namespace TrackerApp
 {
     public class DailyReport
     {
-        public DateTime Date { get; set; }
+        public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
     }
 
     public class WeeklyReport
     {
-        public DateTime Date { get; set; }
+        public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
     }
 
     public class YearlyReport
     {
-        public DateTime Date { get; set; }
+        public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
     }
 
@@ -48,7 +48,7 @@ namespace TrackerApp
             WeeklyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
             return report;
         }
-        
+
         public YearlyReport GetYearlyReport(DateTime today)
         {
             DateTime weekAgo = today.Date.AddDays(-365);
