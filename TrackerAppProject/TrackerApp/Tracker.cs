@@ -54,8 +54,6 @@ namespace TrackerApp
         {
             MoodRecord mood = _userInputHandler.GetMoodRecordUpdate(_trackedEmotions);
             _dataStore.AddMoodRecord(mood);
-            TrackerUtils.DebugMessage($" *** Mood Record Count: {_dataStore.GetMoodRecordCount()}");
-            TrackerUtils.DebugMessage($" *** Mood Record Update: {mood.Mood} {mood.Trigger}");
         }
 
         private void HandleReportGeneration()

@@ -40,8 +40,10 @@ namespace TrackerApp
             List<MoodRecord> records =
                 _dataStore.GetMoodRecords().Where(record => record.Timestamp.Date == date).ToList();
 
-            DailyReport report = new() { Date = date, TotalRecords = records.Count };
-
+            var report = new DailyReport
+            {
+                Date = date, TotalRecords = records.Count, MoodDistribution = GetMoodDistribution(records)
+            };
             return report;
         }
 
