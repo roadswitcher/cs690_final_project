@@ -58,7 +58,7 @@ namespace TrackerApp
 
         private void HandleReportGeneration()
         {
-            Console.WriteLine("Not yet implemented");
+            _userInputHandler.GetReportChoice();
         }
 
         private void HandleAdminOptions()

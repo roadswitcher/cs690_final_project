@@ -37,7 +37,7 @@ namespace TrackerApp
             return new MoodRecord(mood, trigger);
         }
 
-        public string GetReportChoice()
+        public void GetReportChoice()
         {
             _console.Write(new Rule("[cyan1]Report Options[/]").LeftJustified().RuleStyle("cyan2"));
             
