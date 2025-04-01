@@ -39,13 +39,13 @@ namespace TrackerApp.Tests
                     _today.AddDays(-6).AddHours(11)),
 
                 // Records from 8 days ago (outside of weekly report)
-                new MoodRecord("Frustrated", "", _today.AddDays(-8).AddHours(18)),
+                new MoodRecord("Frustrated", "running out of ideas for test cases", _today.AddDays(-8).AddHours(18)),
 
                 // Records from 2 weeks ago
                 new MoodRecord("Calm", "", _today.AddDays(-14).AddHours(7)),
                 
                 // Records from 3 weeks ago
-                new MoodRecord("Wistful", "", _today.AddDays(-21).AddHours(7)),
+                new MoodRecord("Wistful", "oh joy", _today.AddDays(-21).AddHours(7)),
                 
                 // Records from 6 weeks ago
                 new MoodRecord("Wistful", "this was so long ago", _today.AddDays(-43).AddHours(1))

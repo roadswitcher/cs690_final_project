@@ -127,7 +127,8 @@ namespace TrackerApp
             
             foreach (var record in records)
             {
-                int hour = record.Timestamp.Hour;
+                DateTime localTime = record.Timestamp.ToLocalTime();
+                int hour = localTime.Hour;
                 
                 string timeOfDay = hour switch
                 {

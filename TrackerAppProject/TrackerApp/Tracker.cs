@@ -74,11 +74,11 @@ namespace TrackerApp
                     DailyReport dailyReport = reportHandler.GetDailyReport(today);
                     _reportDisplayer.DisplayDailyReport(dailyReport);
                     break;
-            //     case "Week":
-            //         WeeklyReport weeklyReport = reportHandler.GetWeeklyReport(today);
-            //         _reportDisplayer.DisplayWeeklyReport(weeklyReport);
-            //         break;
-            //     case "Month":
+                case "Week":
+                    WeeklyReport weeklyReport = reportHandler.GetWeeklyReport(today);
+                    _reportDisplayer.DisplayWeeklyReport(weeklyReport);
+                    break;
+                // case "Month":
             //         MonthlyReport monthlyReport = reportHandler.GetMonthlyReport(today);
             //         _reportDisplayer.DisplayMonthlyReport(monthlyReport);
             //         break;
