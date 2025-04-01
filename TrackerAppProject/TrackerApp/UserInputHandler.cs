@@ -19,16 +19,17 @@ public class UserInputHandler(IAnsiConsole console)
         var mood = _console.Prompt(new SelectionPrompt<string>()
             .Title("[bold green]What is your current mood?[/]")
             .AddChoices(trackedEmotions));
-        
+
         TrackerUtils.ShowSelectedValue(mood);
 
         TrackerUtils.LineMessage("External Factors");
-        var triggerPresent = _console.Prompt(new TextPrompt<bool>("Do you want to record any triggers/external factors? ( If not, just hit enter )")
-            .AddChoice(true)
-            .AddChoice(false)
-            .DefaultValue(false)
-            .WithConverter(triggerPresent => triggerPresent ? "y" : "n"));
-        
+        var triggerPresent = _console.Prompt(
+            new TextPrompt<bool>("Do you want to record any triggers/external factors? ( If not, just hit enter )")
+                .AddChoice(true)
+                .AddChoice(false)
+                .DefaultValue(false)
+                .WithConverter(triggerPresent => triggerPresent ? "y" : "n"));
+
         TrackerUtils.ShowSelectedValue(triggerPresent ? "Add more information" : "No additional information");
 
         var trigger = "";
