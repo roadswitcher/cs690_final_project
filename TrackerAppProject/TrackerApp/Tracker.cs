@@ -78,10 +78,6 @@ internal class Tracker
                 var weeklyReport = reportHandler.GetWeeklyReport(today);
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
-            // case "Month":
-            //         MonthlyReport monthlyReport = reportHandler.GetMonthlyReport(today);
-            //         _reportDisplayer.DisplayMonthlyReport(monthlyReport);
-            //         break;
         }
     }
 

@@ -15,28 +15,36 @@ public class UserInputHandler(IAnsiConsole console)
 
     public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
     {
-        _console.Write(new Rule("[cyan1]Mood Update[/]").LeftJustified().RuleStyle("cyan2"));
+        TrackerUtils.LineMessage("Mood Update");
         var mood = _console.Prompt(new SelectionPrompt<string>()
             .Title("[bold green]What is your current mood?[/]")
             .AddChoices(trackedEmotions));
+        
+        TrackerUtils.ShowSelectedValue(mood);
 
-        _console.Write(new Rule("[cyan1]External Factors[/]").LeftJustified().RuleStyle("cyan2"));
-        var triggerPresent = _console.Prompt(new TextPrompt<bool>("Any triggers/factors to report?")
+        TrackerUtils.LineMessage("External Factors");
+        var triggerPresent = _console.Prompt(new TextPrompt<bool>("Do you want to record any triggers/external factors? ( If not, just hit enter )")
             .AddChoice(true)
             .AddChoice(false)
             .DefaultValue(false)
             .WithConverter(triggerPresent => triggerPresent ? "y" : "n"));
-        _console.WriteLine(triggerPresent ? "There was actually something, yes" : "Nope, nothing to report");
+        
+        TrackerUtils.ShowSelectedValue(triggerPresent ? "Add more information" : "No additional information");
 
         var trigger = "";
-        if (triggerPresent) trigger = _console.Prompt(new TextPrompt<string>("Provide more detail: "));
+        if (triggerPresent)
+        {
+            trigger = _console.Prompt(new TextPrompt<string>("Provide more detail: "));
+            TrackerUtils.ShowEnteredValue(trigger);
+        }
 
         return new MoodRecord(mood, trigger);
     }
 
     public string GetReportChoice()
     {
-        _console.Write(new Rule("[cyan1]Report Options[/]").LeftJustified().RuleStyle("cyan2"));
+        TrackerUtils.LineMessage("Report Options");
+        // _console.Write(new Rule("[cyan1]Report Options[/]").LeftJustified().RuleStyle("cyan2"));
 
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("Show breakdown/stats for the past [green]Day[/], [aqua]Week[/], or [red]Exit[/] to main menu?")

@@ -11,11 +11,30 @@ public static class TrackerUtils
 #endif
     }
 
+    // Reference link:  https://spectreconsole.net/appendix/colors
+    public static void LineMessage(string message, string color = "orange1")
+    {
+        var rule = new Rule($"{message}").LeftJustified().RuleStyle(color);
+        AnsiConsole.Write(rule);
+    }
+
+    public static void ShowSelectedValue(string message, string color = "orange1")
+    {
+        var rule = new Rule($"You Selected: [yellow]{message}[/]").LeftJustified().RuleStyle(color);
+        AnsiConsole.Write(rule);
+    }
+    
+    public static void ShowEnteredValue(string message, string color = "orange1")
+    {
+        var rule = new Rule($"You Selected: [yellow]{message}[/]").LeftJustified().RuleStyle(color);
+        AnsiConsole.Write(rule);
+    }
+
     public static void WelcomeScreen(string[] args)
     {
         AnsiConsole.Clear();
-
-        DebugMessage($"Args Length: {args.Length}");
+        
+        AnsiConsole.Write(new FigletText("MoodApp").Centered().Color(Color.Green));
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
 
         AnsiConsole.Write(new Rule("[cyan1]Welcome To MoodTracker[/]").Centered().RuleStyle("green"));
