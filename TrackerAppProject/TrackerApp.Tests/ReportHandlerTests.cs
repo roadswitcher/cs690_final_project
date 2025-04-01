@@ -42,7 +42,13 @@ namespace TrackerApp.Tests
                 new MoodRecord("Frustrated", "", _today.AddDays(-8).AddHours(18)),
 
                 // Records from 2 weeks ago
-                new MoodRecord("Calm", "", _today.AddDays(-14).AddHours(7))
+                new MoodRecord("Calm", "", _today.AddDays(-14).AddHours(7)),
+                
+                // Records from 3 weeks ago
+                new MoodRecord("Wistful", "", _today.AddDays(-21).AddHours(7)),
+                
+                // Records from 6 weeks ago
+                new MoodRecord("Wistful", "this was so long ago", _today.AddDays(-43).AddHours(1))
             };
 
             _mockDataStore.Setup(ds => ds.GetMoodRecords()).Returns(_testData);
@@ -69,12 +75,12 @@ namespace TrackerApp.Tests
         }
         
         [Fact]
-        public void GetYearlyReport_ReturnsCorrectNumberOfRecords()
+        public void GetMonthlyReport_ReturnsCorrectNumberOfRecords()
         {
             var date = _today;
-            var report = _reportHandler.GetWeeklyReport(date);
+            var report = _reportHandler.GetMonthlyReport(date);
 
-            Assert.Equal(8, report.TotalRecords);
+            Assert.Equal(11, report.TotalRecords);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace TrackerApp
         // public Dictionary<DayOfWeek, int> DailyBreakdown { get; set; } = new();
     }
 
-    public class YearlyReport
+    public class MonthlyReport
     {
         public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
@@ -30,9 +30,9 @@ namespace TrackerApp
         private readonly IDataStore _dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
 
         // TODO
-        // - Daily report ( aggregate, time of day )
-        // - Weekly Report ( aggregate, time of day )
-        // Stretch goal- Trends Identification?
+        // - Daily report
+        // - Weekly Report
+        // - Monthly Report
 
         public DailyReport GetDailyReport(DateTime date)
         {
@@ -56,12 +56,13 @@ namespace TrackerApp
             return report;
         }
 
-        public YearlyReport GetYearlyReport(DateTime today)
+        
+        public MonthlyReport GetMonthlyReport(DateTime today)
         {
-            DateTime weekAgo = today.Date.AddDays(-365);
+            DateTime monthAgo = today.Date.AddMonths(-1);
             List<MoodRecord> records = _dataStore.GetMoodRecords()
-                .Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();
-            YearlyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
+                .Where(record => record.Timestamp.Date >= monthAgo && record.Timestamp.Date <= today).ToList();
+            MonthlyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
             return report;
         }
         
