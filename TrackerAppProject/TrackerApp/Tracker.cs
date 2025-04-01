@@ -92,13 +92,21 @@ internal class Tracker
 
     private void HandleAdminOptions()
     {
-        // string adminChoice = _userInputHandler.GetAdminOption();
-        Console.WriteLine("OK.");
-        // switch (adminChoice):
-        //
-        // {
-        //     // implement choices
-        // }
+        string adminChoice = _userInputHandler.GetAdminOption();
+        Console.WriteLine($"Chose: {adminChoice}");
+        switch (adminChoice)
+        {
+            // implement choices
+            case "Remove Last Update":
+                break;
+            case "Remove All Updates":
+                break;
+            case "Log Out":
+                break;
+            case "Exit to Main Menu":
+                AnsiConsole.Clear();
+                return;
+        }
 
         TrackerUtils.EnterToContinue();
     }

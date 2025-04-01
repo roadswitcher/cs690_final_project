@@ -55,8 +55,10 @@ public class UserInputHandler(IAnsiConsole console)
 
     public string GetAdminOption()
     {
+        TrackerUtils.LineMessage("[red]Admin Options:[/]", "red3");
+        
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("[bold red]Select Admin Option:[/]")
-            .AddChoices("Remove Last Mood Update", "Remove All Mood Updates", "Exit Admin Options")));
+            .AddChoices("Remove Last Update", "Remove All Updates", "Log Out", "Exit to Main Menu")));
     }
 }
