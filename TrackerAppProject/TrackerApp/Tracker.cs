@@ -7,6 +7,7 @@ namespace TrackerApp
         private readonly DataStore _dataStore;
         private readonly List<string> _trackedEmotions;
         private readonly UserInputHandler _userInputHandler;
+        private readonly ReportDisplayer _reportDisplayer;
 
         public Tracker(IAnsiConsole console)
         {
@@ -14,6 +15,7 @@ namespace TrackerApp
             _userInputHandler = new UserInputHandler(console1);
             _dataStore = DataStore.Instance;
             _trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
+            _reportDisplayer = new ReportDisplayer(console1);
         }
 
         public int Run(string[] args)
@@ -70,18 +72,17 @@ namespace TrackerApp
             {
                 case "Day":
                     DailyReport dailyReport = reportHandler.GetDailyReport(today);
-                    DisplayDailyReport(dailyReport);
+                    _reportDisplayer.DisplayDailyReport(dailyReport);
                     break;
-                case "Week":
-                    WeeklyReport weeklyReport = reportHandler.GetWeeklyReport(today);
-                    DisplayWeeklyReport(weeklyReport);
-                    break;
-                case "Month":
-                    MonthlyReport monthlyReport = reportHandler.GetMonthlyReport(today);
-                    DisplayMonthlyReport(monthlyReport);
-                    break;
+            //     case "Week":
+            //         WeeklyReport weeklyReport = reportHandler.GetWeeklyReport(today);
+            //         _reportDisplayer.DisplayWeeklyReport(weeklyReport);
+            //         break;
+            //     case "Month":
+            //         MonthlyReport monthlyReport = reportHandler.GetMonthlyReport(today);
+            //         _reportDisplayer.DisplayMonthlyReport(monthlyReport);
+            //         break;
             }
-            
         }
 
         private void HandleAdminOptions()
