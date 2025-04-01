@@ -4,29 +4,21 @@ using Spectre.Console;
 
 namespace TrackerApp;
 
-public class ReportDisplayer
+public class ReportDisplayer(IAnsiConsole console)
 {
-    private readonly IAnsiConsole _console;
+    private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
-    public ReportDisplayer(IAnsiConsole console)
+    private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
     {
-        _console = console ?? throw new ArgumentNullException(nameof(console));
-    }
-
-    public BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
-    {
-        int total = 0;
-        foreach (var count in distribution.Values)
-        {
-            total += count;
-        }
+        var total = distribution.Values.Sum();
 
         var chart = new BreakdownChart()
-            .Width(60).HideTagValues();
+            .FullSize().HideTagValues();
 
+        // Try and make sure adjacent colors are distinct
         var colors = new List<Color> { Color.Red1, Color.Lime, Color.Blue1, Color.Yellow1, Color.Fuchsia, Color.Green3, Color.Orange1, Color.Green1 };
 
-        int colorIndex = 0;
+        var colorIndex = 0;
 
         foreach (var kvp in distribution)
         {
@@ -39,57 +31,52 @@ public class ReportDisplayer
     }
 
     public void DisplayDailyReport(DailyReport report)
+{
+    _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
+        .RuleStyle("cyan2"));
+    _console.WriteLine($"Number of updates today: {report.TotalRecords}");
+    
+    // Show mood distribution
+    if (report.TotalRecords > 0)
     {
-        _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
-            .RuleStyle("cyan2"));
-
-        // Show total records
-        _console.WriteLine($"Total mood records: {report.TotalRecords}");
-
-        // Show mood distribution
-        if (report.TotalRecords > 0)
+        var chart = BuildBreakdownChart(report.MoodDistribution).Width(75);
+        
+        var moodTable = new Table().Border(TableBorder.Simple);
+        moodTable.AddColumn("Mood");
+        moodTable.AddColumn("Count");
+        moodTable.AddColumn("Percentage");
+        moodTable.Title = new TableTitle("Mood Record Distribution");
+        foreach (var mood in report.MoodDistribution)
         {
-            _console.WriteLine();
-            _console.WriteLine("Mood Record Distribution:");
-            var moodTable = new Table().Border(TableBorder.Simple);
-            moodTable.AddColumn("Mood");
-            moodTable.AddColumn("Count");
-            moodTable.AddColumn("Percentage");
-
-            foreach (var mood in report.MoodDistribution)
-            {
-                var percentage = (double)mood.Value / report.TotalRecords * 100;
-                moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
-            }
-
-            _console.Write(BuildBreakdownChart(report.MoodDistribution));
-            _console.Write(moodTable);
-            
-            // Show time of day distribution
-            if (report.TimeOfDayDistribution?.Count > 0)
-            {
-                _console.WriteLine();
-                _console.WriteLine("Time of Day Distribution:");
-                var timeTable = new Table().Border(TableBorder.Simple);
-                timeTable.AddColumn("Time of Day");
-                timeTable.AddColumn("Count");
-                timeTable.AddColumn("Percentage");
-
-                foreach (var time in report.TimeOfDayDistribution)
-                {
-                    var percentage = (double)time.Value / report.TotalRecords * 100;
-                    timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
-                }
-
-                _console.Write(timeTable);
-            }
+            var percentage = (double)mood.Value / report.TotalRecords * 100;
+            moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
         }
-        else
+        
+        var timeTable = new Table().Border(TableBorder.Simple);
+        timeTable.AddColumn("Time of Day");
+        timeTable.AddColumn("Count");
+        timeTable.AddColumn("Percentage");
+        timeTable.Title = new TableTitle("Time of Day Distribution");
+        
+        if (report.TimeOfDayDistribution?.Count > 0)
         {
-            _console.WriteLine("No mood records for past day.");
-        }
+            foreach (var time in report.TimeOfDayDistribution)
+            {
+                var percentage = (double)time.Value / report.TotalRecords * 100;
+                timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
+            }
+        } ;
+        
+        _console.Write(chart);
+        _console.Write(moodTable);
+        _console.Write(timeTable);
     }
-
+    else
+    {
+        _console.WriteLine("No mood records for past day.");
+    }
+    TrackerUtils.EnterToContinue();
+}
     public void DisplayWeeklyReport(WeeklyReport report)
     {
         var startDate = report.Date.AddDays(-6);
@@ -136,8 +123,8 @@ public class ReportDisplayer
 
                 _console.Write(timeTable);
             }
-            
-            if (report.DailyBreakdown?.Count > 0)
+
+            if (!(report.DailyBreakdown?.Count > 0)) return;
             {
                 _console.WriteLine();
                 _console.WriteLine("Daily Breakdown:");
@@ -164,5 +151,6 @@ public class ReportDisplayer
         {
             _console.WriteLine("No mood records for this week.");
         }
+        TrackerUtils.EnterToContinue();
     }
 }

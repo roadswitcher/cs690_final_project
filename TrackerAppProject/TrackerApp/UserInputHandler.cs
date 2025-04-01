@@ -31,18 +31,17 @@ public class UserInputHandler(IAnsiConsole console)
 
         var triggerPresent = !string.IsNullOrEmpty(trigger);
 
-        var moodrecord = new MoodRecord(mood, trigger);
-        var localtime = moodrecord.Timestamp.ToLocalTime().ToShortTimeString();
+        var moodRecord = new MoodRecord(mood, trigger);
+        var localtime = moodRecord.Timestamp.ToLocalTime().ToShortTimeString();
 
-        if (triggerPresent)
-            TrackerUtils.LineMessage(
-                $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], with additional note: [yellow]{trigger}[/]");
-        else
-            TrackerUtils.LineMessage($"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], no additional factors");
+        TrackerUtils.LineMessage(
+            triggerPresent
+                ? $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], with additional note: [yellow]{trigger}[/]"
+                : $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], no additional factors");
 
         TrackerUtils.EnterToContinue();
 
-        return moodrecord;
+        return moodRecord;
     }
 
     public string GetReportChoice()
@@ -56,8 +55,10 @@ public class UserInputHandler(IAnsiConsole console)
 
     public string GetAdminOption()
     {
+        TrackerUtils.LineMessage("[red]Admin Options:[/]", "red3");
+        
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("[bold red]Select Admin Option:[/]")
-            .AddChoices("Remove Last Mood Update", "Remove All Mood Updates", "Exit Admin Options")));
+            .AddChoices("Remove Last Update", "Remove All Updates", "Log Out", "Exit to Main Menu")));
     }
 }
