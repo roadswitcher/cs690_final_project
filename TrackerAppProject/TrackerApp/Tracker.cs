@@ -14,7 +14,9 @@ internal class Tracker
         var console1 = console ?? throw new ArgumentNullException(nameof(console));
         _userInputHandler = new UserInputHandler(console1);
         _dataStore = DataStore.Instance;
-        _trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
+        _trackedEmotions =
+            ["Happy", "Sad", "Angry", "Wistful", "Indifferent", "Anxious", "Excited", "Frustrated", "Content"];
+
         _reportDisplayer = new ReportDisplayer(console1);
     }
 
@@ -67,9 +69,6 @@ internal class Tracker
     {
         var reportChoice = _userInputHandler.GetReportChoice();
 
-        if (reportChoice == "Exit")
-            return;
-
         var reportHandler = new ReportHandler(_dataStore);
         var today = DateTime.Now;
 
@@ -83,6 +82,9 @@ internal class Tracker
                 var weeklyReport = reportHandler.GetWeeklyReport(today);
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
+            case "Exit":
+                AnsiConsole.Clear();
+                return;
         }
 
         TrackerUtils.EnterToContinue();

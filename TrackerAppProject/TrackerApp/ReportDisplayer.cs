@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Spectre.Console;
 
 namespace TrackerApp;
@@ -9,6 +11,31 @@ public class ReportDisplayer
     public ReportDisplayer(IAnsiConsole console)
     {
         _console = console ?? throw new ArgumentNullException(nameof(console));
+    }
+
+    public BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
+    {
+        int total = 0;
+        foreach (var count in distribution.Values)
+        {
+            total += count;
+        }
+
+        var chart = new BreakdownChart()
+            .Width(60).HideTagValues();
+
+        var colors = new List<Color> { Color.Red1, Color.Lime, Color.Blue1, Color.Yellow1, Color.Fuchsia, Color.Green3, Color.Orange1, Color.Green1 };
+
+        int colorIndex = 0;
+
+        foreach (var kvp in distribution)
+        {
+            double percentage = (kvp.Value / (double)total) * 100;
+            chart.AddItem(kvp.Key, percentage, colors[colorIndex % colors.Count]);
+            colorIndex++;
+        }
+
+        return chart;
     }
 
     public void DisplayDailyReport(DailyReport report)
@@ -35,8 +62,9 @@ public class ReportDisplayer
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
 
+            _console.Write(BuildBreakdownChart(report.MoodDistribution));
             _console.Write(moodTable);
-
+            
             // Show time of day distribution
             if (report.TimeOfDayDistribution?.Count > 0)
             {
@@ -87,13 +115,14 @@ public class ReportDisplayer
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
 
+            _console.Write(BuildBreakdownChart(report.MoodDistribution));
             _console.Write(moodTable);
 
             // Show time of day distribution
             if (report.TimeOfDayDistribution?.Count > 0)
             {
                 _console.WriteLine();
-                _console.WriteLine("Time of Day Distribution:");
+                _console.WriteLine("Time of Day Distribution for Reports:");
                 var timeTable = new Table().Border(TableBorder.Simple);
                 timeTable.AddColumn("Time of Day");
                 timeTable.AddColumn("Count");
@@ -107,8 +136,7 @@ public class ReportDisplayer
 
                 _console.Write(timeTable);
             }
-
-            // Show daily breakdown
+            
             if (report.DailyBreakdown?.Count > 0)
             {
                 _console.WriteLine();
