@@ -62,7 +62,15 @@ public static class TrackerUtils
     {
         var userName = DataStore.Instance.GetUserCredentials().Username;
         CenteredMessage($"[orange3]MoodTracker[/] --- Logged in as [orange3]{userName}[/]");
-        CenteredMessage($"Logged in as [orange3]{userName}[/]");
         CenteredMessage($"Tracking [orange3]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
+    }
+
+    public static void ExitMessages()
+    {
+        AnsiConsole.WriteLine();
+        AnsiConsole.WriteLine();
+        CenteredMessage("[orange3]Thanks for using the app[/]");
+        AnsiConsole.WriteLine();
+        AnsiConsole.WriteLine();
     }
 }

@@ -23,6 +23,8 @@ internal class Tracker
         TrackerUtils.WelcomeScreen(args);
 
         RunMoodTracker();
+        
+        TrackerUtils.ExitMessages();
         return 0;
     }
 
