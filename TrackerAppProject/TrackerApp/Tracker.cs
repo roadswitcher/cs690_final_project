@@ -7,6 +7,7 @@ namespace TrackerApp
         private readonly DataStore _dataStore;
         private readonly List<string> _trackedEmotions;
         private readonly UserInputHandler _userInputHandler;
+        private readonly ReportDisplayer _reportDisplayer;
 
         public Tracker(IAnsiConsole console)
         {
@@ -14,6 +15,7 @@ namespace TrackerApp
             _userInputHandler = new UserInputHandler(console1);
             _dataStore = DataStore.Instance;
             _trackedEmotions = ["Happy", "Sad", "Mad", "Wistful", "Indifferent"];
+            _reportDisplayer = new ReportDisplayer(console1);
         }
 
         public int Run(string[] args)
@@ -54,13 +56,33 @@ namespace TrackerApp
         {
             MoodRecord mood = _userInputHandler.GetMoodRecordUpdate(_trackedEmotions);
             _dataStore.AddMoodRecord(mood);
-            TrackerUtils.DebugMessage($" *** Mood Record Count: {_dataStore.GetMoodRecordCount()}");
-            TrackerUtils.DebugMessage($" *** Mood Record Update: {mood.Mood} {mood.Trigger}");
         }
 
         private void HandleReportGeneration()
         {
-            Console.WriteLine("Not yet implemented");
+            string reportChoice = _userInputHandler.GetReportChoice();
+    
+            if (reportChoice == "Exit")
+                return;
+            
+            ReportHandler reportHandler = new ReportHandler(_dataStore);
+            DateTime today = DateTime.Now;
+            
+            switch (reportChoice)
+            {
+                case "Day":
+                    DailyReport dailyReport = reportHandler.GetDailyReport(today);
+                    _reportDisplayer.DisplayDailyReport(dailyReport);
+                    break;
+                case "Week":
+                    WeeklyReport weeklyReport = reportHandler.GetWeeklyReport(today);
+                    _reportDisplayer.DisplayWeeklyReport(weeklyReport);
+                    break;
+                // case "Month":
+            //         MonthlyReport monthlyReport = reportHandler.GetMonthlyReport(today);
+            //         _reportDisplayer.DisplayMonthlyReport(monthlyReport);
+            //         break;
+            }
         }
 
         private void HandleAdminOptions()

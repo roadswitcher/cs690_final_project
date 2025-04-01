@@ -110,6 +110,8 @@ namespace TrackerApp
         {
             _moodRecords.Add(moodRecord);
             SaveData();
+            TrackerUtils.DebugMessage($" *** Mood Record Update: {moodRecord.Mood} {moodRecord.Trigger}");
+            TrackerUtils.DebugMessage($" *** New Mood Record Count: {this.GetMoodRecordCount()}");
         }
     }
 }
