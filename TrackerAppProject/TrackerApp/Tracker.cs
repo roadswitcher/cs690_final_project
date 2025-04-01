@@ -29,12 +29,12 @@ internal class Tracker
     private void RunMoodTracker()
     {
         var shouldExit = false;
-        
-        
+
+
         while (!shouldExit)
         {
             TrackerUtils.DisplayHeaderInfo();
-            
+
             var choice = _userInputHandler.GetMainMenuChoice();
 
             switch (choice)

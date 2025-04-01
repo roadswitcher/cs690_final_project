@@ -60,7 +60,6 @@ public class ReportDisplayer
         {
             _console.WriteLine("No mood records for past day.");
         }
-        
     }
 
     public void DisplayWeeklyReport(WeeklyReport report)
@@ -137,6 +136,5 @@ public class ReportDisplayer
         {
             _console.WriteLine("No mood records for this week.");
         }
-
     }
 }

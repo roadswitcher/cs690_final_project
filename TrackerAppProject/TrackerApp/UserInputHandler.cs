@@ -30,12 +30,12 @@ public class UserInputHandler(IAnsiConsole console)
         //         .DefaultValue(false)
         //         .WithConverter(triggerPresent => triggerPresent ? "y" : "n"));
 
-        string trigger =
+        var trigger =
             AnsiConsole.Prompt(
                 new TextPrompt<string>("[[Optional]] Enter additional information, like triggers or external factors:")
                     .AllowEmpty());
 
-        bool triggerPresent = (!string.IsNullOrEmpty(trigger));
+        var triggerPresent = !string.IsNullOrEmpty(trigger);
 
         TrackerUtils.ShowSelectedValue(triggerPresent ? "Add more information" : "No additional information");
 
@@ -48,17 +48,13 @@ public class UserInputHandler(IAnsiConsole console)
 
         var moodrecord = new MoodRecord(mood, trigger);
         var localtime = moodrecord.Timestamp.ToLocalTime().ToShortTimeString();
-        
+
         if (triggerPresent)
-        {
             TrackerUtils.LineMessage(
                 $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/] with a note: [yellow]{trigger}[/]");
-        }
         else
-        {
             TrackerUtils.LineMessage($"Saving update--  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/]");
-        }
-        
+
         TrackerUtils.EnterToContinue();
 
         return moodrecord;

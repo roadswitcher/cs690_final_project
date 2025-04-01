@@ -42,10 +42,7 @@ public static class TrackerUtils
         AnsiConsole.WriteLine();
         AnsiConsole.Write(rule);
         AnsiConsole.Prompt(new TextPrompt<string>("").AllowEmpty());
-        if (clearscreen)
-        {
-            AnsiConsole.Clear();
-        }
+        if (clearscreen) AnsiConsole.Clear();
     }
 
     public static void WelcomeScreen(string[] args)
@@ -59,7 +56,6 @@ public static class TrackerUtils
 
         var dataStore = DataStore.Instance;
         dataStore.SetUserCredentials(userCredentials);
-        
     }
 
     public static void DisplayHeaderInfo()
