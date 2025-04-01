@@ -37,9 +37,13 @@ namespace TrackerApp
             return new MoodRecord(mood, trigger);
         }
 
-        public void GetReportChoice()
+        public string GetReportChoice()
         {
             _console.Write(new Rule("[cyan1]Report Options[/]").LeftJustified().RuleStyle("cyan2"));
+            
+            return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
+                .Title("Show breakdown/stats for the past [green]Day[/], [aqua]Week[/], [cyan]Month[/] or [red]Exit[/] to main menu?")
+                .AddChoices("[green]Day[/]", "[aqua]Week[/]", "[cyan]Month[/]", "[red]Exit[/]")));
             
         }
         public string GetAdminOption()
