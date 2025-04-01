@@ -93,7 +93,7 @@ internal class Tracker
     private void HandleAdminOptions()
     {
         // string adminChoice = _userInputHandler.GetAdminOption();
-        Console.WriteLine("Not yet implemented");
+        Console.WriteLine("OK.");
         // switch (adminChoice):
         //
         // {
