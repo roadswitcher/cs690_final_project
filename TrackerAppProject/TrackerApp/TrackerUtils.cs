@@ -32,7 +32,7 @@ public static class TrackerUtils
 
     public static void ShowEnteredValue(string message, string color = "orange1")
     {
-        var rule = new Rule($"You Selected: [yellow]{message}[/]").LeftJustified().RuleStyle(color);
+        var rule = new Rule($"You Entered: [yellow]{message}[/]").LeftJustified().RuleStyle(color);
         AnsiConsole.Write(rule);
     }
 
