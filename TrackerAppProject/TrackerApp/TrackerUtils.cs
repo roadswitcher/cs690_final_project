@@ -52,6 +52,5 @@ public static class TrackerUtils
         dataStore.SetUserCredentials(userCredentials);
 
         AnsiConsole.MarkupLine($" Logged in as {userCredentials.Username}");
-        AnsiConsole.WriteLine();
     }
 }
