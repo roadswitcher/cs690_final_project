@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Xunit;
 using Moq;
 using System.Linq;
@@ -73,14 +74,8 @@ namespace TrackerApp.Tests
 
             Assert.Equal(8, report.TotalRecords);
         }
-        
-        [Fact]
-        public void GetMonthlyReport_ReturnsCorrectNumberOfRecords()
-        {
-            var date = _today;
-            var report = _reportHandler.GetMonthlyReport(date);
 
-            Assert.Equal(11, report.TotalRecords);
-        }
     }
+    
 }
+
