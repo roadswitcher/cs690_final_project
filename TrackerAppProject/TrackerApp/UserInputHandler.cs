@@ -15,28 +15,39 @@ public class UserInputHandler(IAnsiConsole console)
 
     public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
     {
-        _console.Write(new Rule("[cyan1]Mood Update[/]").LeftJustified().RuleStyle("cyan2"));
+        TrackerUtils.LineMessage("Mood Update: [green]What is your current mood?[/]");
         var mood = _console.Prompt(new SelectionPrompt<string>()
-            .Title("[bold green]What is your current mood?[/]")
+            // .Title("[bold green]What is your current mood?[/]")
             .AddChoices(trackedEmotions));
 
-        _console.Write(new Rule("[cyan1]External Factors[/]").LeftJustified().RuleStyle("cyan2"));
-        var triggerPresent = _console.Prompt(new TextPrompt<bool>("Any triggers/factors to report?")
-            .AddChoice(true)
-            .AddChoice(false)
-            .DefaultValue(false)
-            .WithConverter(triggerPresent => triggerPresent ? "y" : "n"));
-        _console.WriteLine(triggerPresent ? "There was actually something, yes" : "Nope, nothing to report");
+        TrackerUtils.ShowSelectedValue(mood);
 
-        var trigger = "";
-        if (triggerPresent) trigger = _console.Prompt(new TextPrompt<string>("Provide more detail: "));
+        TrackerUtils.LineMessage("External Factors: Do you want to record more information, like triggers or external factors?");
 
-        return new MoodRecord(mood, trigger);
+        var trigger =
+            AnsiConsole.Prompt(
+                new TextPrompt<string>("[green][[Optional]] (hit Enter):[/]")
+                    .AllowEmpty());
+
+        var triggerPresent = !string.IsNullOrEmpty(trigger);
+
+        var moodrecord = new MoodRecord(mood, trigger);
+        var localtime = moodrecord.Timestamp.ToLocalTime().ToShortTimeString();
+
+        if (triggerPresent)
+            TrackerUtils.LineMessage(
+                $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], with additional note: [yellow]{trigger}[/]");
+        else
+            TrackerUtils.LineMessage($"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], no additional factors");
+
+        TrackerUtils.EnterToContinue();
+
+        return moodrecord;
     }
 
     public string GetReportChoice()
     {
-        _console.Write(new Rule("[cyan1]Report Options[/]").LeftJustified().RuleStyle("cyan2"));
+        TrackerUtils.LineMessage("Report Options");
 
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("Show breakdown/stats for the past [green]Day[/], [aqua]Week[/], or [red]Exit[/] to main menu?")

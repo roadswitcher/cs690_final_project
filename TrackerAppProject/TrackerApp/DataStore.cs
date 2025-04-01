@@ -107,7 +107,7 @@ public class DataStore : IDataStore
     {
         _moodRecords.Add(moodRecord);
         SaveData();
-        TrackerUtils.DebugMessage($" *** Mood Record Update: {moodRecord.Mood} {moodRecord.Trigger}");
+        TrackerUtils.DebugMessage($" *** Mood Record Update: {moodRecord.Mood},  {moodRecord.Trigger}");
         TrackerUtils.DebugMessage($" *** New Mood Record Count: {GetMoodRecordCount()}");
     }
 }

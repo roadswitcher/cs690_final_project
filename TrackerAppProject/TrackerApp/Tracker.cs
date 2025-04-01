@@ -23,6 +23,8 @@ internal class Tracker
         TrackerUtils.WelcomeScreen(args);
 
         RunMoodTracker();
+        
+        TrackerUtils.ExitMessages();
         return 0;
     }
 
@@ -30,8 +32,11 @@ internal class Tracker
     {
         var shouldExit = false;
 
+
         while (!shouldExit)
         {
+            TrackerUtils.DisplayHeaderInfo();
+
             var choice = _userInputHandler.GetMainMenuChoice();
 
             switch (choice)
@@ -78,11 +83,9 @@ internal class Tracker
                 var weeklyReport = reportHandler.GetWeeklyReport(today);
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
-            // case "Month":
-            //         MonthlyReport monthlyReport = reportHandler.GetMonthlyReport(today);
-            //         _reportDisplayer.DisplayMonthlyReport(monthlyReport);
-            //         break;
         }
+
+        TrackerUtils.EnterToContinue();
     }
 
     private void HandleAdminOptions()
@@ -94,5 +97,7 @@ internal class Tracker
         // {
         //     // implement choices
         // }
+
+        TrackerUtils.EnterToContinue();
     }
 }
