@@ -122,7 +122,7 @@ public class ReportDisplayer
             if (report.TimeOfDayDistribution?.Count > 0)
             {
                 _console.WriteLine();
-                _console.WriteLine("Time of Day Distribution:");
+                _console.WriteLine("Time of Day Distribution for Reports:");
                 var timeTable = new Table().Border(TableBorder.Simple);
                 timeTable.AddColumn("Time of Day");
                 timeTable.AddColumn("Count");
@@ -136,8 +136,7 @@ public class ReportDisplayer
 
                 _console.Write(timeTable);
             }
-
-            // Show daily breakdown
+            
             if (report.DailyBreakdown?.Count > 0)
             {
                 _console.WriteLine();
