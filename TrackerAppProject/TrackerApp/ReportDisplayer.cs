@@ -60,9 +60,7 @@ public class ReportDisplayer
         {
             _console.WriteLine("No mood records for past day.");
         }
-
-        _console.WriteLine();
-        _console.Prompt(new TextPrompt<string>("Press Enter to continue...").AllowEmpty());
+        
     }
 
     public void DisplayWeeklyReport(WeeklyReport report)
@@ -140,7 +138,5 @@ public class ReportDisplayer
             _console.WriteLine("No mood records for this week.");
         }
 
-        _console.WriteLine();
-        _console.Prompt(new TextPrompt<string>("Press Enter to continue...").AllowEmpty());
     }
 }

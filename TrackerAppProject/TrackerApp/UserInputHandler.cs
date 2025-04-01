@@ -23,21 +23,28 @@ public class UserInputHandler(IAnsiConsole console)
         TrackerUtils.ShowSelectedValue(mood);
 
         TrackerUtils.LineMessage("External Factors");
-        var triggerPresent = _console.Prompt(
-            new TextPrompt<bool>("Do you want to record any triggers/external factors? ( If not, just hit enter )")
-                .AddChoice(true)
-                .AddChoice(false)
-                .DefaultValue(false)
-                .WithConverter(triggerPresent => triggerPresent ? "y" : "n"));
+        // var triggerPresent = _console.Prompt(
+        //     new TextPrompt<bool>("Do you want to record any triggers/external factors? ( If not, just hit enter )")
+        //         .AddChoice(true)
+        //         .AddChoice(false)
+        //         .DefaultValue(false)
+        //         .WithConverter(triggerPresent => triggerPresent ? "y" : "n"));
+
+        string trigger =
+            AnsiConsole.Prompt(
+                new TextPrompt<string>("[[Optional]] Enter additional information, like triggers or external factors:")
+                    .AllowEmpty());
+
+        bool triggerPresent = (!string.IsNullOrEmpty(trigger));
 
         TrackerUtils.ShowSelectedValue(triggerPresent ? "Add more information" : "No additional information");
 
-        var trigger = "";
-        if (triggerPresent)
-        {
-            trigger = _console.Prompt(new TextPrompt<string>("Provide more detail: "));
-            TrackerUtils.ShowEnteredValue(trigger);
-        }
+        // var trigger = "";
+        // if (triggerPresent)
+        // {
+        //     trigger = _console.Prompt(new TextPrompt<string>("Provide more detail: "));
+        //     TrackerUtils.ShowEnteredValue(trigger);
+        // }
 
         var moodrecord = new MoodRecord(mood, trigger);
         var localtime = moodrecord.Timestamp.ToLocalTime().ToShortTimeString();
@@ -52,7 +59,7 @@ public class UserInputHandler(IAnsiConsole console)
             TrackerUtils.LineMessage($"Saving update--  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/]");
         }
         
-        _console.Prompt(new TextPrompt<string>("Press Enter to continue...").AllowEmpty());
+        TrackerUtils.EnterToContinue();
 
         return moodrecord;
     }

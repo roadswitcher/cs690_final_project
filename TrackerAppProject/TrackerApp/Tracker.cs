@@ -41,15 +41,12 @@ internal class Tracker
             {
                 case "Update":
                     HandleMoodUpdate();
-                    AnsiConsole.Clear();
                     break;
                 case "Report":
                     HandleReportGeneration();
-                    AnsiConsole.Clear();
                     break;
                 case "Admin Options":
                     HandleAdminOptions();
-                    AnsiConsole.Clear();
                     break;
                 case "Exit":
                     shouldExit = true;
@@ -85,6 +82,8 @@ internal class Tracker
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
         }
+
+        TrackerUtils.EnterToContinue();
     }
 
     private void HandleAdminOptions()
@@ -96,5 +95,7 @@ internal class Tracker
         // {
         //     // implement choices
         // }
+
+        TrackerUtils.EnterToContinue();
     }
 }

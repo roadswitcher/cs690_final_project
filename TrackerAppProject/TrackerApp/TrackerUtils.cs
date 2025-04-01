@@ -36,6 +36,18 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
+    public static void EnterToContinue(bool clearscreen = true)
+    {
+        var rule = new Rule("[yellow]Please press Enter to continue[/]").Centered().RuleStyle("yellow");
+        AnsiConsole.WriteLine();
+        AnsiConsole.Write(rule);
+        AnsiConsole.Prompt(new TextPrompt<string>("").AllowEmpty());
+        if (clearscreen)
+        {
+            AnsiConsole.Clear();
+        }
+    }
+
     public static void WelcomeScreen(string[] args)
     {
         AnsiConsole.Clear();
