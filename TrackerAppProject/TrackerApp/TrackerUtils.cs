@@ -40,17 +40,21 @@ public static class TrackerUtils
     {
         AnsiConsole.Clear();
 
-        AnsiConsole.Write(new FigletText("MoodApp").Centered().Color(Color.Green));
+        AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
-
-        CenteredMessage("[orange1]Welcome To MoodTracker![/]");
-        CenteredMessage("Let's Get Started");
 
         var userCredentials = LoginHandler.HandleLogin();
 
         var dataStore = DataStore.Instance;
         dataStore.SetUserCredentials(userCredentials);
+        
+    }
 
-        AnsiConsole.MarkupLine($" Logged in as {userCredentials.Username}");
+    public static void DisplayHeaderInfo()
+    {
+        var userName = DataStore.Instance.GetUserCredentials().Username;
+        CenteredMessage($"[orange3]MoodTracker[/] --- Logged in as [orange3]{userName}[/]");
+        CenteredMessage($"Logged in as [orange3]{userName}[/]");
+        CenteredMessage($"Tracking [orange3]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
     }
 }

@@ -39,7 +39,22 @@ public class UserInputHandler(IAnsiConsole console)
             TrackerUtils.ShowEnteredValue(trigger);
         }
 
-        return new MoodRecord(mood, trigger);
+        var moodrecord = new MoodRecord(mood, trigger);
+        var localtime = moodrecord.Timestamp.ToLocalTime().ToShortTimeString();
+        
+        if (triggerPresent)
+        {
+            TrackerUtils.LineMessage(
+                $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/] with a note: [yellow]{trigger}[/]");
+        }
+        else
+        {
+            TrackerUtils.LineMessage($"Saving update--  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/]");
+        }
+        
+        _console.Prompt(new TextPrompt<string>("Press Enter to continue...").AllowEmpty());
+
+        return moodrecord;
     }
 
     public string GetReportChoice()

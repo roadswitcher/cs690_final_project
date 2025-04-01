@@ -29,21 +29,27 @@ internal class Tracker
     private void RunMoodTracker()
     {
         var shouldExit = false;
-
+        
+        
         while (!shouldExit)
         {
+            TrackerUtils.DisplayHeaderInfo();
+            
             var choice = _userInputHandler.GetMainMenuChoice();
 
             switch (choice)
             {
                 case "Update":
                     HandleMoodUpdate();
+                    AnsiConsole.Clear();
                     break;
                 case "Report":
                     HandleReportGeneration();
+                    AnsiConsole.Clear();
                     break;
                 case "Admin Options":
                     HandleAdminOptions();
+                    AnsiConsole.Clear();
                     break;
                 case "Exit":
                     shouldExit = true;
