@@ -58,7 +58,30 @@ namespace TrackerApp
 
         private void HandleReportGeneration()
         {
-            _userInputHandler.GetReportChoice();
+            string reportChoice = _userInputHandler.GetReportChoice();
+    
+            if (reportChoice == "Exit")
+                return;
+            
+            ReportHandler reportHandler = new ReportHandler(_dataStore);
+            DateTime today = DateTime.Now;
+            
+            switch (reportChoice)
+            {
+                case "Day":
+                    DailyReport dailyReport = reportHandler.GetDailyReport(today);
+                    DisplayDailyReport(dailyReport);
+                    break;
+                case "Week":
+                    WeeklyReport weeklyReport = reportHandler.GetWeeklyReport(today);
+                    DisplayWeeklyReport(weeklyReport);
+                    break;
+                case "Month":
+                    MonthlyReport monthlyReport = reportHandler.GetMonthlyReport(today);
+                    DisplayMonthlyReport(monthlyReport);
+                    break;
+            }
+            
         }
 
         private void HandleAdminOptions()

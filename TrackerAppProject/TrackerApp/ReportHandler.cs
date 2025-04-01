@@ -5,7 +5,7 @@ namespace TrackerApp
         public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
         public Dictionary<string, int> MoodDistribution { get; set; } = new();
-        // public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
+        public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
     }
 
     public class WeeklyReport
@@ -13,14 +13,16 @@ namespace TrackerApp
         public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
         public Dictionary<string, int> MoodDistribution { get; set; } = new();
-        // public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
-        // public Dictionary<DayOfWeek, int> DailyBreakdown { get; set; } = new();
+        public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
+        public Dictionary<DayOfWeek, int> DailyBreakdown { get; set; } = new();
     }
 
     public class MonthlyReport
     {
         public DateTime Date { get; init; }
         public int TotalRecords { get; init; }
+        public Dictionary<string, int> MoodDistribution { get; set; } = new();
+        public Dictionary<int, int> DayOfMonthDistribution { get; set; } = new();
     }
 
 
@@ -28,11 +30,6 @@ namespace TrackerApp
     {
         // Give me a link to the DataStore singleton, or an exception if you cannot
         private readonly IDataStore _dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
-
-        // TODO
-        // - Daily report
-        // - Weekly Report
-        // - Monthly Report
 
         public DailyReport GetDailyReport(DateTime date)
         {
@@ -42,7 +39,7 @@ namespace TrackerApp
 
             var report = new DailyReport
             {
-                Date = date, TotalRecords = records.Count, MoodDistribution = GetMoodDistribution(records)
+                Date = date, TotalRecords = records.Count, MoodDistribution = GetMoodDistribution(records), TimeOfDayDistribution = GetTimeOfDayDistribution(records)
             };
             return report;
         }
@@ -52,7 +49,16 @@ namespace TrackerApp
             DateTime weekAgo = today.Date.AddDays(-6);
             List<MoodRecord> records = _dataStore.GetMoodRecords()
                 .Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();
-            WeeklyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
+    
+            var report = new WeeklyReport
+            {
+                Date = today,
+                TotalRecords = records.Count,
+                MoodDistribution = GetMoodDistribution(records),
+                TimeOfDayDistribution = GetTimeOfDayDistribution(records),
+                DailyBreakdown = GetDayOfWeekDistribution(records)
+            };
+    
             return report;
         }
 
@@ -62,10 +68,36 @@ namespace TrackerApp
             DateTime monthAgo = today.Date.AddMonths(-1);
             List<MoodRecord> records = _dataStore.GetMoodRecords()
                 .Where(record => record.Timestamp.Date >= monthAgo && record.Timestamp.Date <= today).ToList();
-            MonthlyReport report = new() { Date = DateTime.Now, TotalRecords = records.Count };
+    
+            var report = new MonthlyReport
+            {
+                Date = today,
+                TotalRecords = records.Count,
+                MoodDistribution = GetMoodDistribution(records),
+                DayOfMonthDistribution = GetDayOfMonthDistribution(records)
+            };
+    
             return report;
         }
         
+        private Dictionary<int, int> GetDayOfMonthDistribution(List<MoodRecord> records)
+        {
+            var distribution = new Dictionary<int, int>();
+    
+            foreach (var record in records)
+            {
+                int day = record.Timestamp.Day;
+        
+                if (!distribution.ContainsKey(day))
+                {
+                    distribution[day] = 0;
+                }
+        
+                distribution[day]++;
+            }
+    
+            return distribution;
+        }
         private Dictionary<string, int> GetMoodDistribution(List<MoodRecord> records)
         {
             var distribution = new Dictionary<string, int>();
@@ -108,6 +140,25 @@ namespace TrackerApp
                 distribution[timeOfDay]++;
             }
             
+            return distribution;
+        }
+        
+        private Dictionary<DayOfWeek, int> GetDayOfWeekDistribution(List<MoodRecord> records)
+        {
+            var distribution = new Dictionary<DayOfWeek, int>();
+    
+            foreach (var record in records)
+            {
+                DayOfWeek day = record.Timestamp.DayOfWeek;
+        
+                if (!distribution.ContainsKey(day))
+                {
+                    distribution[day] = 0;
+                }
+        
+                distribution[day]++;
+            }
+    
             return distribution;
         }
 
