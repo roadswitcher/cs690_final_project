@@ -143,4 +143,5 @@ public class ReportDisplayer
         _console.WriteLine();
         _console.Prompt(new TextPrompt<string>("Press Enter to continue...").AllowEmpty());
     }
+    
 }

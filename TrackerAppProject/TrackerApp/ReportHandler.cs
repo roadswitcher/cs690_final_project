@@ -16,16 +16,7 @@ namespace TrackerApp
         public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
         public Dictionary<DayOfWeek, int> DailyBreakdown { get; set; } = new();
     }
-
-    public class MonthlyReport
-    {
-        public DateTime Date { get; init; }
-        public int TotalRecords { get; init; }
-        public Dictionary<string, int> MoodDistribution { get; set; } = new();
-        public Dictionary<int, int> DayOfMonthDistribution { get; set; } = new();
-    }
-
-
+    
     public class ReportHandler(IDataStore dataStore)
     {
         // Give me a link to the DataStore singleton, or an exception if you cannot
@@ -63,41 +54,7 @@ namespace TrackerApp
         }
 
         
-        public MonthlyReport GetMonthlyReport(DateTime today)
-        {
-            DateTime monthAgo = today.Date.AddMonths(-1);
-            List<MoodRecord> records = _dataStore.GetMoodRecords()
-                .Where(record => record.Timestamp.Date >= monthAgo && record.Timestamp.Date <= today).ToList();
-    
-            var report = new MonthlyReport
-            {
-                Date = today,
-                TotalRecords = records.Count,
-                MoodDistribution = GetMoodDistribution(records),
-                DayOfMonthDistribution = GetDayOfMonthDistribution(records)
-            };
-    
-            return report;
-        }
-        
-        private Dictionary<int, int> GetDayOfMonthDistribution(List<MoodRecord> records)
-        {
-            var distribution = new Dictionary<int, int>();
-    
-            foreach (var record in records)
-            {
-                int day = record.Timestamp.Day;
-        
-                if (!distribution.ContainsKey(day))
-                {
-                    distribution[day] = 0;
-                }
-        
-                distribution[day]++;
-            }
-    
-            return distribution;
-        }
+
         private Dictionary<string, int> GetMoodDistribution(List<MoodRecord> records)
         {
             var distribution = new Dictionary<string, int>();
