@@ -1,117 +1,113 @@
 using System.Text.Json;
 
-namespace TrackerApp
+namespace TrackerApp;
+
+public class AppData
 {
-    public class AppData
+    public UserAccount UserCredentials { get; init; } = new();
+    public List<MoodRecord> MoodRecords { get; init; } = [];
+}
+
+public class UserAccount
+{
+    public string Username { get; set; } = string.Empty;
+    // public string PasswordHash { get; set; } = string.Empty;
+}
+
+public interface IDataStore
+{
+    List<MoodRecord> GetMoodRecords();
+}
+
+public class DataStore : IDataStore
+{
+    private static DataStore? _instance;
+    private static readonly object Lock = new();
+    private readonly string _databaseFilePath;
+    private List<MoodRecord> _moodRecords = [];
+    private UserAccount _userCredentials = new();
+
+    private DataStore()
     {
-        public UserAccount UserCredentials { get; init; } = new();
-        public List<MoodRecord> MoodRecords { get; init; } = [];
+        _databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mood_data.json");
+        LoadData();
     }
 
-    public class UserAccount
+    public static DataStore Instance
     {
-        public string Username { get; set; } = string.Empty;
-        // public string PasswordHash { get; set; } = string.Empty;
-    }
-
-    public interface IDataStore
-    {
-        List<MoodRecord> GetMoodRecords();
-    }
-
-    public class DataStore : IDataStore
-    {
-        private static DataStore? _instance;
-        private static readonly object Lock = new();
-        private readonly string _databaseFilePath;
-        private List<MoodRecord> _moodRecords = [];
-        private UserAccount _userCredentials = new();
-
-        private DataStore()
+        get
         {
-            _databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mood_data.json");
-            LoadData();
-        }
+            if (_instance != null) return _instance;
 
-        public static DataStore Instance
-        {
-            get
+            lock (Lock)
             {
-                if (_instance != null)
-                {
-                    return _instance;
-                }
+                _instance ??= new DataStore();
+            }
 
-                lock (Lock)
-                {
-                    _instance ??= new DataStore();
-                }
+            return _instance;
+        }
+    }
 
-                return _instance;
+    public List<MoodRecord> GetMoodRecords()
+    {
+        return _moodRecords;
+    }
+
+    private void SaveData()
+    {
+        AppData appData = new() { UserCredentials = _userCredentials, MoodRecords = _moodRecords };
+
+        var jsonString = JsonSerializer.Serialize(appData, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(_databaseFilePath, jsonString);
+    }
+
+    private void LoadData()
+    {
+        if (File.Exists(_databaseFilePath))
+        {
+            var jsonString = File.ReadAllText(_databaseFilePath);
+            var appData = JsonSerializer.Deserialize<AppData>(jsonString);
+
+
+            if (appData != null)
+            {
+                _moodRecords = appData.MoodRecords;
+                _userCredentials = appData.UserCredentials;
+                return;
             }
         }
 
-        public List<MoodRecord> GetMoodRecords()
-        {
-            return _moodRecords;
-        }
+        // If we get to this point, default values
+        _moodRecords = [];
+        _userCredentials = new UserAccount();
+    }
 
-        private void SaveData()
-        {
-            AppData appData = new() { UserCredentials = _userCredentials, MoodRecords = _moodRecords };
+    public bool IsFirstLaunch()
+    {
+        return !File.Exists(_databaseFilePath);
+    }
 
-            string jsonString = JsonSerializer.Serialize(appData, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(_databaseFilePath, jsonString);
-        }
+    public UserAccount GetUserCredentials()
+    {
+        return _userCredentials;
+    }
 
-        private void LoadData()
-        {
-            if (File.Exists(_databaseFilePath))
-            {
-                string jsonString = File.ReadAllText(_databaseFilePath);
-                AppData? appData = JsonSerializer.Deserialize<AppData>(jsonString);
+    public void SetUserCredentials(UserAccount userCredentials)
+    {
+        _userCredentials = userCredentials;
+        SaveData();
+    }
 
+    public int GetMoodRecordCount()
+    {
+        return _moodRecords.Count;
+    }
 
-                if (appData != null)
-                {
-                    _moodRecords = appData.MoodRecords;
-                    _userCredentials = appData.UserCredentials;
-                    return;
-                }
-            }
-
-            // If we get to this point, default values
-            _moodRecords = [];
-            _userCredentials = new UserAccount();
-        }
-
-        public bool IsFirstLaunch()
-        {
-            return !File.Exists(_databaseFilePath);
-        }
-
-        public UserAccount GetUserCredentials()
-        {
-            return _userCredentials;
-        }
-
-        public void SetUserCredentials(UserAccount userCredentials)
-        {
-            _userCredentials = userCredentials;
-            SaveData();
-        }
-
-        public int GetMoodRecordCount()
-        {
-            return _moodRecords.Count;
-        }
-
-        public void AddMoodRecord(MoodRecord moodRecord)
-        {
-            _moodRecords.Add(moodRecord);
-            SaveData();
-            TrackerUtils.DebugMessage($" *** Mood Record Update: {moodRecord.Mood} {moodRecord.Trigger}");
-            TrackerUtils.DebugMessage($" *** New Mood Record Count: {this.GetMoodRecordCount()}");
-        }
+    public void AddMoodRecord(MoodRecord moodRecord)
+    {
+        _moodRecords.Add(moodRecord);
+        SaveData();
+        TrackerUtils.DebugMessage($" *** Mood Record Update: {moodRecord.Mood} {moodRecord.Trigger}");
+        TrackerUtils.DebugMessage($" *** New Mood Record Count: {GetMoodRecordCount()}");
     }
 }

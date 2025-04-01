@@ -31,7 +31,7 @@ public class ReportDisplayer
 
             foreach (var mood in report.MoodDistribution)
             {
-                double percentage = (double)mood.Value / report.TotalRecords * 100;
+                var percentage = (double)mood.Value / report.TotalRecords * 100;
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
 
@@ -49,7 +49,7 @@ public class ReportDisplayer
 
                 foreach (var time in report.TimeOfDayDistribution)
                 {
-                    double percentage = (double)time.Value / report.TotalRecords * 100;
+                    var percentage = (double)time.Value / report.TotalRecords * 100;
                     timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
                 }
 
@@ -67,7 +67,7 @@ public class ReportDisplayer
 
     public void DisplayWeeklyReport(WeeklyReport report)
     {
-        DateTime startDate = report.Date.AddDays(-6);
+        var startDate = report.Date.AddDays(-6);
         _console.Write(new Rule($"[cyan1]Weekly Report ({startDate:MMM dd} - {report.Date:MMM dd})[/]").LeftJustified()
             .RuleStyle("cyan2"));
 
@@ -86,7 +86,7 @@ public class ReportDisplayer
 
             foreach (var mood in report.MoodDistribution)
             {
-                double percentage = (double)mood.Value / report.TotalRecords * 100;
+                var percentage = (double)mood.Value / report.TotalRecords * 100;
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
 
@@ -104,7 +104,7 @@ public class ReportDisplayer
 
                 foreach (var time in report.TimeOfDayDistribution)
                 {
-                    double percentage = (double)time.Value / report.TotalRecords * 100;
+                    var percentage = (double)time.Value / report.TotalRecords * 100;
                     timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
                 }
 
@@ -128,7 +128,7 @@ public class ReportDisplayer
 
                 foreach (var day in orderedDays)
                 {
-                    double percentage = (double)day.Value / report.TotalRecords * 100;
+                    var percentage = (double)day.Value / report.TotalRecords * 100;
                     dayTable.AddRow(day.Key.ToString(), day.Value.ToString(), $"{percentage:F1}%");
                 }
 
@@ -143,5 +143,4 @@ public class ReportDisplayer
         _console.WriteLine();
         _console.Prompt(new TextPrompt<string>("Press Enter to continue...").AllowEmpty());
     }
-    
 }
