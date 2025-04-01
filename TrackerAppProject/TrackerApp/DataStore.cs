@@ -103,6 +103,25 @@ public class DataStore : IDataStore
         return _moodRecords.Count;
     }
 
+    public MoodRecord GetLastMoodRecord()
+    {
+        return _moodRecords[^1];
+    }
+
+    public bool RemoveLastMoodRecord()
+    {
+        if (_moodRecords.Count == 0)
+        {
+            return false;
+        }
+
+        _moodRecords.RemoveAt(_moodRecords.Count - 1);
+        SaveData();
+        TrackerUtils.DebugMessage(" *** Removed last mood record");
+
+        return true;
+    }
+
     public void AddMoodRecord(MoodRecord moodRecord)
     {
         _moodRecords.Add(moodRecord);
