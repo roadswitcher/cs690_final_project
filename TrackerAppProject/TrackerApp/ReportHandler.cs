@@ -4,17 +4,17 @@ public class DailyReport
 {
     public DateTime Date { get; init; }
     public int TotalRecords { get; init; }
-    public Dictionary<string, int> MoodDistribution { get; set; } = new();
-    public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
+    public Dictionary<string, int> MoodDistribution { get; init; } = new();
+    public Dictionary<string, int> TimeOfDayDistribution { get; init; } = new();
 }
 
 public class WeeklyReport
 {
     public DateTime Date { get; init; }
     public int TotalRecords { get; init; }
-    public Dictionary<string, int> MoodDistribution { get; set; } = new();
-    public Dictionary<string, int> TimeOfDayDistribution { get; set; } = new();
-    public Dictionary<DayOfWeek, int> DailyBreakdown { get; set; } = new();
+    public Dictionary<string, int> MoodDistribution { get; init; } = new();
+    public Dictionary<string, int> TimeOfDayDistribution { get; init; } = new();
+    public Dictionary<DayOfWeek, int> DailyBreakdown { get; init; } = new();
 }
 
 public class ReportHandler(IDataStore dataStore)
@@ -55,13 +55,13 @@ public class ReportHandler(IDataStore dataStore)
     }
 
 
-    private Dictionary<string, int> GetMoodDistribution(List<MoodRecord> records)
+    private static Dictionary<string, int> GetMoodDistribution(List<MoodRecord> records)
     {
         var distribution = new Dictionary<string, int>();
 
         foreach (var record in records)
         {
-            if (!distribution.ContainsKey(record.Mood)) distribution[record.Mood] = 0;
+            distribution.TryAdd(record.Mood, 0);
 
             distribution[record.Mood]++;
         }
@@ -69,7 +69,7 @@ public class ReportHandler(IDataStore dataStore)
         return distribution;
     }
 
-    private Dictionary<string, int> GetTimeOfDayDistribution(List<MoodRecord> records)
+    private static Dictionary<string, int> GetTimeOfDayDistribution(List<MoodRecord> records)
     {
         var distribution = new Dictionary<string, int>
         {
@@ -79,26 +79,21 @@ public class ReportHandler(IDataStore dataStore)
             { "Night", 0 }
         };
 
-        foreach (var record in records)
+        foreach (var timeOfDay in records.Select(record => record.Timestamp.ToLocalTime()).Select(localTime => localTime.Hour).Select(hour => hour switch
+                 {
+                     >= 5 and < 12 => "Morning",
+                     >= 12 and < 17 => "Afternoon",
+                     >= 17 and < 21 => "Evening",
+                     _ => "Night"
+                 }))
         {
-            var localTime = record.Timestamp.ToLocalTime();
-            var hour = localTime.Hour;
-
-            var timeOfDay = hour switch
-            {
-                >= 5 and < 12 => "Morning",
-                >= 12 and < 17 => "Afternoon",
-                >= 17 and < 21 => "Evening",
-                _ => "Night"
-            };
-
             distribution[timeOfDay]++;
         }
 
         return distribution;
     }
 
-    private Dictionary<DayOfWeek, int> GetDayOfWeekDistribution(List<MoodRecord> records)
+    private static Dictionary<DayOfWeek, int> GetDayOfWeekDistribution(List<MoodRecord> records)
     {
         var distribution = new Dictionary<DayOfWeek, int>();
 
@@ -106,7 +101,7 @@ public class ReportHandler(IDataStore dataStore)
         {
             var day = record.Timestamp.DayOfWeek;
 
-            if (!distribution.ContainsKey(day)) distribution[day] = 0;
+            distribution.TryAdd(day, 0);
 
             distribution[day]++;
         }
