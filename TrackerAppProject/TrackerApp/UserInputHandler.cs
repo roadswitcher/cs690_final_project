@@ -31,8 +31,8 @@ public class UserInputHandler(IAnsiConsole console)
 
         var triggerPresent = !string.IsNullOrEmpty(trigger);
 
-        var moodrecord = new MoodRecord(mood, trigger);
-        var localtime = moodrecord.Timestamp.ToLocalTime().ToShortTimeString();
+        var moodRecord = new MoodRecord(mood, trigger);
+        var localtime = moodRecord.Timestamp.ToLocalTime().ToShortTimeString();
 
         TrackerUtils.LineMessage(
             triggerPresent
@@ -41,7 +41,7 @@ public class UserInputHandler(IAnsiConsole console)
 
         TrackerUtils.EnterToContinue();
 
-        return moodrecord;
+        return moodRecord;
     }
 
     public string GetReportChoice()
