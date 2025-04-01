@@ -80,14 +80,13 @@ internal class Tracker
                 break;
             case "Week":
                 var weeklyReport = reportHandler.GetWeeklyReport(today);
-                _reportDisplayer.DisplayWeeklyReport(weeklyReport);
+                _reportDisplayer.
+                    DisplayWeeklyReport(weeklyReport);
                 break;
             case "Exit":
                 AnsiConsole.Clear();
                 return;
         }
-
-        TrackerUtils.EnterToContinue();
     }
 
     private void HandleAdminOptions()
