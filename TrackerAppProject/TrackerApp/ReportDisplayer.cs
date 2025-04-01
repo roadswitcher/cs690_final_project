@@ -4,29 +4,21 @@ using Spectre.Console;
 
 namespace TrackerApp;
 
-public class ReportDisplayer
+public class ReportDisplayer(IAnsiConsole console)
 {
-    private readonly IAnsiConsole _console;
+    private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
-    public ReportDisplayer(IAnsiConsole console)
+    private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
     {
-        _console = console ?? throw new ArgumentNullException(nameof(console));
-    }
-
-    public BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
-    {
-        int total = 0;
-        foreach (var count in distribution.Values)
-        {
-            total += count;
-        }
+        var total = distribution.Values.Sum();
 
         var chart = new BreakdownChart()
             .Width(60).HideTagValues();
 
+        // Try and make sure adjacent colors are distinct
         var colors = new List<Color> { Color.Red1, Color.Lime, Color.Blue1, Color.Yellow1, Color.Fuchsia, Color.Green3, Color.Orange1, Color.Green1 };
 
-        int colorIndex = 0;
+        var colorIndex = 0;
 
         foreach (var kvp in distribution)
         {
@@ -66,7 +58,7 @@ public class ReportDisplayer
             _console.Write(moodTable);
             
             // Show time of day distribution
-            if (report.TimeOfDayDistribution?.Count > 0)
+            if (!(report.TimeOfDayDistribution?.Count > 0)) return;
             {
                 _console.WriteLine();
                 _console.WriteLine("Time of Day Distribution:");
@@ -136,8 +128,8 @@ public class ReportDisplayer
 
                 _console.Write(timeTable);
             }
-            
-            if (report.DailyBreakdown?.Count > 0)
+
+            if (!(report.DailyBreakdown?.Count > 0)) return;
             {
                 _console.WriteLine();
                 _console.WriteLine("Daily Breakdown:");

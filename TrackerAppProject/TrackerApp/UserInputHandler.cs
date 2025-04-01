@@ -34,11 +34,10 @@ public class UserInputHandler(IAnsiConsole console)
         var moodrecord = new MoodRecord(mood, trigger);
         var localtime = moodrecord.Timestamp.ToLocalTime().ToShortTimeString();
 
-        if (triggerPresent)
-            TrackerUtils.LineMessage(
-                $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], with additional note: [yellow]{trigger}[/]");
-        else
-            TrackerUtils.LineMessage($"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], no additional factors");
+        TrackerUtils.LineMessage(
+            triggerPresent
+                ? $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], with additional note: [yellow]{trigger}[/]"
+                : $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], no additional factors");
 
         TrackerUtils.EnterToContinue();
 
