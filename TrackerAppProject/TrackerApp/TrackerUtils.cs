@@ -1,37 +1,36 @@
 using Spectre.Console;
 
-namespace TrackerApp
+namespace TrackerApp;
+
+public static class TrackerUtils
 {
-    public static class TrackerUtils
+    public static void DebugMessage(string message)
     {
-        public static void DebugMessage(string message)
-        {
 #if DEBUG
-            AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
+        AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
 #endif
-        }
+    }
 
-        public static void WelcomeScreen(string[] args)
-        {
-            AnsiConsole.Clear();
+    public static void WelcomeScreen(string[] args)
+    {
+        AnsiConsole.Clear();
 
-            DebugMessage($"Args Length: {args.Length}");
-            DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
+        DebugMessage($"Args Length: {args.Length}");
+        DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
 
-            AnsiConsole.Write(new Rule("[cyan1]Welcome To MoodTracker[/]").Centered().RuleStyle("green"));
-            AnsiConsole.Write(
-                new Rule("[bold green]Let's Get Started[/]")
-                    .Centered()
-                    .RuleStyle("green")
-            );
+        AnsiConsole.Write(new Rule("[cyan1]Welcome To MoodTracker[/]").Centered().RuleStyle("green"));
+        AnsiConsole.Write(
+            new Rule("[bold green]Let's Get Started[/]")
+                .Centered()
+                .RuleStyle("green")
+        );
 
-            UserAccount userCredentials = LoginHandler.HandleLogin();
+        var userCredentials = LoginHandler.HandleLogin();
 
-            DataStore dataStore = DataStore.Instance;
-            dataStore.SetUserCredentials(userCredentials);
+        var dataStore = DataStore.Instance;
+        dataStore.SetUserCredentials(userCredentials);
 
-            AnsiConsole.MarkupLine($" Logged in as {userCredentials.Username}");
-            AnsiConsole.WriteLine();
-        }
+        AnsiConsole.MarkupLine($" Logged in as {userCredentials.Username}");
+        AnsiConsole.WriteLine();
     }
 }
