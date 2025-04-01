@@ -18,6 +18,12 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
+    public static void CenteredMessage(string message, string color = "green")
+    {
+        var rule = new Rule($"{message}").Centered().RuleStyle(color);
+        AnsiConsole.Write(rule);
+    }
+
     public static void ShowSelectedValue(string message, string color = "orange1")
     {
         var rule = new Rule($"You Selected: [yellow]{message}[/]").LeftJustified().RuleStyle(color);
@@ -37,12 +43,8 @@ public static class TrackerUtils
         AnsiConsole.Write(new FigletText("MoodApp").Centered().Color(Color.Green));
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
 
-        AnsiConsole.Write(new Rule("[cyan1]Welcome To MoodTracker[/]").Centered().RuleStyle("green"));
-        AnsiConsole.Write(
-            new Rule("[bold green]Let's Get Started[/]")
-                .Centered()
-                .RuleStyle("green")
-        );
+        CenteredMessage("[orange1]Welcome To MoodTracker![/]");
+        CenteredMessage("Let's Get Started");
 
         var userCredentials = LoginHandler.HandleLogin();
 

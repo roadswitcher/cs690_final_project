@@ -44,7 +44,6 @@ public class UserInputHandler(IAnsiConsole console)
     public string GetReportChoice()
     {
         TrackerUtils.LineMessage("Report Options");
-        // _console.Write(new Rule("[cyan1]Report Options[/]").LeftJustified().RuleStyle("cyan2"));
 
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("Show breakdown/stats for the past [green]Day[/], [aqua]Week[/], or [red]Exit[/] to main menu?")
