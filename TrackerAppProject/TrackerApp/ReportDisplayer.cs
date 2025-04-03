@@ -18,6 +18,19 @@ public class ReportDisplayer(IAnsiConsole console)
         // Try and make sure adjacent colors are distinct
         var colors = new List<Color> { Color.Red1, Color.Lime, Color.Blue1, Color.Yellow1, Color.Fuchsia, Color.Green3, Color.Orange1, Color.Green1 };
 
+        var moodColors = new Dictionary<string, string>
+        {                              // color listing sourced from online research/taking first AI suggestions
+            { "Happy", "green1" },     // Bright green - universally associated with happiness
+            { "Sad", "blue3" },        // Darker blue - commonly associated with sadness
+            { "Angry", "red1" },       // Bright red - standard color for anger
+            { "Wistful", "purple" },   // Soft purple - captures the reflective nature of wistfulness
+            { "Indifferent", "grey" }, // Grey - represents neutrality/lack of strong emotion
+            { "Anxious", "yellow1" },  // Yellow - often used to indicate caution/nervousness
+            { "Excited", "orange1" },  // Vibrant orange - energetic and enthusiastic
+            { "Frustrated", "maroon" },// Maroon - a muted red showing intensity without being pure anger
+            { "Content", "cyan1" }     // Calm blue-green - peaceful and satisfied
+        };
+        
         var colorIndex = 0;
 
         foreach (var kvp in distribution)
