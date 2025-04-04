@@ -111,10 +111,10 @@ internal class Tracker
                 Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then.");
                 if (confirmation) _dataStore.RemoveLastMoodRecord();
                 break;
-            case "Remove All Updates":
-                break;
-            case "Log Out":
-                break;
+            // case "Remove All Updates":
+            //     break;
+            // case "Log Out":
+            //     break;
             case "Exit to Main Menu":
                 AnsiConsole.Clear();
                 return;

@@ -32,7 +32,6 @@ public class ReportDisplayer(IAnsiConsole console)
         foreach (var kvp in distribution)
         {
             var percentage = kvp.Value / (double)total * 100;
-            // chart.AddItem(kvp.Key, percentage, colors[colorIndex % colors.Count]);
             chart.AddItem(kvp.Key, percentage, moodColors[kvp.Key]);
             colorIndex++;
         }
@@ -135,29 +134,7 @@ public class ReportDisplayer(IAnsiConsole console)
 
                 _console.Write(timeTable);
             }
-
-            if (!(report.DailyBreakdown?.Count > 0)) return;
-            {
-                _console.WriteLine();
-                _console.WriteLine("Daily Breakdown:");
-                var dayTable = new Table().Border(TableBorder.Simple);
-                dayTable.AddColumn("Day");
-                dayTable.AddColumn("Count");
-                dayTable.AddColumn("Percentage");
-
-                // Order by day of week
-                var orderedDays = report.DailyBreakdown
-                    .OrderBy(kv => (int)kv.Key)
-                    .ToList();
-
-                foreach (var day in orderedDays)
-                {
-                    var percentage = (double)day.Value / report.TotalRecords * 100;
-                    dayTable.AddRow(day.Key.ToString(), day.Value.ToString(), $"{percentage:F1}%");
-                }
-
-                _console.Write(dayTable);
-            }
+            
         }
         else
         {

@@ -14,7 +14,7 @@ public class WeeklyReport
     public int TotalRecords { get; init; }
     public Dictionary<string, int> MoodDistribution { get; init; } = new();
     public Dictionary<string, int> TimeOfDayDistribution { get; init; } = new();
-    public Dictionary<DayOfWeek, int> DailyBreakdown { get; init; } = new();
+    // public Dictionary<DayOfWeek, int> DailyBreakdown { get; init; } = new();
 }
 
 public class ReportHandler(IDataStore dataStore)
@@ -48,7 +48,7 @@ public class ReportHandler(IDataStore dataStore)
             TotalRecords = records.Count,
             MoodDistribution = GetMoodDistribution(records),
             TimeOfDayDistribution = GetTimeOfDayDistribution(records),
-            DailyBreakdown = GetDayOfWeekDistribution(records)
+            // DailyBreakdown = GetDayOfWeekDistribution(records)
         };
 
         return report;

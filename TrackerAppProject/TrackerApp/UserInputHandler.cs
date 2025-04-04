@@ -60,6 +60,6 @@ public class UserInputHandler(IAnsiConsole console)
 
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("[bold red]Select Admin Option:[/]")
-            .AddChoices("Remove Last Update", "Remove All Updates", "Log Out", "Exit to Main Menu")));
+            .AddChoices("Remove Last Update", "Exit to Main Menu")));
     }
 }
