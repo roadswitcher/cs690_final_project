@@ -79,16 +79,15 @@ public class ReportHandler(IDataStore dataStore)
             { "Night", 0 }
         };
 
-        foreach (var timeOfDay in records.Select(record => record.Timestamp.ToLocalTime()).Select(localTime => localTime.Hour).Select(hour => hour switch
-                 {
-                     >= 5 and < 12 => "Morning",
-                     >= 12 and < 17 => "Afternoon",
-                     >= 17 and < 21 => "Evening",
-                     _ => "Night"
-                 }))
-        {
+        foreach (var timeOfDay in records.Select(record => record.Timestamp.ToLocalTime())
+                     .Select(localTime => localTime.Hour).Select(hour => hour switch
+                     {
+                         >= 5 and < 12 => "Morning",
+                         >= 12 and < 17 => "Afternoon",
+                         >= 17 and < 21 => "Evening",
+                         _ => "Night"
+                     }))
             distribution[timeOfDay]++;
-        }
 
         return distribution;
     }

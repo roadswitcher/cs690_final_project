@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Spectre.Console;
 
 namespace TrackerApp;
@@ -16,23 +14,24 @@ public class ReportDisplayer(IAnsiConsole console)
             .FullSize().HideTagValues();
 
         var moodColors = new Dictionary<string, Color>
-        {                              // color listing sourced from online research/taking first AI suggestions
-            { "Happy", Color.Green1 },     // Bright green - universally associated with happiness
-            { "Sad", Color.Blue3 },        // Darker blue - commonly associated with sadness
-            { "Angry", Color.Red1 },       // Bright red - standard color for anger
-            { "Wistful", Color.Purple },   // Soft purple - captures the reflective nature of wistfulness
+        {
+            // color listing sourced from online research/taking first AI suggestions
+            { "Happy", Color.Green1 }, // Bright green - universally associated with happiness
+            { "Sad", Color.Blue3 }, // Darker blue - commonly associated with sadness
+            { "Angry", Color.Red1 }, // Bright red - standard color for anger
+            { "Wistful", Color.Purple }, // Soft purple - captures the reflective nature of wistfulness
             { "Indifferent", Color.Grey }, // Grey - represents neutrality/lack of strong emotion
-            { "Anxious", Color.Yellow1 },  // Yellow - often used to indicate caution/nervousness
-            { "Excited", Color.Orange1 },  // Vibrant orange - energetic and enthusiastic
-            { "Frustrated", Color.Maroon },// Maroon - a muted red showing intensity without being pure anger
-            { "Content", Color.Cyan1 }     // Calm blue-green - peaceful and satisfied
+            { "Anxious", Color.Yellow1 }, // Yellow - often used to indicate caution/nervousness
+            { "Excited", Color.Orange1 }, // Vibrant orange - energetic and enthusiastic
+            { "Frustrated", Color.Maroon }, // Maroon - a muted red showing intensity without being pure anger
+            { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
         };
-        
+
         var colorIndex = 0;
 
         foreach (var kvp in distribution)
         {
-            double percentage = (kvp.Value / (double)total) * 100;
+            var percentage = kvp.Value / (double)total * 100;
             // chart.AddItem(kvp.Key, percentage, colors[colorIndex % colors.Count]);
             chart.AddItem(kvp.Key, percentage, moodColors[kvp.Key]);
             colorIndex++;
@@ -42,52 +41,54 @@ public class ReportDisplayer(IAnsiConsole console)
     }
 
     public void DisplayDailyReport(DailyReport report)
-{
-    _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
-        .RuleStyle("cyan2"));
-    _console.WriteLine($"Number of updates today: {report.TotalRecords}");
-    
-    // Show mood distribution
-    if (report.TotalRecords > 0)
     {
-        var chart = BuildBreakdownChart(report.MoodDistribution).Width(75);
-        
-        var moodTable = new Table().Border(TableBorder.Simple);
-        moodTable.AddColumn("Mood");
-        moodTable.AddColumn("Count");
-        moodTable.AddColumn("Percentage");
-        moodTable.Title = new TableTitle("Mood Record Distribution");
-        foreach (var mood in report.MoodDistribution)
+        _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
+            .RuleStyle("cyan2"));
+        _console.WriteLine($"Number of updates today: {report.TotalRecords}");
+
+        // Show mood distribution
+        if (report.TotalRecords > 0)
         {
-            var percentage = (double)mood.Value / report.TotalRecords * 100;
-            moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
-        }
-        
-        var timeTable = new Table().Border(TableBorder.Simple);
-        timeTable.AddColumn("Time of Day");
-        timeTable.AddColumn("Count");
-        timeTable.AddColumn("Percentage");
-        timeTable.Title = new TableTitle("Time of Day Distribution");
-        
-        if (report.TimeOfDayDistribution?.Count > 0)
-        {
-            foreach (var time in report.TimeOfDayDistribution)
+            var chart = BuildBreakdownChart(report.MoodDistribution).Width(75);
+
+            var moodTable = new Table().Border(TableBorder.Simple);
+            moodTable.AddColumn("Mood");
+            moodTable.AddColumn("Count");
+            moodTable.AddColumn("Percentage");
+            moodTable.Title = new TableTitle("Mood Record Distribution");
+            foreach (var mood in report.MoodDistribution)
             {
-                var percentage = (double)time.Value / report.TotalRecords * 100;
-                timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
+                var percentage = (double)mood.Value / report.TotalRecords * 100;
+                moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
-        } ;
-        
-        _console.Write(chart);
-        _console.Write(moodTable);
-        _console.Write(timeTable);
+
+            var timeTable = new Table().Border(TableBorder.Simple);
+            timeTable.AddColumn("Time of Day");
+            timeTable.AddColumn("Count");
+            timeTable.AddColumn("Percentage");
+            timeTable.Title = new TableTitle("Time of Day Distribution");
+
+            if (report.TimeOfDayDistribution?.Count > 0)
+                foreach (var time in report.TimeOfDayDistribution)
+                {
+                    var percentage = (double)time.Value / report.TotalRecords * 100;
+                    timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
+                }
+
+            ;
+
+            _console.Write(chart);
+            _console.Write(moodTable);
+            _console.Write(timeTable);
+        }
+        else
+        {
+            _console.WriteLine("No mood records for past day.");
+        }
+
+        TrackerUtils.EnterToContinue();
     }
-    else
-    {
-        _console.WriteLine("No mood records for past day.");
-    }
-    TrackerUtils.EnterToContinue();
-}
+
     public void DisplayWeeklyReport(WeeklyReport report)
     {
         var startDate = report.Date.AddDays(-6);
@@ -162,6 +163,7 @@ public class ReportDisplayer(IAnsiConsole console)
         {
             _console.WriteLine("No mood records for this week.");
         }
+
         TrackerUtils.EnterToContinue();
     }
 }
