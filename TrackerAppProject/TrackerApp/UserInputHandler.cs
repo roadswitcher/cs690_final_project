@@ -50,7 +50,7 @@ public class UserInputHandler(IAnsiConsole console)
 
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("Show report for [green]Today[/], [cyan]Pick a day[/], [aqua]Week[/], or [red]Exit[/] to main menu?")
-            .AddChoices("[green]Today[/]", "[cyan]Pick a day[/]", "[aqua]Week[/]", "[red]Exit[/]")));
+            .AddChoices("[green]Today[/]", "[cyan]Pick a Day[/]", "[aqua]Week[/]", "[red]Exit[/]")));
     }
 
     public string GetAdminOption()
