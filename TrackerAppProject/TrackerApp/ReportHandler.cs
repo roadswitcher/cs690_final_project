@@ -41,9 +41,10 @@ public class ReportHandler(IDataStore dataStore)
 
     public DailyReport GetSpecificDayReport()
     {
-        TrackerUtils.LineMessage("NOT IMPLEMENTED YET");
+        var allRecords = DataStore.Instance.GetMoodRecords();
+        var chosenDate = PromptForDate(allRecords);
 
-        var report = new DailyReport();
+        var report = GetDailyReport(chosenDate);
 
         return report;
     }
