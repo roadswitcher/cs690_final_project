@@ -5,9 +5,9 @@ namespace TrackerApp;
 internal class Tracker
 {
     private readonly DataStore _dataStore;
+    private readonly ReportDisplayer _reportDisplayer;
     private readonly List<string> _trackedEmotions;
     private readonly UserInputHandler _userInputHandler;
-    private readonly ReportDisplayer _reportDisplayer;
 
     public Tracker(IAnsiConsole console)
     {
@@ -25,7 +25,7 @@ internal class Tracker
         TrackerUtils.WelcomeScreen(args);
 
         RunMoodTracker();
-        
+
         TrackerUtils.ExitMessages();
         return 0;
     }
@@ -80,8 +80,7 @@ internal class Tracker
                 break;
             case "Week":
                 var weeklyReport = reportHandler.GetWeeklyReport(today);
-                _reportDisplayer.
-                    DisplayWeeklyReport(weeklyReport);
+                _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
             case "Exit":
                 AnsiConsole.Clear();
@@ -91,7 +90,7 @@ internal class Tracker
 
     private void HandleAdminOptions()
     {
-        string adminChoice = _userInputHandler.GetAdminOption();
+        var adminChoice = _userInputHandler.GetAdminOption();
         // Console.WriteLine($"Chose: {adminChoice}");
         switch (adminChoice)
         {
@@ -99,7 +98,8 @@ internal class Tracker
             case "Remove Last Update":
                 var last_record = _dataStore.GetLastMoodRecord();
                 TrackerUtils.LineMessage("Please confirm you want to remove this update:");
-                TrackerUtils.LineMessage($"Time: {last_record.Timestamp.ToLocalTime().ToShortTimeString()} / Last Mood: {last_record.Mood} / Last Trigger: \"{last_record.Trigger}\"");
+                TrackerUtils.LineMessage(
+                    $"Time: {last_record.Timestamp.ToLocalTime().ToShortTimeString()} / Last Mood: {last_record.Mood} / Last Trigger: \"{last_record.Trigger}\"");
                 var confirmation = AnsiConsole.Prompt(
                     new TextPrompt<bool>("Are you sure you want to delete that? [[Default: n]]")
                         .AddChoice(true)
@@ -108,16 +108,13 @@ internal class Tracker
                         .WithConverter(choice => choice ? "y" : "n"));
 
                 // Echo the confirmation back to the terminal
-                Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then." );
-                if (confirmation)
-                {
-                    _dataStore.RemoveLastMoodRecord();
-                }
+                Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then.");
+                if (confirmation) _dataStore.RemoveLastMoodRecord();
                 break;
-            case "Remove All Updates":
-                break;
-            case "Log Out":
-                break;
+            // case "Remove All Updates":
+            //     break;
+            // case "Log Out":
+            //     break;
             case "Exit to Main Menu":
                 AnsiConsole.Clear();
                 return;

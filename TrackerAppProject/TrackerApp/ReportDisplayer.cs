@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Spectre.Console;
 
 namespace TrackerApp;
@@ -8,75 +6,99 @@ public class ReportDisplayer(IAnsiConsole console)
 {
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
+    private static readonly Dictionary<string, Color> _moodColors = new Dictionary<string, Color>
+    {
+        // color listing sourced from online research/taking first AI suggestions
+        { "Happy", Color.Green1 }, // Bright green - universally associated with happiness
+        { "Sad", Color.Blue3 }, // Darker blue - commonly associated with sadness
+        { "Angry", Color.Red1 }, // Bright red - standard color for anger
+        { "Wistful", Color.Purple }, // Soft purple - captures the reflective nature of wistfulness
+        { "Indifferent", Color.Grey }, // Grey - represents neutrality/lack of strong emotion
+        { "Anxious", Color.Yellow1 }, // Yellow - often used to indicate caution/nervousness
+        { "Excited", Color.Orange1 }, // Vibrant orange - energetic and enthusiastic
+        { "Frustrated", Color.Maroon }, // Maroon - a muted red showing intensity without being pure anger
+        { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
+    };
+
+
     private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
     {
         var total = distribution.Values.Sum();
 
         var chart = new BreakdownChart()
             .FullSize().HideTagValues();
-
-        // Try and make sure adjacent colors are distinct
-        var colors = new List<Color> { Color.Red1, Color.Lime, Color.Blue1, Color.Yellow1, Color.Fuchsia, Color.Green3, Color.Orange1, Color.Green1 };
-
-        var colorIndex = 0;
+        
 
         foreach (var kvp in distribution)
         {
-            double percentage = (kvp.Value / (double)total) * 100;
-            chart.AddItem(kvp.Key, percentage, colors[colorIndex % colors.Count]);
-            colorIndex++;
+            var percentage = kvp.Value / (double)total * 100;
+            string label = $"{kvp.Key} ({(int)Math.Round(percentage)}%)";
+            chart.AddItem(label, percentage, _moodColors[kvp.Key]); 
         }
 
         return chart;
     }
 
     public void DisplayDailyReport(DailyReport report)
-{
-    _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
-        .RuleStyle("cyan2"));
-    _console.WriteLine($"Number of updates today: {report.TotalRecords}");
-    
-    // Show mood distribution
-    if (report.TotalRecords > 0)
     {
-        var chart = BuildBreakdownChart(report.MoodDistribution).Width(75);
-        
-        var moodTable = new Table().Border(TableBorder.Simple);
-        moodTable.AddColumn("Mood");
-        moodTable.AddColumn("Count");
-        moodTable.AddColumn("Percentage");
-        moodTable.Title = new TableTitle("Mood Record Distribution");
-        foreach (var mood in report.MoodDistribution)
+        _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
+            .RuleStyle("cyan2"));
+        _console.WriteLine($"Number of updates today: {report.TotalRecords}");
+
+        // Show mood distribution
+        if (report.TotalRecords > 0)
         {
-            var percentage = (double)mood.Value / report.TotalRecords * 100;
-            moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
-        }
-        
-        var timeTable = new Table().Border(TableBorder.Simple);
-        timeTable.AddColumn("Time of Day");
-        timeTable.AddColumn("Count");
-        timeTable.AddColumn("Percentage");
-        timeTable.Title = new TableTitle("Time of Day Distribution");
-        
-        if (report.TimeOfDayDistribution?.Count > 0)
-        {
-            foreach (var time in report.TimeOfDayDistribution)
+            var chart = BuildBreakdownChart(report.MoodDistribution).Width(75);
+
+            var moodTable = new Table().Border(TableBorder.Simple);
+            moodTable.AddColumn("Mood");
+            moodTable.AddColumn("Count");
+            moodTable.AddColumn("Percentage");
+            moodTable.Title = new TableTitle("Mood Distribution");
+            foreach (var mood in report.MoodDistribution)
             {
-                var percentage = (double)time.Value / report.TotalRecords * 100;
-                timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
+                var percentage = (double)mood.Value / report.TotalRecords * 100;
+                moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
-        } ;
-        
-        _console.Write(chart);
-        _console.Write(moodTable);
-        _console.Write(timeTable);
+
+            // var timeTable = new Table().Border(TableBorder.Simple);
+            // timeTable.AddColumn("Time of Day");
+            // timeTable.AddColumn("Count");
+            // timeTable.AddColumn("Percentage");
+            // timeTable.Title = new TableTitle("Time of Day Report Breakdown");
+            //
+            // if (report.TimeOfDayDistribution?.Count > 0)
+            //     foreach (var time in report.TimeOfDayDistribution)
+            //     {
+            //         var percentage = (double)time.Value / report.TotalRecords * 100;
+            //         timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
+            //     }
+
+            var dailyBreakdown = report.DailyBreakdown;
+
+            var breakdownTable = new Table();
+            breakdownTable.AddColumn("Period");
+            breakdownTable.AddColumn("Time");
+            breakdownTable.AddColumn("Mood");
+            breakdownTable.AddColumn("Triggers/Info");
+            foreach (var (timeCategory, time, mood, trigger) in dailyBreakdown)
+            {
+                breakdownTable.AddRow(timeCategory, time, mood, trigger);
+            }
+
+            _console.Write(chart);
+            // _console.Write(moodTable);
+            // _console.Write(timeTable);
+            _console.Write(breakdownTable);
+        }
+        else
+        {
+            _console.WriteLine("No mood records for past day.");
+        }
+
+        TrackerUtils.EnterToContinue();
     }
-    else
-    {
-        _console.WriteLine("No mood records for past day.");
-    }
-    TrackerUtils.EnterToContinue();
-}
+
     public void DisplayWeeklyReport(WeeklyReport report)
     {
         var startDate = report.Date.AddDays(-6);
@@ -123,34 +145,12 @@ public class ReportDisplayer(IAnsiConsole console)
 
                 _console.Write(timeTable);
             }
-
-            if (!(report.DailyBreakdown?.Count > 0)) return;
-            {
-                _console.WriteLine();
-                _console.WriteLine("Daily Breakdown:");
-                var dayTable = new Table().Border(TableBorder.Simple);
-                dayTable.AddColumn("Day");
-                dayTable.AddColumn("Count");
-                dayTable.AddColumn("Percentage");
-
-                // Order by day of week
-                var orderedDays = report.DailyBreakdown
-                    .OrderBy(kv => (int)kv.Key)
-                    .ToList();
-
-                foreach (var day in orderedDays)
-                {
-                    var percentage = (double)day.Value / report.TotalRecords * 100;
-                    dayTable.AddRow(day.Key.ToString(), day.Value.ToString(), $"{percentage:F1}%");
-                }
-
-                _console.Write(dayTable);
-            }
         }
         else
         {
             _console.WriteLine("No mood records for this week.");
         }
+
         TrackerUtils.EnterToContinue();
     }
 }

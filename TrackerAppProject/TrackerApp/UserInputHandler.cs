@@ -22,7 +22,8 @@ public class UserInputHandler(IAnsiConsole console)
 
         TrackerUtils.ShowSelectedValue(mood);
 
-        TrackerUtils.LineMessage("External Factors: Do you want to record more information, like triggers or external factors?");
+        TrackerUtils.LineMessage(
+            "External Factors: Do you want to record more information, like triggers or external factors?");
 
         var trigger =
             AnsiConsole.Prompt(
@@ -56,9 +57,9 @@ public class UserInputHandler(IAnsiConsole console)
     public string GetAdminOption()
     {
         TrackerUtils.LineMessage("[red]Admin Options:[/]", "red3");
-        
+
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("[bold red]Select Admin Option:[/]")
-            .AddChoices("Remove Last Update", "Remove All Updates", "Log Out", "Exit to Main Menu")));
+            .AddChoices("Remove Last Update", "Exit to Main Menu")));
     }
 }

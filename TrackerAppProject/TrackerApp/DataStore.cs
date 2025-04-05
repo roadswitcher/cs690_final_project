@@ -110,10 +110,7 @@ public class DataStore : IDataStore
 
     public bool RemoveLastMoodRecord()
     {
-        if (_moodRecords.Count == 0)
-        {
-            return false;
-        }
+        if (_moodRecords.Count == 0) return false;
 
         _moodRecords.RemoveAt(_moodRecords.Count - 1);
         SaveData();
