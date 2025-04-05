@@ -1,0 +1,2017 @@
+{
+    "UserCredentials": {
+        "Username": "Zoe"
+    },
+    "MoodRecords": [
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-02-19T17:19:54.613427Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-02-19T20:13:07.177385Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-02-19T19:49:33.223456Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-02-19T13:54:43.527208Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-02-19T20:25:12.167631Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-02-19T20:45:59.459692Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-02-20T14:44:29.553467Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-02-20T13:04:25.816710Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-02-20T16:55:29.197812Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-02-20T17:02:08.279133Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-02-20T17:00:47.219493Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-02-20T17:39:47.746624Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-02-20T18:08:02.716035Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-21T16:34:14.629194Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-02-21T21:57:21.829796Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-02-21T20:12:00.040504Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-02-21T10:10:20.127070Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-02-21T07:30:12.552346Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-21T16:37:10.165855Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-02-21T21:06:24.380509Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-02-22T17:30:43.320504Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-02-22T23:12:53.863778Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-02-22T11:12:28.457948Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-02-22T15:38:52.518948Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-02-22T07:30:00.580995Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-02-22T18:38:34.591576Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-02-22T13:01:33.945479Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-02-22T10:04:56.273133Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-02-22T20:55:36.567024Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-22T17:43:00.451151Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-02-22T16:00:21.321328Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-02-23T15:33:48.985112Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-02-23T07:51:26.307959Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-02-23T21:23:59.278994Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-23T23:42:37.628621Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-02-23T07:45:29.002328Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-02-23T07:00:20.603342Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-02-23T16:33:49.075470Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-02-23T17:38:51.771259Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-23T19:30:47.946115Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-02-23T08:44:26.411028Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Feeling stressed about deadlines",
+            "Timestamp": "2025-02-23T08:42:47.592913Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-02-23T20:01:20.768945Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-02-24T23:00:46.155875Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-02-24T16:17:41.521401Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-02-24T12:51:07.873314Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-02-24T07:04:00.916992Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-02-24T19:45:16.573018Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-02-24T14:41:43.044029Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-02-24T23:46:57.829881Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-02-24T10:00:07.254391Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-02-24T08:30:00.104075Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-02-24T13:14:26.668922Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-02-24T18:33:18.350819Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-02-24T14:42:52.818791Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-02-24T17:53:37.803549Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-24T16:26:51.459645Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-02-24T19:44:28.329886Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-02-25T22:21:05.534415Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-02-25T21:22:04.070904Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-02-25T18:26:14.423054Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-25T08:29:31.537383Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-02-26T16:50:04.784823Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-02-26T12:38:19.661402Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-02-26T21:53:22.678007Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-02-26T20:25:03.065444Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-02-26T20:53:41.273646Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-02-26T20:40:42.802866Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-02-26T17:11:05.255990Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-02-27T08:59:54.856999Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-02-27T17:14:25.870132Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-02-27T20:14:31.409263Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-02-27T20:10:11.722552Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-02-27T19:44:18.344494Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-02-27T07:10:12.156531Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-02-27T08:37:56.208489Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-02-27T11:45:11.007184Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-02-27T16:54:41.513534Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-02-28T21:30:48.097993Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-02-28T22:57:59.877455Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-02-28T08:27:50.948170Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-01T22:53:35.680040Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-01T22:47:56.000101Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-01T20:13:22.391488Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-01T15:59:29.282986Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-01T07:28:52.055799Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-01T22:57:16.961374Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-02T20:52:39.561470Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-02T11:49:58.069689Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-02T10:28:52.751076Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-02T17:54:27.839650Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-02T12:45:48.836002Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-02T15:39:23.439353Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-02T18:59:20.956292Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-02T13:27:17.414776Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-02T07:33:57.694876Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-02T15:53:37.023097Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-02T09:20:50.990082Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-02T20:07:58.912025Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-02T11:17:14.430701Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-02T17:00:57.478553Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-03-02T18:46:51.754537Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-03T11:16:21.272751Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-03T18:46:40.755509Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-03T08:09:31.289856Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-03T19:21:49.513435Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-03T09:14:42.968766Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-03T22:16:26.241210Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-03T18:30:24.090710Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-03-03T18:06:55.773846Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-04T23:51:31.414321Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-04T18:09:50.201767Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-03-04T14:33:42.963150Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-04T18:34:17.578389Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-04T22:51:08.539900Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-04T11:02:22.468423Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-04T17:08:52.462283Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-04T12:27:31.716004Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-05T11:16:11.575363Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Feeling stressed about deadlines",
+            "Timestamp": "2025-03-05T09:35:51.819223Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-05T16:02:56.892564Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-05T10:04:23.469950Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-05T07:41:05.763998Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Feeling stressed about deadlines",
+            "Timestamp": "2025-03-05T07:27:25.106377Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-05T14:35:20.522417Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-03-05T11:10:39.135210Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-05T08:52:21.067314Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-05T15:33:01.420793Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-05T22:03:53.541952Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-05T19:29:38.946222Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-05T23:23:53.485043Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-05T22:44:05.864462Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-06T09:56:57.533676Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-06T12:34:18.185057Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-06T17:10:59.840148Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-06T20:49:11.055733Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-06T12:03:09.872305Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-06T18:20:34.872538Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-06T08:42:27.567999Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-06T21:32:36.587585Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-06T08:35:45.460060Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-06T10:32:21.133642Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-06T12:18:43.222294Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-07T14:57:13.380738Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-07T23:21:10.252987Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-07T18:57:45.270156Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-07T22:35:22.703001Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-07T11:49:42.694942Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-03-07T19:57:27.785992Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-07T22:10:10.540698Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-07T07:35:44.647932Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-07T17:36:08.359641Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-07T14:42:37.942096Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-08T23:08:43.008495Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-08T09:12:37.958419Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-08T23:41:09.562419Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-08T21:24:31.397843Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-08T23:23:35.631281Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-08T08:39:30.076185Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-03-08T09:10:50.735689Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-08T23:12:35.248643Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-08T15:41:26.908707Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-08T14:06:42.852557Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-08T23:47:46.525528Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-08T08:48:23.771115Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-08T18:35:03.857837Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Feeling stressed about deadlines",
+            "Timestamp": "2025-03-08T18:51:53.074297Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-09T15:01:25.941541Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-09T15:55:38.447092Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-09T11:52:50.502882Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-10T18:55:02.623456Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-10T21:51:41.584353Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-10T08:19:18.709210Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-10T18:31:20.103338Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-10T09:03:52.876863Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-03-10T08:41:35.215800Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-10T10:19:28.615854Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-03-10T09:51:30.521808Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-10T13:08:02.531386Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-10T14:57:51.312366Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-10T14:57:49.157943Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-10T10:12:25.669677Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-10T23:29:39.729662Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-11T15:35:33.521314Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-11T21:35:02.244818Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-11T22:19:31.082844Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-11T22:59:54.730145Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-11T23:27:52.517006Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-03-11T14:40:43.114098Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-11T17:44:45.710249Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-11T15:27:03.022078Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-12T11:18:47.810959Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-12T14:27:34.056750Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-12T14:33:35.261173Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-12T23:19:09.152691Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-03-13T18:08:28.784957Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-13T22:48:17.149768Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-03-13T19:01:40.629016Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-13T21:00:39.494378Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-13T16:05:57.919706Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-13T23:20:29.910052Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-13T23:45:56.007256Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-03-13T14:51:28.338502Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-13T16:47:54.101130Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-13T22:42:09.771303Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-03-13T20:03:23.462730Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-13T11:37:15.576470Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-13T15:09:08.229280Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-13T19:21:01.344843Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-14T10:53:16.711535Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Not enjoying lab",
+            "Timestamp": "2025-03-14T09:19:12.635342Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-14T20:33:26.858994Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-14T19:32:16.529211Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-14T12:11:41.259376Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-14T13:46:31.975279Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-14T19:03:31.215357Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-14T22:23:48.102078Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-14T12:11:03.694489Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-03-14T20:09:50.506470Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-14T14:03:42.919483Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-14T18:30:47.459947Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-03-14T23:09:16.348750Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-14T21:37:07.418809Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-15T07:18:14.913470Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-15T22:20:51.717938Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-15T18:33:47.438289Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-15T12:18:18.863518Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-15T07:23:19.396108Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-15T18:43:41.036368Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-03-15T23:19:08.502221Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-15T20:10:50.068393Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-03-15T18:14:28.095499Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-15T19:36:39.900489Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-15T10:06:43.361919Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-16T17:58:46.511210Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-16T07:46:07.091108Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-03-16T18:06:30.751294Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-16T18:29:18.993258Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-16T15:58:01.304717Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-17T20:18:29.807663Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-17T07:15:21.329129Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-17T09:12:05.413980Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-17T19:55:05.803563Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-17T19:37:58.746984Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-17T10:08:16.242254Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-17T18:46:36.424971Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-03-17T22:06:38.485188Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-18T18:43:01.822767Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-03-18T19:37:58.793187Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-03-18T15:23:10.333681Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-19T13:00:37.512674Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-19T07:01:00.353360Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-19T09:43:20.270921Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-19T12:57:55.115852Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-19T21:11:07.290665Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-19T08:41:57.943793Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-19T17:27:09.718730Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-19T22:39:54.830677Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-19T19:54:25.540210Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-19T09:11:36.901432Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-19T16:59:03.831496Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-03-19T12:26:18.636201Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-19T09:23:07.846985Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-19T17:54:32.762739Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-19T10:53:54.338302Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-20T20:58:57.245031Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-20T18:22:14.999271Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-20T13:09:34.284360Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-20T10:16:59.633367Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-20T18:47:39.654837Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-03-20T12:57:09.432474Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-03-20T14:46:01.913905Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-20T12:00:07.057298Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-21T17:12:17.939527Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-03-21T22:30:20.608245Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-21T07:27:01.118872Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-21T23:26:47.450258Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-03-21T22:49:10.453296Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-22T23:08:49.503960Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-22T22:35:46.397640Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-22T18:25:16.618186Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-03-22T21:43:30.631024Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-22T23:08:34.570621Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-22T17:50:52.409128Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-22T09:40:55.940440Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-23T19:49:47.421793Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-03-23T11:16:18.196347Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-23T12:59:24.796039Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-23T14:10:01.623336Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-03-23T10:15:12.189667Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-03-24T13:04:41.704457Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T07:54:29.083644Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T22:59:43.536115Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T21:30:59.245563Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-24T17:09:00.607657Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-24T20:36:07.780331Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T17:52:07.500992Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T19:08:02.488360Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T21:15:15.614959Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-24T19:59:33.126127Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-03-24T17:46:02.200023Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T07:23:28.307519Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T17:50:42.586363Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-24T20:44:21.476559Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-24T07:54:03.696757Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-03-25T22:21:37.978332Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-25T22:22:53.594674Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-03-25T14:12:44.225701Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-25T15:33:53.963414Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-26T19:39:56.685617Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-26T14:25:59.383408Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-26T18:31:17.922721Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": null,
+            "Timestamp": "2025-03-26T09:47:52.772305Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-26T23:35:15.802611Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Excited for my afternoon class",
+            "Timestamp": "2025-03-27T18:51:50.264015Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T15:43:43.375849Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T09:17:41.306564Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T13:54:13.594100Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T10:29:11.468934Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-03-27T17:35:43.274589Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T11:19:50.951863Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T07:29:16.092038Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-03-27T14:25:43.764713Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T21:49:39.559464Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-27T12:40:14.841276Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-03-27T08:16:44.262630Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-03-27T21:44:05.964436Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-28T12:12:45.807234Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-28T13:22:43.280504Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-03-28T10:27:22.141615Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-28T16:14:06.963472Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-28T11:36:01.527244Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Not enjoying lab",
+            "Timestamp": "2025-03-28T09:10:11.862440Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-28T07:27:14.764452Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-28T15:49:46.952042Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-03-28T23:29:49.049309Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-28T14:30:14.271417Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-03-28T22:33:50.183243Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-03-28T14:36:24.106442Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-28T08:27:01.992953Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-28T16:04:14.021491Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-28T10:16:02.374545Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-29T23:55:25.871268Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-29T22:34:35.249092Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-03-29T08:23:00.073863Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-03-30T11:05:27.613400Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-30T10:24:52.879954Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-30T13:32:59.264603Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-30T21:55:30.746129Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-03-30T14:48:45.365839Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just got a good cup of coffee",
+            "Timestamp": "2025-03-30T17:06:01.896542Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-30T10:56:17.737095Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-03-31T12:29:13.761010Z"
+        },
+        {
+            "Mood": "Wistful",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-31T19:23:08.879653Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-03-31T17:15:07.768011Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-31T08:02:17.025507Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Had a nice walk outside",
+            "Timestamp": "2025-03-31T15:37:52.977576Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-03-31T16:22:28.980231Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-03-31T13:59:00.395051Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-03-31T17:40:13.113205Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-03-31T19:14:35.098253Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Feeling overwhelmed with schoolwork",
+            "Timestamp": "2025-04-01T10:18:02.690287Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-04-01T20:40:35.179248Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-04-01T21:48:52.159656Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-04-01T20:25:36.668671Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Just got out of my CS690 class",
+            "Timestamp": "2025-04-01T14:13:34.228841Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-04-01T09:08:08.788813Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Feeling anxious about an upcoming exam",
+            "Timestamp": "2025-04-01T12:29:47.299429Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Feeling tired and need a nap",
+            "Timestamp": "2025-04-01T09:21:28.958443Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just got a good grade on a quiz",
+            "Timestamp": "2025-04-01T18:00:06.444712Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": null,
+            "Timestamp": "2025-04-01T20:46:58.726589Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-04-01T10:06:20.261840Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-04-01T17:36:38.774939Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-04-01T17:44:44.296603Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-04-01T10:03:30.647484Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-04-02T20:09:12.062036Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Had a great conversation with a friend",
+            "Timestamp": "2025-04-02T08:42:41.642128Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-04-02T23:21:35.981528Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-04-02T18:49:45.534974Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Looking forward to the weekend",
+            "Timestamp": "2025-04-02T13:09:40.428583Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-04-02T22:51:51.459742Z"
+        },
+        {
+            "Mood": "Angry",
+            "Trigger": "Feeling stressed about deadlines",
+            "Timestamp": "2025-04-02T14:55:36.329259Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-04-02T15:05:10.183449Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-04-02T20:35:53.788163Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-04-02T11:00:56.789680Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": null,
+            "Timestamp": "2025-04-03T07:09:07.474876Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-04-03T08:16:08.892062Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-04-03T23:00:27.633733Z"
+        },
+        {
+            "Mood": "Happy",
+            "Trigger": null,
+            "Timestamp": "2025-04-03T17:54:23.539351Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-04-03T11:25:02.087690Z"
+        },
+        {
+            "Mood": "Excited",
+            "Trigger": "Had a great time at the gym",
+            "Timestamp": "2025-04-03T13:37:31.366697Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-04-04T10:40:28.869018Z"
+        },
+        {
+            "Mood": "Sad",
+            "Trigger": null,
+            "Timestamp": "2025-04-04T22:17:03.242239Z"
+        },
+        {
+            "Mood": "Anxious",
+            "Trigger": null,
+            "Timestamp": "2025-04-04T13:19:04.237093Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Struggling with a difficult homework problem",
+            "Timestamp": "2025-04-04T10:40:14.086110Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Just got an A on my CS690 assignment",
+            "Timestamp": "2025-04-04T12:19:07.696254Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-04-04T19:03:14.712663Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": null,
+            "Timestamp": "2025-04-04T22:39:08.092389Z"
+        },
+        {
+            "Mood": "Frustrated",
+            "Trigger": "Not enjoying lab",
+            "Timestamp": "2025-04-04T09:04:42.354063Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Just finished a long project",
+            "Timestamp": "2025-04-04T14:50:18.122737Z"
+        },
+        {
+            "Mood": "Content",
+            "Trigger": "Had a frustrating conversation with a professor",
+            "Timestamp": "2025-04-04T21:54:11.562012Z"
+        },
+        {
+            "Mood": "Indifferent",
+            "Trigger": null,
+            "Timestamp": "2025-04-04T08:34:31.398403Z"
+        }
+    ]
+}
