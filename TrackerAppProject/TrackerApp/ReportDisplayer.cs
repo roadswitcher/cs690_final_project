@@ -4,9 +4,7 @@ namespace TrackerApp;
 
 public class ReportDisplayer(IAnsiConsole console)
 {
-    private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
-
-    private static readonly Dictionary<string, Color> _moodColors = new Dictionary<string, Color>
+    private static readonly Dictionary<string, Color> _moodColors = new()
     {
         // color listing sourced from online research/taking first AI suggestions
         { "Happy", Color.Green1 }, // Bright green - universally associated with happiness
@@ -20,6 +18,8 @@ public class ReportDisplayer(IAnsiConsole console)
         { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
     };
 
+    private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
+
 
     private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
     {
@@ -27,13 +27,13 @@ public class ReportDisplayer(IAnsiConsole console)
 
         var chart = new BreakdownChart()
             .FullSize().HideTagValues();
-        
+
 
         foreach (var kvp in distribution)
         {
             var percentage = kvp.Value / (double)total * 100;
-            string label = $"{kvp.Key} ({(int)Math.Round(percentage)}%)";
-            chart.AddItem(label, percentage, _moodColors[kvp.Key]); 
+            var label = $"{kvp.Key} ({(int)Math.Round(percentage)}%)";
+            chart.AddItem(label, percentage, _moodColors[kvp.Key]);
         }
 
         return chart;
@@ -82,9 +82,7 @@ public class ReportDisplayer(IAnsiConsole console)
             breakdownTable.AddColumn("Mood");
             breakdownTable.AddColumn("Triggers/Info");
             foreach (var (timeCategory, time, mood, trigger) in dailyBreakdown)
-            {
                 breakdownTable.AddRow(timeCategory, time, mood, trigger);
-            }
 
             _console.Write(chart);
             // _console.Write(moodTable);
