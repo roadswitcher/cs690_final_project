@@ -2,7 +2,11 @@
 
 # If your Windows install is configured to block Powershell executation by default,
 # the following command MIGHT enable temporary execution of Powershell scripts in the
-# current Powershell session ( otherwise, just copy the binary manually )
+# current Powershell session 
+#
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+#
+# If that doesn't work, just copy the binary manually
 
 # Build a single file binary for Windows
 dotnet publish -r win-x64 -c Release /p:PublishSingleFile=true /p:UseAppHost=true
