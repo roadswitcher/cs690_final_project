@@ -25,7 +25,7 @@ public class UserInputHandler(IAnsiConsole console)
             "External Factors: Do you want to record more information, like triggers or external factors?");
 
         var trigger =
-            AnsiConsole.Prompt(
+            _console.Prompt(
                 new TextPrompt<string>("[green][[Optional]] (hit Enter):[/]")
                     .AllowEmpty());
 
@@ -62,15 +62,15 @@ public class UserInputHandler(IAnsiConsole console)
             .AddChoices("Remove Last Update", "Exit to Main Menu")));
     }
 
-    public static DateTime PromptForDate()
+    public DateTime PromptForDate()
     {
         var availableDates = DataStore.Instance.GetMoodRecords()
             .Select(r => r.Timestamp.Date)
             .Distinct()
-            .OrderByDescending(d => d) // Most recent first
+            .OrderByDescending(d => d)
             .ToList();
 
-        if (!availableDates.Any())
+        if (availableDates.Count == 0)
         {
             TrackerUtils.CenteredMessage("[red]No mood records found![/]");
             return DateTime.Today;
@@ -78,11 +78,12 @@ public class UserInputHandler(IAnsiConsole console)
 
         var selection = new SelectionPrompt<DateTime>()
             .Title("Select a date to view reports:")
-            .PageSize(10) // Show 10 dates at a time
+            .PageSize(10)
             .MoreChoicesText("[grey](Move up and down to see more dates)[/]")
             .UseConverter(d => d.ToString("dddd, MMMM d, yyyy"))
             .AddChoices(availableDates);
 
-        return AnsiConsole.Prompt(selection);
+        return _console.Prompt(selection);
     }
+
 }
