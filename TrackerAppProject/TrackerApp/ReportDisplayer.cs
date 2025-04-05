@@ -26,16 +26,14 @@ public class ReportDisplayer(IAnsiConsole console)
         var total = distribution.Values.Sum();
 
         var chart = new BreakdownChart()
-            .FullSize().HideTagValues();
-
-
-        var colorIndex = 0;
+            .FullSize();
+        
 
         foreach (var kvp in distribution)
         {
             var percentage = kvp.Value / (double)total * 100;
-            chart.AddItem(kvp.Key, percentage, _moodColors[kvp.Key]);
-            colorIndex++;
+            string label = $"{kvp.Key} ({(int)Math.Round(percentage)}%";
+            chart.AddItem(kvp.Key, percentage, _moodColors[kvp.Key]); 
         }
 
         return chart;
@@ -89,7 +87,7 @@ public class ReportDisplayer(IAnsiConsole console)
             }
 
             _console.Write(chart);
-            _console.Write(moodTable);
+            // _console.Write(moodTable);
             // _console.Write(timeTable);
             _console.Write(breakdownTable);
         }
