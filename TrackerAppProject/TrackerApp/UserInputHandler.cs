@@ -61,4 +61,28 @@ public class UserInputHandler(IAnsiConsole console)
             .Title("[bold red]Select Admin Option:[/]")
             .AddChoices("Remove Last Update", "Exit to Main Menu")));
     }
+    
+    public DateTime PromptForDate()
+    {
+        var availableDates = DataStore.Instance.GetMoodRecords()
+            .Select(r => r.Timestamp.Date)
+            .Distinct()
+            .OrderByDescending(d => d) // Most recent first
+            .ToList();
+
+        if (!availableDates.Any())
+        {
+            TrackerUtils.CenteredMessage("[red]No mood records found![/]");
+            return DateTime.Today;
+        }
+        
+        var selection = new SelectionPrompt<DateTime>()
+            .Title("Select a date to view reports:")
+            .PageSize(10) // Show 10 dates at a time
+            .MoreChoicesText("[grey](Move up and down to see more dates)[/]")
+            .UseConverter(d => d.ToString("dddd, MMMM d, yyyy"))
+            .AddChoices(availableDates);
+        
+        return AnsiConsole.Prompt(selection);
+    }
 }

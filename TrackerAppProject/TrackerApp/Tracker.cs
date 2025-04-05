@@ -79,7 +79,8 @@ internal class Tracker
                 _reportDisplayer.DisplayDailyReport(dailyReport);
                 break;
             case "Pick a Day":
-                var specificDayReport = reportHandler.GetSpecificDayReport();
+                var chosenDate = _userInputHandler.PromptForDate();
+                var specificDayReport = reportHandler.GetDailyReport(chosenDate);
                 _reportDisplayer.DisplayDailyReport(specificDayReport);
                 break;
             case "Week":
@@ -87,7 +88,7 @@ internal class Tracker
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
             case "Exit":
-                AnsiConsole.Clear();
+                // AnsiConsole.Clear();
                 return;
         }
     }
