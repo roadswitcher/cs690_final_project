@@ -59,6 +59,11 @@ public class ReportHandlerTests
 
         Assert.Equal(3, report.TotalRecords);
         Assert.Equal(date, report.Date);
+        
+        // Check another date
+        date = date.AddDays(-3);
+        report = _reportHandler.GetDailyReport(date);
+        Assert.Equal(2, report.TotalRecords);
     }
 
     [Fact]
@@ -69,4 +74,5 @@ public class ReportHandlerTests
 
         Assert.Equal(8, report.TotalRecords);
     }
+
 }
