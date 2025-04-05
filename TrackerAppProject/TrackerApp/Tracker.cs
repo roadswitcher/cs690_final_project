@@ -79,7 +79,7 @@ internal class Tracker
                 _reportDisplayer.DisplayDailyReport(dailyReport);
                 break;
             case "Pick a Day":
-                var chosenDate = _userInputHandler.PromptForDate();
+                var chosenDate = UserInputHandler.PromptForDate();
                 var specificDayReport = reportHandler.GetDailyReport(chosenDate);
                 _reportDisplayer.DisplayDailyReport(specificDayReport);
                 break;
@@ -96,7 +96,7 @@ internal class Tracker
     private void HandleAdminOptions()
     {
         var adminChoice = _userInputHandler.GetAdminOption();
-        
+
         switch (adminChoice)
         {
             // implement choices

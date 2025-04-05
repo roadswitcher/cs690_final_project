@@ -1,5 +1,4 @@
 namespace TrackerApp;
-using Spectre.Console;
 
 public class DailyReport
 {
@@ -138,5 +137,4 @@ public class ReportHandler(IDataStore dataStore)
 
         return distribution;
     }
-    
 }
