@@ -92,7 +92,23 @@ public class ReportHandler(IDataStore dataStore)
         return distribution;
     }
     
-    private static Dictionary<string, int, >
+    public static List<(string TimeOfDay, string Mood, string Trigger)> GetDayOverview(List<MoodRecord> records)
+    {
+        var sortedRecords = records.OrderBy(r => r.Timestamp).ToList();
+        
+        var tableData = sortedRecords.Select(record => 
+        {
+            var timeOfDay = record.Timestamp.ToLocalTime().ToString("HH:mm");
+            
+            var mood = record.Mood;
+            var trigger = string.IsNullOrEmpty(record.Trigger) ? "-" : record.Trigger;
+        
+            return (timeOfDay, mood, trigger);
+        }).ToList();
+    
+        return tableData;
+    }
+    
 
     private static Dictionary<DayOfWeek, int> GetDayOfWeekDistribution(List<MoodRecord> records)
     {
