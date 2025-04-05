@@ -6,7 +6,7 @@ public class ReportDisplayer(IAnsiConsole console)
 {
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
-    private readonly Dictionary<string, Color> _moodColors = new Dictionary<string, Color>
+    private static readonly Dictionary<string, Color> _moodColors = new Dictionary<string, Color>
     {
         // color listing sourced from online research/taking first AI suggestions
         { "Happy", Color.Green1 }, // Bright green - universally associated with happiness
@@ -56,7 +56,7 @@ public class ReportDisplayer(IAnsiConsole console)
             moodTable.AddColumn("Mood");
             moodTable.AddColumn("Count");
             moodTable.AddColumn("Percentage");
-            moodTable.Title = new TableTitle("Mood Record Distribution");
+            moodTable.Title = new TableTitle("Mood Distribution");
             foreach (var mood in report.MoodDistribution)
             {
                 var percentage = (double)mood.Value / report.TotalRecords * 100;
@@ -67,7 +67,7 @@ public class ReportDisplayer(IAnsiConsole console)
             timeTable.AddColumn("Time of Day");
             timeTable.AddColumn("Count");
             timeTable.AddColumn("Percentage");
-            timeTable.Title = new TableTitle("Time of Day Distribution");
+            timeTable.Title = new TableTitle("Time of Day Report Breakdown");
 
             if (report.TimeOfDayDistribution?.Count > 0)
                 foreach (var time in report.TimeOfDayDistribution)
