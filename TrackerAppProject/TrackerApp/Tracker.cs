@@ -91,15 +91,15 @@ internal class Tracker
     private void HandleAdminOptions()
     {
         var adminChoice = _userInputHandler.GetAdminOption();
-        // Console.WriteLine($"Chose: {adminChoice}");
+        
         switch (adminChoice)
         {
             // implement choices
             case "Remove Last Update":
-                var last_record = _dataStore.GetLastMoodRecord();
+                var lastRecord = _dataStore.GetLastMoodRecord();
                 TrackerUtils.LineMessage("Please confirm you want to remove this update:");
                 TrackerUtils.LineMessage(
-                    $"Time: {last_record.Timestamp.ToLocalTime().ToShortTimeString()} / Last Mood: {last_record.Mood} / Last Trigger: \"{last_record.Trigger}\"");
+                    $"Time: {lastRecord.Timestamp.ToLocalTime().ToShortTimeString()} / Last Mood: {lastRecord.Mood} / Last Trigger: \"{lastRecord.Trigger}\"");
                 var confirmation = AnsiConsole.Prompt(
                     new TextPrompt<bool>("Are you sure you want to delete that? [[Default: n]]")
                         .AddChoice(true)
@@ -111,11 +111,7 @@ internal class Tracker
                 Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then.");
                 if (confirmation) _dataStore.RemoveLastMoodRecord();
                 break;
-            // case "Remove All Updates":
-            //     break;
-            // case "Log Out":
-            //     break;
-            case "Exit to Main Menu":
+            case "Return to Main Menu":
                 AnsiConsole.Clear();
                 return;
         }

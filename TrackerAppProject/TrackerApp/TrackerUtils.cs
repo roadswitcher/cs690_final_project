@@ -18,7 +18,7 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
-    public static void CenteredMessage(string message, string color = "green")
+    private static void CenteredMessage(string message, string color = "green")
     {
         var rule = new Rule($"{message}").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);

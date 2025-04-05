@@ -94,7 +94,7 @@ public class ReportHandler(IDataStore dataStore)
         return distribution;
     }
 
-    public static List<(string TimeCategory, string Time, string Mood, string Trigger)> GetDailyBreakdownList(
+    private static List<(string TimeCategory, string Time, string Mood, string Trigger)> GetDailyBreakdownList(
         List<MoodRecord> records)
     {
         var sortedRecords = records.OrderBy(r => r.Timestamp).ToList();

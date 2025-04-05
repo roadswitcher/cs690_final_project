@@ -17,7 +17,6 @@ public class UserInputHandler(IAnsiConsole console)
     {
         TrackerUtils.LineMessage("Mood Update: [green]What is your current mood?[/]");
         var mood = _console.Prompt(new SelectionPrompt<string>()
-            // .Title("[bold green]What is your current mood?[/]")
             .AddChoices(trackedEmotions));
 
         TrackerUtils.ShowSelectedValue(mood);
