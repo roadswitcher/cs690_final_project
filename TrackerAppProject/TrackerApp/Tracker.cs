@@ -86,7 +86,7 @@ internal class Tracker
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
             case "Exit":
-                // AnsiConsole.Clear();
+                AnsiConsole.Clear();
                 return;
         }
     }
@@ -113,12 +113,12 @@ internal class Tracker
                 // Echo the confirmation back to the terminal
                 Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then.");
                 if (confirmation) _dataStore.RemoveLastMoodRecord();
+                TrackerUtils.EnterToContinue();
                 break;
             case "Return to Main Menu":
                 AnsiConsole.Clear();
                 return;
         }
-
-        TrackerUtils.EnterToContinue();
+        AnsiConsole.Clear();
     }
 }
