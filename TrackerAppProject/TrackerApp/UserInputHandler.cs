@@ -49,8 +49,8 @@ public class UserInputHandler(IAnsiConsole console)
         TrackerUtils.LineMessage("Report Options");
 
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
-            .Title("Show breakdown/stats for the past [green]Day[/], [aqua]Week[/], or [red]Exit[/] to main menu?")
-            .AddChoices("[green]Day[/]", "[aqua]Week[/]", "[red]Exit[/]")));
+            .Title("Show report for [green]Today[/], [cyan]Pick a day[/], [aqua]Week[/], or [red]Exit[/] to main menu?")
+            .AddChoices("[green]Today[/]", "[cyan]Pick a day[/]", "[aqua]Week[/]", "[red]Exit[/]")));
     }
 
     public string GetAdminOption()

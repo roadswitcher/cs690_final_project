@@ -38,6 +38,15 @@ public class ReportHandler(IDataStore dataStore)
         return report;
     }
 
+    public DailyReport GetSpecificDayReport()
+    {
+        TrackerUtils.LineMessage("NOT IMPLEMENTED YET");
+
+        var report = new DailyReport();
+
+        return report;
+    }
+
     public WeeklyReport GetWeeklyReport(DateTime today)
     {
         var weekAgo = today.Date.AddDays(-6);

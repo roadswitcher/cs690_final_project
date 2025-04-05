@@ -74,9 +74,13 @@ internal class Tracker
 
         switch (reportChoice)
         {
-            case "Day":
+            case "Today":
                 var dailyReport = reportHandler.GetDailyReport(today);
                 _reportDisplayer.DisplayDailyReport(dailyReport);
+                break;
+            case "Pick a Day":
+                var specificDayReport = reportHandler.GetSpecificDayReport();
+                _reportDisplayer.DisplayDailyReport(specificDayReport);
                 break;
             case "Week":
                 var weeklyReport = reportHandler.GetWeeklyReport(today);
