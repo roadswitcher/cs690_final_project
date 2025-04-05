@@ -1,4 +1,5 @@
 namespace TrackerApp;
+using Spectre.Console;
 
 public class DailyReport
 {
@@ -146,4 +147,37 @@ public class ReportHandler(IDataStore dataStore)
 
         return distribution;
     }
+    
+    public static DateTime PromptForDate(List<MoodRecord> records)
+    {
+        var availableDates = records
+            .Select(r => r.Timestamp.Date)
+            .Distinct()
+            .OrderByDescending(d => d) // Most recent first
+            .ToList();
+
+        if (!availableDates.Any())
+        {
+            TrackerUtils.CenteredMessage("[red]No mood records found![/]");
+            return DateTime.Today;
+        }
+        
+        var selection = new SelectionPrompt<DateTime>()
+            .Title("Select a date to view reports:")
+            .PageSize(10) // Show 10 dates at a time
+            .MoreChoicesText("[grey](Move up and down to see more dates)[/]")
+            .UseConverter(d => d.ToString("dddd, MMMM d, yyyy"))
+            .AddChoices(availableDates);
+        
+        return AnsiConsole.Prompt(selection);
+    }
+    
+    public static List<MoodRecord> GetRecordsForDate(List<MoodRecord> allRecords, DateTime selectedDate)
+    {
+        return allRecords
+            .Where(r => r.Timestamp.Date == selectedDate.Date)
+            .OrderBy(r => r.Timestamp)
+            .ToList();
+    }
+
 }
