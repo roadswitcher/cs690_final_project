@@ -26,13 +26,13 @@ public class ReportDisplayer(IAnsiConsole console)
         var total = distribution.Values.Sum();
 
         var chart = new BreakdownChart()
-            .FullSize();
+            .FullSize().HideTagValues();
         
 
         foreach (var kvp in distribution)
         {
             var percentage = kvp.Value / (double)total * 100;
-            string label = $"{kvp.Key} ({(int)Math.Round(percentage)}%";
+            string label = $"{kvp.Key} ({(int)Math.Round(percentage)}%)";
             chart.AddItem(label, percentage, _moodColors[kvp.Key]); 
         }
 
