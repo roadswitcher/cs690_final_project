@@ -63,33 +63,34 @@ public class ReportDisplayer(IAnsiConsole console)
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
 
-            var timeTable = new Table().Border(TableBorder.Simple);
-            timeTable.AddColumn("Time of Day");
-            timeTable.AddColumn("Count");
-            timeTable.AddColumn("Percentage");
-            timeTable.Title = new TableTitle("Time of Day Report Breakdown");
-
-            if (report.TimeOfDayDistribution?.Count > 0)
-                foreach (var time in report.TimeOfDayDistribution)
-                {
-                    var percentage = (double)time.Value / report.TotalRecords * 100;
-                    timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
-                }
+            // var timeTable = new Table().Border(TableBorder.Simple);
+            // timeTable.AddColumn("Time of Day");
+            // timeTable.AddColumn("Count");
+            // timeTable.AddColumn("Percentage");
+            // timeTable.Title = new TableTitle("Time of Day Report Breakdown");
+            //
+            // if (report.TimeOfDayDistribution?.Count > 0)
+            //     foreach (var time in report.TimeOfDayDistribution)
+            //     {
+            //         var percentage = (double)time.Value / report.TotalRecords * 100;
+            //         timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
+            //     }
 
             var dailyBreakdown = report.DailyBreakdown;
 
             var breakdownTable = new Table();
+            breakdownTable.AddColumn("Period");
             breakdownTable.AddColumn("Time");
             breakdownTable.AddColumn("Mood");
             breakdownTable.AddColumn("Triggers/Info");
-            foreach (var (time, mood, trigger) in dailyBreakdown)
+            foreach (var (timeCategory, time, mood, trigger) in dailyBreakdown)
             {
-                breakdownTable.AddRow(time, mood, trigger);
+                breakdownTable.AddRow(timeCategory, time, mood, trigger);
             }
 
             _console.Write(chart);
             _console.Write(moodTable);
-            _console.Write(timeTable);
+            // _console.Write(timeTable);
             _console.Write(breakdownTable);
         }
         else

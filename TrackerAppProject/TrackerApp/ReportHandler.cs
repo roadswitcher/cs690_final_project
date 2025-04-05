@@ -7,7 +7,7 @@ public class DailyReport
     public Dictionary<string, int> MoodDistribution { get; init; } = new();
     public Dictionary<string, int> TimeOfDayDistribution { get; init; } = new();
 
-    public List<(string, string, string)> DailyBreakdown { get; init; } = [];
+    public List<(string, string, string, string)> DailyBreakdown { get; init; } = [];
 }
 
 public class WeeklyReport
@@ -95,18 +95,27 @@ public class ReportHandler(IDataStore dataStore)
         return distribution;
     }
     
-    public static List<(string TimeOfDay, string Mood, string Trigger)> GetDailyBreakdownList(List<MoodRecord> records)
+    public static List<(string TimeCategory, string Time, string Mood, string Trigger)> GetDailyBreakdownList(List<MoodRecord> records)
     {
         var sortedRecords = records.OrderBy(r => r.Timestamp).ToList();
-        
+    
         var tableData = sortedRecords.Select(record => 
         {
-            var timeOfDay = record.Timestamp.ToLocalTime().ToString("HH:mm");
-            
-            var mood = record.Mood;
-            var trigger = string.IsNullOrEmpty(record.Trigger) ? "-" : record.Trigger;
+            var localTime = record.Timestamp.ToLocalTime();
+            string time = localTime.ToString("HH:mm");
         
-            return (timeOfDay, mood, trigger);
+            string timeCategory = localTime.Hour switch
+            {
+                >= 5 and < 12 => "Morning",
+                >= 12 and < 17 => "Afternoon",
+                >= 17 and < 21 => "Evening",
+                _ => "Night"
+            };
+        
+            string mood = record.Mood;
+            string trigger = string.IsNullOrEmpty(record.Trigger) ? "-" : record.Trigger;
+        
+            return (timeCategory, time, mood, trigger);
         }).ToList();
     
         return tableData;
