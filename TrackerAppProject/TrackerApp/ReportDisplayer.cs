@@ -6,6 +6,21 @@ public class ReportDisplayer(IAnsiConsole console)
 {
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
+    private readonly Dictionary<string, Color> _moodColors = new Dictionary<string, Color>
+    {
+        // color listing sourced from online research/taking first AI suggestions
+        { "Happy", Color.Green1 }, // Bright green - universally associated with happiness
+        { "Sad", Color.Blue3 }, // Darker blue - commonly associated with sadness
+        { "Angry", Color.Red1 }, // Bright red - standard color for anger
+        { "Wistful", Color.Purple }, // Soft purple - captures the reflective nature of wistfulness
+        { "Indifferent", Color.Grey }, // Grey - represents neutrality/lack of strong emotion
+        { "Anxious", Color.Yellow1 }, // Yellow - often used to indicate caution/nervousness
+        { "Excited", Color.Orange1 }, // Vibrant orange - energetic and enthusiastic
+        { "Frustrated", Color.Maroon }, // Maroon - a muted red showing intensity without being pure anger
+        { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
+    };
+
+
     private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
     {
         var total = distribution.Values.Sum();
@@ -13,26 +28,13 @@ public class ReportDisplayer(IAnsiConsole console)
         var chart = new BreakdownChart()
             .FullSize().HideTagValues();
 
-        var moodColors = new Dictionary<string, Color>
-        {
-            // color listing sourced from online research/taking first AI suggestions
-            { "Happy", Color.Green1 }, // Bright green - universally associated with happiness
-            { "Sad", Color.Blue3 }, // Darker blue - commonly associated with sadness
-            { "Angry", Color.Red1 }, // Bright red - standard color for anger
-            { "Wistful", Color.Purple }, // Soft purple - captures the reflective nature of wistfulness
-            { "Indifferent", Color.Grey }, // Grey - represents neutrality/lack of strong emotion
-            { "Anxious", Color.Yellow1 }, // Yellow - often used to indicate caution/nervousness
-            { "Excited", Color.Orange1 }, // Vibrant orange - energetic and enthusiastic
-            { "Frustrated", Color.Maroon }, // Maroon - a muted red showing intensity without being pure anger
-            { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
-        };
 
         var colorIndex = 0;
 
         foreach (var kvp in distribution)
         {
             var percentage = kvp.Value / (double)total * 100;
-            chart.AddItem(kvp.Key, percentage, moodColors[kvp.Key]);
+            chart.AddItem(kvp.Key, percentage, _moodColors[kvp.Key]);
             colorIndex++;
         }
 
@@ -134,7 +136,6 @@ public class ReportDisplayer(IAnsiConsole console)
 
                 _console.Write(timeTable);
             }
-            
         }
         else
         {
