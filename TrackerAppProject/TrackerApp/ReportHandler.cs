@@ -50,7 +50,6 @@ public class ReportHandler(IDataStore dataStore)
             TotalRecords = records.Count,
             MoodDistribution = GetMoodDistribution(records),
             TimeOfDayDistribution = GetTimeOfDayDistribution(records)
-            // DailyBreakdown = GetDayOfWeekDistribution(records)
         };
 
         return report;
