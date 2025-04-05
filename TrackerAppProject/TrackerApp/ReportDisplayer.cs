@@ -76,11 +76,21 @@ public class ReportDisplayer(IAnsiConsole console)
                     timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
                 }
 
-            
+            var dailyBreakdown = report.DailyBreakdown;
+
+            var breakdownTable = new Table();
+            breakdownTable.AddColumn("Time");
+            breakdownTable.AddColumn("Mood");
+            breakdownTable.AddColumn("Triggers/Info");
+            foreach (var (time, mood, trigger) in dailyBreakdown)
+            {
+                breakdownTable.AddRow(time, mood, trigger);
+            }
 
             _console.Write(chart);
             _console.Write(moodTable);
             _console.Write(timeTable);
+            _console.Write(breakdownTable);
         }
         else
         {
