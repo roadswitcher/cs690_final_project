@@ -4,21 +4,9 @@ namespace TrackerApp;
 
 public class ReportDisplayer(IAnsiConsole console)
 {
-    private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
+    public static readonly Dictionary<string, Color> _moodColors = TrackerUtils.MoodColors;
 
-    private static readonly Dictionary<string, Color> _moodColors = new Dictionary<string, Color>
-    {
-        // color listing sourced from online research/taking first AI suggestions
-        { "Happy", Color.Green1 }, // Bright green - universally associated with happiness
-        { "Sad", Color.Blue3 }, // Darker blue - commonly associated with sadness
-        { "Angry", Color.Red1 }, // Bright red - standard color for anger
-        { "Wistful", Color.Purple }, // Soft purple - captures the reflective nature of wistfulness
-        { "Indifferent", Color.Grey }, // Grey - represents neutrality/lack of strong emotion
-        { "Anxious", Color.Yellow1 }, // Yellow - often used to indicate caution/nervousness
-        { "Excited", Color.Orange1 }, // Vibrant orange - energetic and enthusiastic
-        { "Frustrated", Color.Maroon }, // Maroon - a muted red showing intensity without being pure anger
-        { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
-    };
+    private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
 
     private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
@@ -27,13 +15,13 @@ public class ReportDisplayer(IAnsiConsole console)
 
         var chart = new BreakdownChart()
             .FullSize().HideTagValues();
-        
+
 
         foreach (var kvp in distribution)
         {
             var percentage = kvp.Value / (double)total * 100;
-            string label = $"{kvp.Key} ({(int)Math.Round(percentage)}%)";
-            chart.AddItem(label, percentage, _moodColors[kvp.Key]); 
+            var label = $"{kvp.Key} ({(int)Math.Round(percentage)}%)";
+            chart.AddItem(label, percentage, _moodColors[kvp.Key]);
         }
 
         return chart;
@@ -61,19 +49,6 @@ public class ReportDisplayer(IAnsiConsole console)
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
 
-            // var timeTable = new Table().Border(TableBorder.Simple);
-            // timeTable.AddColumn("Time of Day");
-            // timeTable.AddColumn("Count");
-            // timeTable.AddColumn("Percentage");
-            // timeTable.Title = new TableTitle("Time of Day Report Breakdown");
-            //
-            // if (report.TimeOfDayDistribution?.Count > 0)
-            //     foreach (var time in report.TimeOfDayDistribution)
-            //     {
-            //         var percentage = (double)time.Value / report.TotalRecords * 100;
-            //         timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
-            //     }
-
             var dailyBreakdown = report.DailyBreakdown;
 
             var breakdownTable = new Table();
@@ -82,13 +57,9 @@ public class ReportDisplayer(IAnsiConsole console)
             breakdownTable.AddColumn("Mood");
             breakdownTable.AddColumn("Triggers/Info");
             foreach (var (timeCategory, time, mood, trigger) in dailyBreakdown)
-            {
                 breakdownTable.AddRow(timeCategory, time, mood, trigger);
-            }
 
             _console.Write(chart);
-            // _console.Write(moodTable);
-            // _console.Write(timeTable);
             _console.Write(breakdownTable);
         }
         else
