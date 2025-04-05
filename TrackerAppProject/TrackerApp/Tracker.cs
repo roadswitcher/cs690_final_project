@@ -14,9 +14,7 @@ internal class Tracker
         var console1 = console ?? throw new ArgumentNullException(nameof(console));
         _userInputHandler = new UserInputHandler(console1);
         _dataStore = DataStore.Instance;
-        _trackedEmotions =
-            ["Happy", "Sad", "Angry", "Wistful", "Indifferent", "Anxious", "Excited", "Frustrated", "Content"];
-
+        _trackedEmotions = TrackerUtils.MoodColors.Keys.ToList();
         _reportDisplayer = new ReportDisplayer(console1);
     }
 
