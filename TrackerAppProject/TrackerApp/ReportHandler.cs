@@ -91,6 +91,8 @@ public class ReportHandler(IDataStore dataStore)
 
         return distribution;
     }
+    
+    private static Dictionary<string, int, >
 
     private static Dictionary<DayOfWeek, int> GetDayOfWeekDistribution(List<MoodRecord> records)
     {

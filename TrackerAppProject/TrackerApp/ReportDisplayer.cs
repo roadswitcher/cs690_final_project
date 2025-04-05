@@ -76,7 +76,7 @@ public class ReportDisplayer(IAnsiConsole console)
                     timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
                 }
 
-            ;
+            
 
             _console.Write(chart);
             _console.Write(moodTable);
