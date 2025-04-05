@@ -85,5 +85,4 @@ public class UserInputHandler(IAnsiConsole console)
 
         return _console.Prompt(selection);
     }
-
 }

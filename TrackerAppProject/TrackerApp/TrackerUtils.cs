@@ -17,6 +17,7 @@ public static class TrackerUtils
         { "Frustrated", Color.Maroon }, // Maroon - a muted red showing intensity without being pure anger
         { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
     };
+
     public static void DebugMessage(string message)
     {
 #if DEBUG
