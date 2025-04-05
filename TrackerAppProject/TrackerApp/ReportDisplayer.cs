@@ -33,7 +33,7 @@ public class ReportDisplayer(IAnsiConsole console)
         {
             var percentage = kvp.Value / (double)total * 100;
             string label = $"{kvp.Key} ({(int)Math.Round(percentage)}%";
-            chart.AddItem(kvp.Key, percentage, _moodColors[kvp.Key]); 
+            chart.AddItem(label, percentage, _moodColors[kvp.Key]); 
         }
 
         return chart;
