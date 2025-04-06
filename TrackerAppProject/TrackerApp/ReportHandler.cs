@@ -26,16 +26,14 @@ public class ReportHandler(IDataStore dataStore)
     public DailyReport GetDailyReport(DateTime localDate)
     {
         localDate = localDate.Date;
-
-        // Define local day start and end (exclusive)
+        
+        // Convert to a UTC range to solve the 'midnight' problem with timezones
         var localStart = localDate;
         var localEnd = localDate.AddDays(1);
-
-        // Convert local boundaries to UTC
+        
         var utcStart = TimeZoneInfo.ConvertTimeToUtc(localStart);
         var utcEnd = TimeZoneInfo.ConvertTimeToUtc(localEnd);
-
-        // Filter records by comparing UTC timestamps to UTC boundaries
+        
         var records = _dataStore.GetMoodRecords()
             .Where(record => record.Timestamp >= utcStart && record.Timestamp < utcEnd)
             .ToList();
