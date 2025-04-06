@@ -28,6 +28,7 @@ zip ./$DLL_ZIP_FILE $CROSS_DIR/*
 mkdir -p $OUT_DIR
 
 mv ./$DLL_ZIP_FILE ./$OUT_DIR/
+
 #
 # Second:   if we're going to build standalone binaries ( with pdb ), 
 #           let's build ALL the platforms
