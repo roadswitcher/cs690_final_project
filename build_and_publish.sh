@@ -18,15 +18,16 @@ echo "Building cross-platform DLL..."
 # Remove artifacts if they exist already
 [ -d $CROSS_DIR ] && rm -rf $CROSS_DIR
 [ -d $OUT_DIR ] && rm -rf $OUT_DIR
-[ -r $DLL_ZIP_FILE ] && rm -rf $DLL_ZIP_FILE
 
 dotnet publish "$PROJECT" \
     -c Release \
     -o "$CROSS_DIR"
 
-cd $CROSS_DIR
-zip ../$DLL_ZIP_FILE ./*
-cd ..
+zip ./$DLL_ZIP_FILE $CROSS_DIR/*
+
+mkdir -p $OUT_DIR
+
+mv ./$DLL_ZIP_FILE ./$OUT_DIR/
 
 #
 # Second:   if we're going to build standalone binaries ( with pdb ), 
@@ -46,9 +47,14 @@ for RID in "${RIDS[@]}"; do
         -p:IncludeNativeLibrariesForSelfExtract=true \
         -o "$OUT_DIR/$RID"
 
+    cd $OUT_DIR
+    zip "TrackerApp-${RID}.zip" $RID/*
+    cd ..
+
     echo "Done: $OUT_DIR/$RID"
     echo ""
 done
+
 
 echo "All targets published."
 
