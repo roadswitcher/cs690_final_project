@@ -129,21 +129,5 @@ public class ReportHandler(IDataStore dataStore)
 
         return tableData;
     }
-
-
-    private static Dictionary<DayOfWeek, int> GetDayOfWeekDistribution(List<MoodRecord> records)
-    {
-        var distribution = new Dictionary<DayOfWeek, int>();
-
-        foreach (var record in records)
-        {
-            var day = record.Timestamp.DayOfWeek;
-
-            distribution.TryAdd(day, 0);
-
-            distribution[day]++;
-        }
-
-        return distribution;
-    }
+    
 }

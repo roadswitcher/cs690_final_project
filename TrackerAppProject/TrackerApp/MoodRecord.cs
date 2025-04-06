@@ -2,7 +2,7 @@ namespace TrackerApp;
 
 public class MoodRecord
 {
-    public MoodRecord(string mood, string trigger, DateTime? timestamp = null)
+    public MoodRecord(string mood, string? trigger, DateTime? timestamp = null)
     {
         if (string.IsNullOrEmpty(mood)) throw new ArgumentNullException(nameof(mood), "mood cannot be null or empty");
 
