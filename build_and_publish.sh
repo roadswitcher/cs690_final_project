@@ -24,9 +24,7 @@ dotnet publish "$PROJECT" \
     -c Release \
     -o "$CROSS_DIR"
 
-cd $CROSS_DIR
-zip ../$DLL_ZIP_FILE ./*
-cd ..
+zip ./$DLL_ZIP_FILE $CROSS_DIR/*
 
 #
 # Second:   if we're going to build standalone binaries ( with pdb ), 
@@ -48,6 +46,7 @@ for RID in "${RIDS[@]}"; do
 
     echo "Done: $OUT_DIR/$RID"
     echo ""
+    
 done
 
 echo "All targets published."
