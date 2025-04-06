@@ -4,7 +4,7 @@ namespace TrackerApp;
 
 public class ReportDisplayer(IAnsiConsole console)
 {
-    public static readonly Dictionary<string, Color> MoodColors = TrackerUtils.MoodColors;
+    private static readonly Dictionary<string, Color> MoodColors = TrackerUtils.MoodColors;
 
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
