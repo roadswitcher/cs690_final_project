@@ -31,7 +31,6 @@ for RID in "${RIDS[@]}"; do
         --self-contained true \
         -p:PublishSingleFile=true \
         -p:IncludeNativeLibrariesForSelfExtract=true \
-        -p:PublishTrimmed=true \
         -o "$OUT_DIR/$RID"
 
     echo "Done: $OUT_DIR/$RID"
