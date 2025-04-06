@@ -18,7 +18,6 @@ echo "Building cross-platform DLL..."
 # Remove artifacts if they exist already
 [ -d $CROSS_DIR ] && rm -rf $CROSS_DIR
 [ -d $OUT_DIR ] && rm -rf $OUT_DIR
-[ -r $DLL_ZIP_FILE ] && rm -rf $DLL_ZIP_FILE
 
 dotnet publish "$PROJECT" \
     -c Release \
@@ -26,6 +25,9 @@ dotnet publish "$PROJECT" \
 
 zip ./$DLL_ZIP_FILE $CROSS_DIR/*
 
+mkdir -p $OUT_DIR
+
+mv ./$DLL_ZIP_FILE ./$OUT_DIR/
 #
 # Second:   if we're going to build standalone binaries ( with pdb ), 
 #           let's build ALL the platforms
@@ -50,8 +52,8 @@ for RID in "${RIDS[@]}"; do
 
     echo "Done: $OUT_DIR/$RID"
     echo ""
-    
 done
+
 
 echo "All targets published."
 
