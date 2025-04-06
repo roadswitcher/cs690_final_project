@@ -119,6 +119,7 @@ internal class Tracker
                 AnsiConsole.Clear();
                 return;
         }
+
         AnsiConsole.Clear();
     }
 }

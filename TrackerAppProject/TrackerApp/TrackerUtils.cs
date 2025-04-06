@@ -44,11 +44,6 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
-    public static void ShowEnteredValue(string message, string color = "orange1")
-    {
-        var rule = new Rule($"You Entered: [yellow]{message}[/]").LeftJustified().RuleStyle(color);
-        AnsiConsole.Write(rule);
-    }
 
     public static void EnterToContinue(bool clearscreen = true)
     {

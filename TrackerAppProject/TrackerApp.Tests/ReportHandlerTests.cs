@@ -59,7 +59,7 @@ public class ReportHandlerTests
 
         Assert.Equal(3, report.TotalRecords);
         Assert.Equal(date, report.Date);
-        
+
         // Check another date
         date = date.AddDays(-3);
         report = _reportHandler.GetDailyReport(date);
@@ -74,7 +74,7 @@ public class ReportHandlerTests
 
         Assert.Equal(8, report.TotalRecords);
     }
-    
+
     [Fact]
     public void GetDailyReport_MidnightBoundaryRecords_AssignedToCorrectDay()
     {
@@ -83,66 +83,62 @@ public class ReportHandlerTests
         var oneMinuteBeforeMidnight = localMidnight.AddMinutes(-1);
         var exactlyMidnight = localMidnight;
         var oneMinuteAfterMidnight = localMidnight.AddMinutes(1);
-        
+
         var records = new List<MoodRecord>
         {
             // should be in yesterday's report
             new("Tired", "Just before midnight", TimeZoneInfo.ConvertTimeToUtc(oneMinuteBeforeMidnight)),
-        
+
             // should be in today's report
             new("Sleepy", "Exactly at midnight", TimeZoneInfo.ConvertTimeToUtc(exactlyMidnight)),
-        
+
             // should be in today's report
             new("Groggy", "Just after midnight", TimeZoneInfo.ConvertTimeToUtc(oneMinuteAfterMidnight))
         };
-    
+
         _mockDataStore.Setup(ds => ds.GetMoodRecords()).Returns(records);
-    
+
         // Act - query for yesterday
         var yesterdayReport = _reportHandler.GetDailyReport(_today.AddDays(-1));
         // Act - query for today
         var todayReport = _reportHandler.GetDailyReport(_today);
-    
+
         // Assert
         Assert.Equal(1, yesterdayReport.TotalRecords);
         Assert.Equal(2, todayReport.TotalRecords);
-
     }
-    
+
     [Fact]
     public void GetDailyReport_DifferentTimeZones_HandlesCorrectly()
     {
         // Arrange
         var referenceUtcTime = new DateTime(2023, 10, 15, 5, 0, 0, DateTimeKind.Utc);
         var targetLocalDate = referenceUtcTime.Date;
-        
+
         // Eastern Time (UTC-5 or UTC-4 depending on DST) - let's assume Eastern Standard Time (UTC-5)
         var easternTime = referenceUtcTime.AddHours(-1);
-    
+
         // Japan Standard Time (UTC+9)
         var japanTime = referenceUtcTime;
-    
+
         // Create test records from these different time zones but same UTC time
         var records = new List<MoodRecord>
         {
             // Record from Eastern Time - late evening on previous day in ET
             new("Tired", "Late night in Eastern Time", easternTime),
-        
+
             // Record from Japan - afternoon of the target day in JST
             new("Productive", "Afternoon in Japan", japanTime)
         };
-    
+
         _mockDataStore.Setup(ds => ds.GetMoodRecords()).Returns(records);
-    
+
         // Act
         // Query for the target local date
         var report = _reportHandler.GetDailyReport(targetLocalDate);
-    
+
         // Assert
         // Both records should be in the report since they fall within the same UTC day
         Assert.Equal(2, report.TotalRecords);
-    
-
     }
-
 }
