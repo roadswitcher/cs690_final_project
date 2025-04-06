@@ -3,7 +3,7 @@
 set -x
 
 PROJECT=TrackerAppProject/TrackerApp/TrackerApp.csproj
-STANDALONES_PROJECT=TrackerAppProject/TrackerApp/TrackerApp-Standalone.csproj
+STANDALONE_PROJECT=TrackerAppProject/TrackerApp/TrackerApp-Standalone.csproj
 
 DOTNET_VERSION="net8.0"
 
@@ -41,7 +41,12 @@ RIDS=("win-x64" "linux-x64" "osx-arm64" "osx-x64" )
 for RID in "${RIDS[@]}"; do
     echo "Publishing for $RID..."
 
-    dotnet publish "$STANDALONES_PROJECT" \
+    # Getting this to work was interesting -- I learned you couldn't generate standalone exes
+    # with the same csproj as the multiplatform DLL.  
+    # 
+    # NOTE:   If you get warnings about trimmed binaries and JSON serialization you CANNOT
+    #         trim your binaries, it'll break the reflection things like Spectre Console and JSON depend on
+    dotnet publish "$STANDALONE_PROJECT" \
         -c Release \
         -r "$RID" \
         --self-contained true \
