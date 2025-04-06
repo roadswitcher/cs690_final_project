@@ -44,6 +44,10 @@ for RID in "${RIDS[@]}"; do
         -p:IncludeNativeLibrariesForSelfExtract=true \
         -o "$OUT_DIR/$RID"
 
+    cd $OUT_DIR
+    zip "TrackerApp-${RID}.zip" $RID/*
+    cd ..
+
     echo "Done: $OUT_DIR/$RID"
     echo ""
     
