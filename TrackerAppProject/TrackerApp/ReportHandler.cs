@@ -23,18 +23,30 @@ public class ReportHandler(IDataStore dataStore)
     // Give me a link to the DataStore singleton, or an exception if you cannot
     private readonly IDataStore _dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
 
-    public DailyReport GetDailyReport(DateTime date)
+    public DailyReport GetDailyReport(DateTime localDate)
     {
-        date = date.Date;
-        var records =
-            _dataStore.GetMoodRecords().Where(record => record.Timestamp.Date == date).ToList();
+        localDate = localDate.Date;
 
+        // Define local day start and end (exclusive)
+        var localStart = localDate;
+        var localEnd = localDate.AddDays(1);
+
+        // Convert local boundaries to UTC
+        var utcStart = TimeZoneInfo.ConvertTimeToUtc(localStart);
+        var utcEnd = TimeZoneInfo.ConvertTimeToUtc(localEnd);
+
+        // Filter records by comparing UTC timestamps to UTC boundaries
+        var records = _dataStore.GetMoodRecords()
+            .Where(record => record.Timestamp >= utcStart && record.Timestamp < utcEnd)
+            .ToList();
+        
         var report = new DailyReport
         {
-            Date = date, TotalRecords = records.Count, MoodDistribution = GetMoodDistribution(records),
+            Date = localDate, TotalRecords = records.Count, MoodDistribution = GetMoodDistribution(records),
             TimeOfDayDistribution = GetTimeOfDayDistribution(records),
             DailyBreakdown = GetDailyBreakdownList(records)
         };
+        
         return report;
     }
 
