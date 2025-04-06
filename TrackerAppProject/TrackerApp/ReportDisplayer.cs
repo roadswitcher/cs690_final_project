@@ -4,7 +4,7 @@ namespace TrackerApp;
 
 public class ReportDisplayer(IAnsiConsole console)
 {
-    public static readonly Dictionary<string, Color> _moodColors = TrackerUtils.MoodColors;
+    public static readonly Dictionary<string, Color> MoodColors = TrackerUtils.MoodColors;
 
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
@@ -21,7 +21,7 @@ public class ReportDisplayer(IAnsiConsole console)
         {
             var percentage = kvp.Value / (double)total * 100;
             var label = $"{kvp.Key} ({(int)Math.Round(percentage)}%)";
-            chart.AddItem(label, percentage, _moodColors[kvp.Key]);
+            chart.AddItem(label, percentage, MoodColors[kvp.Key]);
         }
 
         return chart;

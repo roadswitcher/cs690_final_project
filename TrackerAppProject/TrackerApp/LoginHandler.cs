@@ -8,9 +8,7 @@ public class LoginHandler
     {
         var dataStore = DataStore.Instance;
 
-        if (dataStore.IsFirstLaunch()) return HandleNewUser();
-
-        return HandleReturningUser();
+        return dataStore.IsFirstLaunch() ? HandleNewUser() : HandleReturningUser();
     }
 
     public static UserAccount HandleNewUser()
