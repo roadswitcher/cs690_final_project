@@ -60,6 +60,9 @@ public class UserInputHandler(IAnsiConsole console)
         var AdminMenuChoices = new List<string>();
 
         if (DataStore.Instance.ContainsRecords()) AdminMenuChoices.Add("Remove Last Update");
+        if (DataStore.Instance.ContainsRecords()) AdminMenuChoices.Add("Remove All Updates");
+        if (!DataStore.Instance.HasDemoTrigger()) AdminMenuChoices.Add("Add Demo Records");
+        if (DataStore.Instance.HasDemoTrigger()) AdminMenuChoices.Add("Remove Demo Records");
         
         AdminMenuChoices.Add("Exit to Main Menu");
 
