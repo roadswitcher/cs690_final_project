@@ -103,6 +103,11 @@ public class DataStore : IDataStore
         return _moodRecords.Count;
     }
 
+    public bool ContainsRecords()
+    {
+        return _moodRecords.Count > 0;
+    }
+
     public MoodRecord GetLastMoodRecord()
     {
         return _moodRecords[^1];

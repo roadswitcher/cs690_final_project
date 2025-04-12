@@ -57,9 +57,18 @@ public class UserInputHandler(IAnsiConsole console)
     {
         TrackerUtils.LineMessage("[red]Admin Options:[/]", "red3");
 
+        var AdminMenuChoices = new List<string>();
+
+        if (DataStore.Instance.ContainsRecords())
+        {
+            AdminMenuChoices.Add("Remove Last Update");
+        }
+
+        AdminMenuChoices.Add("Exit to Main Menu");
+        
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("[bold red]Select Admin Option:[/]")
-            .AddChoices("Remove Last Update", "Exit to Main Menu")));
+            .AddChoices(AdminMenuChoices)));
     }
 
     public DateTime PromptForDate()
