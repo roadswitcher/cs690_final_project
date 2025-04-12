@@ -2,15 +2,15 @@
 
 set -x
 
-PROJECT=TrackerAppProject/TrackerApp/TrackerApp.csproj
-STANDALONE_PROJECT=TrackerAppProject/TrackerApp/TrackerApp-Standalone.csproj
+PROJECT=./TrackerAppProject/TrackerApp/TrackerApp.csproj
+STANDALONE_PROJECT=./TrackerAppProject/TrackerApp/TrackerApp-Standalone.csproj
 
 DOTNET_VERSION="net8.0"
 
 # Output base directory
 OUT_DIR="./published_binaries"
 CROSS_DIR="./TrackerApp_CS690"
-DLL_ZIP_FILE="TrackerApp_CS690.zip"
+DLL_ZIP_FILE="./TrackerApp_CS690.zip"
 
 # First -- build a cross-platform DLL
 echo "Building cross-platform DLL..."
@@ -31,12 +31,15 @@ mv ./$DLL_ZIP_FILE ./$OUT_DIR/
 [ -d $CROSS_DIR ] && rm -rf $CROSS_DIR
 
 
-#
 # Second:   if we're going to build standalone binaries ( with pdb ), 
 #           let's build ALL the platforms
 #
 # Runtime Identifiers (RIDs)
+
+cp ./Utils/TrackerApp-Standalone.csproj ./TrackerAppProject/TrackerApp/
+
 RIDS=("win-x64" "linux-x64" "osx-arm64" "osx-x64" )
+
 
 for RID in "${RIDS[@]}"; do
     echo "Publishing for $RID..."
@@ -62,6 +65,7 @@ for RID in "${RIDS[@]}"; do
     echo ""
 done
 
+rm ./TrackerAppProject/TrackerApp/TrackerApp-Standalone.csproj 
 
 echo "All targets published."
 

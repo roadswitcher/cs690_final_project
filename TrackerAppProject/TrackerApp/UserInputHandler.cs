@@ -59,13 +59,10 @@ public class UserInputHandler(IAnsiConsole console)
 
         var AdminMenuChoices = new List<string>();
 
-        if (DataStore.Instance.ContainsRecords())
-        {
-            AdminMenuChoices.Add("Remove Last Update");
-        }
+        if (DataStore.Instance.ContainsRecords()) AdminMenuChoices.Add("Remove Last Update");
 
         AdminMenuChoices.Add("Exit to Main Menu");
-        
+
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
             .Title("[bold red]Select Admin Option:[/]")
             .AddChoices(AdminMenuChoices)));
