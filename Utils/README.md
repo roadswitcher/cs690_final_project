@@ -1,9 +1,8 @@
 # Utilities
 
-- build_and_publish.sh
-  This generates zip files ready for GitHub/GitLab update with zip files of the platform independent DLL, along
-  with standalone binaries for the four major runtime environments -- Windows, Linux, and Mac x86/ARM.
+- sample_mood_data.json
+  Fake data generated to test reporting functions / serve as 'demo' data
 
-- mood_data.json
-  Fake data generated to test reporting functions
-
+- TrackerApp-Standalone.csproj
+  Placeholder copy of the csproj file to be moved into TrackerApp directory if you want to build standalone
+  executables with the build_and_publish.sh script
