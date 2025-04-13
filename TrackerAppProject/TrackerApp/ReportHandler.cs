@@ -1,3 +1,5 @@
+using TrackerApp.Utilities;
+
 namespace TrackerApp;
 
 public class DailyReport

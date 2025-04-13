@@ -1,4 +1,4 @@
-namespace TrackerApp;
+namespace TrackerApp.Utilities;
 
 public class DemoMoodGenerator
 {

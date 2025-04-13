@@ -16,6 +16,10 @@ public class LoginHandler
         AnsiConsole.MarkupLine("[yellow]First time using the app? Let's set up your account.[/]");
 
         var username = AnsiConsole.Ask<string>("[green]Enter a username to create an account:[/]");
+        //
+        // PASSWORD FUNCTIONALITY NOT BEING TESTED AT THIS TIME
+        // CODE LEFT AS SKELETON FOR FUTURE
+        // 
         // string password = AnsiConsole.Prompt(
         //     new TextPrompt<string>("[green]Create a password:[/]")
         //         .Secret());
@@ -39,7 +43,10 @@ public class LoginHandler
         var storedUsername = userAccount.Username;
 
         AnsiConsole.MarkupLine($"Welcome back, [bold]{storedUsername}[/]!");
-
+        //
+        // PASSWORD FUNCTIONALITY NOT BEING TESTED AT THIS TIME
+        // CODE LEFT AS SKELETON FOR FUTURE
+        //
         // bool isAuthenticated = false;
         //
         // while (!isAuthenticated)
@@ -79,8 +86,6 @@ public class LoginHandler
 
     private static string HashPassword(string password)
     {
-        // Not using crypto at the moment, it's a class project
-        // return Convert.ToBase64String(password);
-        return password;
+        return Convert.ToBase64String(password);
     }
 }
