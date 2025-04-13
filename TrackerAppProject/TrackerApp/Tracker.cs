@@ -85,9 +85,9 @@ internal class Tracker
                 var weeklyReport = reportHandler.GeneratePriorWeekReport(today);
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
-            case "Exit":
+            default:
                 AnsiConsole.Clear();
-                return;
+                break;
         }
     }
 
@@ -106,29 +106,29 @@ internal class Tracker
                 
                 if (TrackerUtils.ConfirmYesNo()) _dataStore.RemoveLastMoodRecord();
                 TrackerUtils.EnterToContinue();
-                return;
+                break;
             
             case "Remove All Data":
                 TrackerUtils.WarningMessageCentered(
                     "Removing all data is an irreversible action.");
                 TrackerUtils.WarningMessageCentered("PLEASE CONFIRM YOU WISH TO PROCEED");
-                var confirmDelete = TrackerUtils.ConfirmYesNo("red");
                 if (TrackerUtils.ConfirmYesNo()) _dataStore.RemoveAllMoodRecords();
+                TrackerUtils.EnterToContinue();
                 break;
             
             case "Add Demonstration Data":
                 _dataStore.AddTheDemoData();
                 TrackerUtils.CenteredMessageEnterContinue("Added Demonstration Data");
-                return;
+                break;
             
             case "Remove Demonstration Data":
                 _dataStore.DeleteDemoData();
                 TrackerUtils.CenteredMessageEnterContinue("Removed Demonstration data");
-                return;
+                break;
             
-            case "Return to Main Menu":
+            default:
                 AnsiConsole.Clear();
-                return;
+                break;
         }
 
         AnsiConsole.Clear();

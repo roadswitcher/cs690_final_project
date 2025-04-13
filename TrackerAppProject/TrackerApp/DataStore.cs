@@ -170,22 +170,11 @@ public class DataStore : IDataStore
     public bool RemoveAllMoodRecords()
     {
         if (_moodRecords.Count == 0) return false;
-        AnsiConsole.Progress()
-            .AutoClear(true)
-            .HideCompleted(true)
-            .Start(ctx =>
-            {
-                var task = ctx.AddTask($"[{TrackerUtils.ConsoleColor.Warning}]Removing all data[/]");
 
-                task.MaxValue = _moodRecords.Count;
-
-                foreach (var record in _moodRecords)
-                {
-                    RemoveLastMoodRecord();
-                    SaveData();
-                    task.Increment(1);
-                }
-            });
+        var recordCount = _moodRecords.Count;
+        _moodRecords.Clear();
+        SaveData();
+        TrackerUtils.DebugMessage($" *** Removed all {recordCount} records");
         return true;
     }
 
