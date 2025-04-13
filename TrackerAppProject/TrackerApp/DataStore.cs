@@ -24,7 +24,6 @@ public class DataStore : IDataStore
     private static DataStore? _instance;
     private static readonly object Lock = new();
     private readonly string _databaseFilePath;
-    private readonly string _demoDatabaseFilePath;
     private List<MoodRecord> _moodRecords = [];
     private UserAccount _userCredentials = new();
 
@@ -86,7 +85,7 @@ public class DataStore : IDataStore
     public bool HasDemoTrigger()
     {
         return _moodRecords.Any(record =>
-            record.Trigger != null && record.Trigger.StartsWith("(demo)", StringComparison.OrdinalIgnoreCase));
+            record.Trigger.StartsWith("(demo)", StringComparison.OrdinalIgnoreCase));
     }
 
     public void AddTheDemoData()
@@ -101,7 +100,7 @@ public class DataStore : IDataStore
     public void DeleteDemoData()
     {
         _moodRecords.RemoveAll(record =>
-            record.Trigger != null && record.Trigger.StartsWith("(demo) ", StringComparison.OrdinalIgnoreCase));
+            record.Trigger.StartsWith("(demo) ", StringComparison.OrdinalIgnoreCase));
         SaveData();
     }
 
