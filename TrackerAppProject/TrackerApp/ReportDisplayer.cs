@@ -74,9 +74,12 @@ public class ReportDisplayer(IAnsiConsole console)
     {
         var startDate = report.Date.AddDays(-6);
         AnsiConsole.Clear();
-        
-        _console.Write(new Rule($"[cyan1]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]").LeftJustified()
-            .RuleStyle("cyan2"));
+
+        _console.Write(
+            new Rule(
+                    $"[cyan1]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]")
+                .LeftJustified()
+                .RuleStyle("cyan2"));
 
         if (report.TotalRecords > 0)
         {

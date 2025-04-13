@@ -23,7 +23,7 @@ public class ReportHandler(IDataStore dataStore)
     // Give me a link to the DataStore singleton, or an exception if you cannot
     private readonly IDataStore _dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
 
-    public DailyReport GetDailyReport(DateTime localDate)
+    public DailyReport GenerateDailyReport(DateTime localDate)
     {
         localDate = localDate.Date;
 
@@ -40,15 +40,16 @@ public class ReportHandler(IDataStore dataStore)
 
         var report = new DailyReport
         {
-            Date = localDate, TotalRecords = records.Count, MoodDistribution = GetMoodDistribution(records),
-            TimeOfDayDistribution = GetTimeOfDayDistribution(records),
+            Date = localDate, TotalRecords = records.Count,
+            MoodDistribution = GetMoodDistributionFromListOfRecords(records),
+            TimeOfDayDistribution = GetTimeOfDayDistributionFromListOfRecords(records),
             DailyBreakdown = GetDailyBreakdownList(records)
         };
 
         return report;
     }
 
-    public WeeklyReport GetWeeklyReport(DateTime today)
+    public WeeklyReport GeneratePriorWeekReport(DateTime today)
     {
         var weekAgo = today.Date.AddDays(-6);
         var records = _dataStore.GetMoodRecords()
@@ -58,15 +59,15 @@ public class ReportHandler(IDataStore dataStore)
         {
             Date = today,
             TotalRecords = records.Count,
-            MoodDistribution = GetMoodDistribution(records),
-            TimeOfDayDistribution = GetTimeOfDayDistribution(records)
+            MoodDistribution = GetMoodDistributionFromListOfRecords(records),
+            TimeOfDayDistribution = GetTimeOfDayDistributionFromListOfRecords(records)
         };
 
         return report;
     }
 
 
-    private static Dictionary<string, int> GetMoodDistribution(List<MoodRecord> records)
+    private static Dictionary<string, int> GetMoodDistributionFromListOfRecords(List<MoodRecord> records)
     {
         var distribution = new Dictionary<string, int>();
 
@@ -80,7 +81,7 @@ public class ReportHandler(IDataStore dataStore)
         return distribution;
     }
 
-    private static Dictionary<string, (int Count, string MostCommonMood)> GetTimeOfDayDistribution(
+    private static Dictionary<string, (int Count, string MostCommonMood)> GetTimeOfDayDistributionFromListOfRecords(
         List<MoodRecord> records)
     {
         var timePeriods = new[]
@@ -128,11 +129,9 @@ public class ReportHandler(IDataStore dataStore)
         foreach (var period in timePeriods)
         {
             var moodFrequencies = moodsByTimePeriod[period];
-            if (moodFrequencies.Values.Sum() > 0) // Make sure there are records for this period
-            {
-                var mostCommonMood = moodFrequencies.OrderByDescending(kv => kv.Value).First().Key;
-                distribution[period] = (distribution[period].Count, mostCommonMood);
-            }
+            if (moodFrequencies.Values.Sum() <= 0) continue; // Make sure there are records for this period
+            var mostCommonMood = moodFrequencies.OrderByDescending(kv => kv.Value).First().Key;
+            distribution[period] = (distribution[period].Count, mostCommonMood);
         }
 
         return distribution;

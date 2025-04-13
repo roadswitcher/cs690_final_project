@@ -11,17 +11,21 @@ public class LoginHandler
         return dataStore.IsFirstLaunch() ? HandleNewUser() : HandleReturningUser();
     }
 
-    public static UserAccount HandleNewUser()
+    private static UserAccount HandleNewUser()
     {
         AnsiConsole.MarkupLine("[yellow]First time using the app? Let's set up your account.[/]");
 
         var username = AnsiConsole.Ask<string>("[green]Enter a username to create an account:[/]");
+        //
+        // PASSWORD FUNCTIONALITY NOT BEING TESTED AT THIS TIME
+        // CODE LEFT AS SKELETON FOR FUTURE
+        // 
         // string password = AnsiConsole.Prompt(
         //     new TextPrompt<string>("[green]Create a password:[/]")
         //         .Secret());
         //
         // string passwordHash = HashPassword(password);
-
+        //
         // UserAccount newUser = new() { Username = username, PasswordHash = passwordHash };
         UserAccount newUser = new() { Username = username };
 
@@ -32,14 +36,17 @@ public class LoginHandler
         return newUser;
     }
 
-    public static UserAccount HandleReturningUser()
+    private static UserAccount HandleReturningUser()
     {
         var dataStore = DataStore.Instance;
         var userAccount = dataStore.GetUserCredentials();
         var storedUsername = userAccount.Username;
 
-        AnsiConsole.MarkupLine($"Welcome back, [bold]{storedUsername}[/]!");
 
+        //
+        // PASSWORD FUNCTIONALITY NOT BEING TESTED AT THIS TIME
+        // CODE LEFT AS SKELETON FOR FUTURE
+        //
         // bool isAuthenticated = false;
         //
         // while (!isAuthenticated)
@@ -77,10 +84,10 @@ public class LoginHandler
         return userAccount;
     }
 
-    private static string HashPassword(string password)
-    {
-        // Not using crypto at the moment, it's a class project
-        // return Convert.ToBase64String(password);
-        return password;
-    }
+    // private static string HashPassword(string password)
+    // {
+    //     // Not using crypto at the moment, it's a class project
+    //     // return Convert.ToBase64String(password);
+    //     return password;
+    // }
 }

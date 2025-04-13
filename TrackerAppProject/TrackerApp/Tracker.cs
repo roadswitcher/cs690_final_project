@@ -24,7 +24,7 @@ internal class Tracker
 
         RunMoodTracker();
 
-        TrackerUtils.ExitMessages();
+        TrackerUtils.ShowExitMessages();
         return 0;
     }
 
@@ -73,21 +73,21 @@ internal class Tracker
         switch (reportChoice)
         {
             case "Today":
-                var dailyReport = reportHandler.GetDailyReport(today);
+                var dailyReport = reportHandler.GenerateDailyReport(today);
                 _reportDisplayer.DisplayDailyReport(dailyReport);
                 break;
             case "Pick a Day":
                 var chosenDate = _userInputHandler.PromptForDate();
-                var specificDayReport = reportHandler.GetDailyReport(chosenDate);
+                var specificDayReport = reportHandler.GenerateDailyReport(chosenDate);
                 _reportDisplayer.DisplayDailyReport(specificDayReport);
                 break;
             case "Past Week":
-                var weeklyReport = reportHandler.GetWeeklyReport(today);
+                var weeklyReport = reportHandler.GeneratePriorWeekReport(today);
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
-            case "Exit":
+            default:
                 AnsiConsole.Clear();
-                return;
+                break;
         }
     }
 
@@ -100,34 +100,35 @@ internal class Tracker
             // implement choices
             case "Remove Last Update":
                 var lastRecord = _dataStore.GetLastMoodRecord();
-                TrackerUtils.LineMessage("Please confirm you want to remove this update:");
-                TrackerUtils.LineMessage(
-                    $"Time: {lastRecord.Timestamp.ToLocalTime().ToShortTimeString()} / Last Mood: {lastRecord.Mood} / Last Trigger: \"{lastRecord.Trigger}\"");
-                var confirmation = AnsiConsole.Prompt(
-                    new TextPrompt<bool>("Are you sure you want to delete that? [[Default: n]]")
-                        .AddChoice(true)
-                        .AddChoice(false)
-                        .DefaultValue(false)
-                        .WithConverter(choice => choice ? "y" : "n"));
-
-                // Echo the confirmation back to the terminal
-                Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then.");
-                if (confirmation) _dataStore.RemoveLastMoodRecord();
+                TrackerUtils.WarningMessageLeftJustified("PLEASE CONFIRM YOU WANT TO DELETE THE FOLLOWING UPDATE:");
+                TrackerUtils.WarningMessageLeftJustified(
+                    $"Time: {lastRecord.Timestamp.ToLocalTime()} / Mood:{lastRecord.Mood} / Trigger: {lastRecord.Trigger}");
+                
+                if (TrackerUtils.ConfirmYesNo()) _dataStore.RemoveLastMoodRecord();
                 TrackerUtils.EnterToContinue();
                 break;
-            case "Remove All Updates":
-                return;
+            
+            case "Remove All Data":
+                TrackerUtils.WarningMessageCentered(
+                    "Removing all data is an irreversible action.");
+                TrackerUtils.WarningMessageCentered("PLEASE CONFIRM YOU WISH TO PROCEED");
+                if (TrackerUtils.ConfirmYesNo()) _dataStore.RemoveAllMoodRecords();
+                TrackerUtils.EnterToContinue();
+                break;
+            
             case "Add Demonstration Data":
                 _dataStore.AddTheDemoData();
                 TrackerUtils.CenteredMessageEnterContinue("Added Demonstration Data");
-                return;
+                break;
+            
             case "Remove Demonstration Data":
                 _dataStore.DeleteDemoData();
                 TrackerUtils.CenteredMessageEnterContinue("Removed Demonstration data");
-                return;
-            case "Return to Main Menu":
+                break;
+            
+            default:
                 AnsiConsole.Clear();
-                return;
+                break;
         }
 
         AnsiConsole.Clear();

@@ -57,14 +57,14 @@ public class ReportHandlerTests
     {
         var date = _today;
 
-        var report = _reportHandler.GetDailyReport(date);
+        var report = _reportHandler.GenerateDailyReport(date);
 
         Assert.Equal(3, report.TotalRecords);
         Assert.Equal(date, report.Date);
 
         // Check another date
         date = date.AddDays(-3);
-        report = _reportHandler.GetDailyReport(date);
+        report = _reportHandler.GenerateDailyReport(date);
         Assert.Equal(2, report.TotalRecords);
     }
 
@@ -72,7 +72,7 @@ public class ReportHandlerTests
     public void GetWeeklyReport_ReturnsCorrectNumberOfRecords()
     {
         var date = _today;
-        var report = _reportHandler.GetWeeklyReport(date);
+        var report = _reportHandler.GeneratePriorWeekReport(date);
 
         Assert.Equal(8, report.TotalRecords);
     }
@@ -101,9 +101,9 @@ public class ReportHandlerTests
         _mockDataStore.Setup(ds => ds.GetMoodRecords()).Returns(records);
 
         // Act - query for yesterday
-        var yesterdayReport = _reportHandler.GetDailyReport(_today.AddDays(-1));
+        var yesterdayReport = _reportHandler.GenerateDailyReport(_today.AddDays(-1));
         // Act - query for today
-        var todayReport = _reportHandler.GetDailyReport(_today);
+        var todayReport = _reportHandler.GenerateDailyReport(_today);
 
         // Assert
         Assert.Equal(1, yesterdayReport.TotalRecords);
@@ -137,7 +137,7 @@ public class ReportHandlerTests
 
         // Act
         // Query for the target local date
-        var report = _reportHandler.GetDailyReport(targetLocalDate);
+        var report = _reportHandler.GenerateDailyReport(targetLocalDate);
 
         // Assert
         // Both records should be in the report since they fall within the same UTC day

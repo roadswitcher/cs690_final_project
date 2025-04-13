@@ -18,42 +18,75 @@ public static class TrackerUtils
         { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
     };
 
-    public static void DebugMessage(string message)
+    public static class ConsoleColor
+    {
+        public const string Emphasis = "green1";
+        public const string Warning = "red";
+        public const string Info = "blue";
+        public const string Success = "green3";
+        public const string Debug = "fuchsia";
+    }
+
+    public static void DebugMessage(string message, string color = ConsoleColor.Debug)
     {
 #if DEBUG
-        AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
+        AnsiConsole.MarkupLine($"[{color}]{message}[/]");
 #endif
     }
 
     // Reference link:  https://spectreconsole.net/appendix/colors
-    public static void LineMessage(string message, string color = "orange1")
+    public static void LineMessage(string message, string color = ConsoleColor.Info)
     {
         var rule = new Rule($"{message}").LeftJustified().RuleStyle(color);
         AnsiConsole.Write(rule);
     }
 
-    public static void CenteredMessage(string message, string color = "green")
+    public static void WarningMessageLeftJustified(string message, string warningcolor = ConsoleColor.Warning)
+    {
+        LineMessage(message, warningcolor);
+    }
+
+    public static bool ConfirmYesNo(string color = ConsoleColor.Info, bool defaultChoice = false)
+    {
+        return AnsiConsole.Prompt(
+            new TextPrompt<bool>("Please confirm yes/no: ")
+                .AddChoice(true)
+                .AddChoice(false)
+                .DefaultValue(defaultChoice)
+                .WithConverter(choice => choice ? "y" : "n")
+                .PromptStyle(color)
+        );
+    }
+
+    public static void CenteredMessage(string message, string color = ConsoleColor.Info)
     {
         var rule = new Rule($"{message}").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);
     }
 
-    public static void ShowSelectedValue(string message, string color = "orange1")
+    public static void WarningMessageCentered(string message)
     {
-        var rule = new Rule($"You Selected: [yellow]{message}[/]").LeftJustified().RuleStyle(color);
+        CenteredMessage(message, "red");
+    }
+
+    public static void ShowSelectedValue(string message, string color = ConsoleColor.Info)
+    {
+        var rule = new Rule($"You Selected: [green]{message}[/]").LeftJustified().RuleStyle(color);
         AnsiConsole.Write(rule);
     }
 
-
-    public static void EnterToContinue(bool clearscreen = true)
+    public static void EnterToContinue(bool clearscreen = true,
+        string textColor = ConsoleColor.Info,
+        string ruleColor = ConsoleColor.Info)
     {
-        var rule = new Rule("[yellow]Please press Enter to continue[/]").Centered().RuleStyle("yellow");
+        var rule = new Rule($"[{textColor}]Please press Enter to continue[/]").Centered().RuleStyle(ruleColor);
         AnsiConsole.Write(rule);
         AnsiConsole.Prompt(new TextPrompt<string>("").AllowEmpty());
         if (clearscreen) AnsiConsole.Clear();
     }
 
-    public static void CenteredMessageEnterContinue(string message, string color = "green", bool clearscreen = true)
+    public static void CenteredMessageEnterContinue(string message, string color = ConsoleColor.Emphasis,
+        bool clearscreen = true)
     {
         var rule = new Rule($"{message} -- please select Enter to continue").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);
@@ -64,12 +97,10 @@ public static class TrackerUtils
     public static void WelcomeScreen(string[] args)
     {
         AnsiConsole.Clear();
-
         AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
-
+        
         var userCredentials = LoginHandler.HandleLogin();
-
         var dataStore = DataStore.Instance;
         dataStore.SetUserCredentials(userCredentials);
     }
@@ -77,15 +108,15 @@ public static class TrackerUtils
     public static void DisplayHeaderInfo()
     {
         var userName = DataStore.Instance.GetUserCredentials().Username;
-        CenteredMessage($"[orange3]MoodTracker[/] --- Logged in as [orange3]{userName}[/]");
-        CenteredMessage($"Tracking [orange3]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
+        CenteredMessage($"[{ConsoleColor.Emphasis}]MoodTracker[/] --- Logged in as [{ConsoleColor.Emphasis}]{userName}[/]");
+        CenteredMessage($"Tracking [{ConsoleColor.Emphasis}]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
     }
 
-    public static void ExitMessages()
+    public static void ShowExitMessages()
     {
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
-        CenteredMessage("[orange3]Thanks for using the app[/]");
+        CenteredMessage("[yellow]Thanks for using the app[/]");
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
     }
