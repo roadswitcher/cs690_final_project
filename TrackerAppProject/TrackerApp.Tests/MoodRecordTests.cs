@@ -1,3 +1,5 @@
+using TrackerApp.ObjectClasses;
+
 namespace TrackerApp.Tests;
 
 public class MoodRecordTests

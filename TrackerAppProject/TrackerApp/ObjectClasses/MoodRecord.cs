@@ -1,4 +1,4 @@
-namespace TrackerApp;
+namespace TrackerApp.ObjectClasses;
 
 public class MoodRecord
 {

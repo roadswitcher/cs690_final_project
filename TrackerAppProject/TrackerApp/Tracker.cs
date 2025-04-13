@@ -15,7 +15,7 @@ internal class Tracker
         _userInputHandler = new UserInputHandler(console1);
         _dataStore = DataStore.Instance;
         _trackedEmotions = TrackerUtils.MoodColors.Keys.ToList();
-        _reportDisplayer = new ReportDisplayer(console1);
+        _reportDisplayer = new ReportDisplayer(console1, _dataStore);
     }
 
     public int Run(string[] args)
