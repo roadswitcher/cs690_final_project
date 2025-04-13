@@ -2,9 +2,11 @@ using Spectre.Console;
 using TrackerApp.ObjectClasses;
 
 namespace TrackerApp;
+using msgcolors = TrackerUtils.MsgColors;
 
 public class UserInputHandler(IAnsiConsole console)
 {
+   
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
     public string GetMainMenuChoice()
@@ -16,18 +18,17 @@ public class UserInputHandler(IAnsiConsole console)
 
     public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
     {
-        TrackerUtils.LineMessage("Mood Update: [green]What is your current mood?[/]");
+        TrackerUtils.LineMessage($"[{msgcolors.Emphasis}]Mood Update:[/] [{msgcolors.Query}]What is your current mood?[/]");
         var mood = _console.Prompt(new SelectionPrompt<string>()
-            .AddChoices(trackedEmotions));
-
-        TrackerUtils.ShowSelectedValue(mood);
+            .AddChoices(trackedEmotions).HighlightStyle(msgcolors.Query));
+        TrackerUtils.LineMessage($"[{msgcolors.Emphasis}]You chose: {mood}[/]");
 
         TrackerUtils.LineMessage(
-            "External Factors: Do you want to record more information, like triggers or external factors?");
+            $"[{msgcolors.Emphasis}]External Factors:[/] [{msgcolors.Query}]Do you want to record more information, like triggers or external factors?[/]");
 
         var trigger =
             _console.Prompt(
-                new TextPrompt<string>("[green][[Optional]] (hit Enter):[/]")
+                new TextPrompt<string>($"[{msgcolors.Query}][[Optional]] (hit Enter):[/]")
                     .AllowEmpty());
 
         var triggerPresent = !string.IsNullOrEmpty(trigger);
@@ -37,8 +38,8 @@ public class UserInputHandler(IAnsiConsole console)
 
         TrackerUtils.LineMessage(
             triggerPresent
-                ? $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], with additional note: [yellow]{trigger}[/]"
-                : $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], no additional factors");
+                ? $"Saving update:  Time [{msgcolors.Emphasis}]{localtime}[/], Mood [{msgcolors.Emphasis}]{mood}[/], with additional note: [{msgcolors.Emphasis}]{trigger}[/]"
+                : $"Saving update:  Time [{msgcolors.Emphasis}]{localtime}[/], Mood [{msgcolors.Emphasis}]{mood}[/], no additional factors");
 
         TrackerUtils.EnterToContinue();
 
