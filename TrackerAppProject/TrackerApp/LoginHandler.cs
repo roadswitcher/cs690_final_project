@@ -25,7 +25,7 @@ public class LoginHandler
         //         .Secret());
         //
         // string passwordHash = HashPassword(password);
-
+        //
         // UserAccount newUser = new() { Username = username, PasswordHash = passwordHash };
         UserAccount newUser = new() { Username = username };
 
@@ -42,7 +42,7 @@ public class LoginHandler
         var userAccount = dataStore.GetUserCredentials();
         var storedUsername = userAccount.Username;
 
-        AnsiConsole.MarkupLine($"Welcome back, [bold]{storedUsername}[/]!");
+       
         //
         // PASSWORD FUNCTIONALITY NOT BEING TESTED AT THIS TIME
         // CODE LEFT AS SKELETON FOR FUTURE
@@ -84,10 +84,10 @@ public class LoginHandler
         return userAccount;
     }
 
-    private static string HashPassword(string password)
-    {
-        // Not using crypto at the moment, it's a class project
-        // return Convert.ToBase64String(password);
-        return password;
-    }
+    // private static string HashPassword(string password)
+    // {
+    //     // Not using crypto at the moment, it's a class project
+    //     // return Convert.ToBase64String(password);
+    //     return password;
+    // }
 }

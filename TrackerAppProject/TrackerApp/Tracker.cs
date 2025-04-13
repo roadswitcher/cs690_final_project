@@ -24,7 +24,7 @@ internal class Tracker
 
         RunMoodTracker();
 
-        TrackerUtils.ExitMessages();
+        TrackerUtils.ShowExitMessages();
         return 0;
     }
 
@@ -73,16 +73,16 @@ internal class Tracker
         switch (reportChoice)
         {
             case "Today":
-                var dailyReport = reportHandler.GetDailyReport(today);
+                var dailyReport = reportHandler.GenerateDailyReport(today);
                 _reportDisplayer.DisplayDailyReport(dailyReport);
                 break;
             case "Pick a Day":
                 var chosenDate = _userInputHandler.PromptForDate();
-                var specificDayReport = reportHandler.GetDailyReport(chosenDate);
+                var specificDayReport = reportHandler.GenerateDailyReport(chosenDate);
                 _reportDisplayer.DisplayDailyReport(specificDayReport);
                 break;
             case "Past Week":
-                var weeklyReport = reportHandler.GetWeeklyReport(today);
+                var weeklyReport = reportHandler.GeneratePriorWeekReport(today);
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
             case "Exit":
@@ -115,7 +115,9 @@ internal class Tracker
                 if (confirmation) _dataStore.RemoveLastMoodRecord();
                 TrackerUtils.EnterToContinue();
                 break;
-            case "Remove All Updates":
+            case "Remove All Data":
+                TrackerUtils.CenteredMessage("Removing all data will force you to login again.");
+                
                 return;
             case "Add Demonstration Data":
                 _dataStore.AddTheDemoData();

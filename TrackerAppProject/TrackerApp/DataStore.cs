@@ -11,7 +11,7 @@ public class AppData
 public class UserAccount
 {
     public string Username { get; init; } = string.Empty;
-    // public string PasswordHash { get; set; } = string.Empty;
+    public string PasswordHash { get; set; } = string.Empty;
 }
 
 public interface IDataStore
