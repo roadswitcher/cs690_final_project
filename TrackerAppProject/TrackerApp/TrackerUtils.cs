@@ -41,9 +41,9 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
-    public static void WarningMessageLeftJustified(string message, string color = ConsoleColor.Warning)
+    public static void WarningMessageLeftJustified(string message, string warningcolor = ConsoleColor.Warning)
     {
-        LineMessage(message, color = color);
+        LineMessage(message, warningcolor);
     }
 
     public static bool ConfirmYesNo(string color = ConsoleColor.Info, bool defaultChoice = false)
@@ -97,12 +97,10 @@ public static class TrackerUtils
     public static void WelcomeScreen(string[] args)
     {
         AnsiConsole.Clear();
-
-        // AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
+        AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
-
+        
         var userCredentials = LoginHandler.HandleLogin();
-
         var dataStore = DataStore.Instance;
         dataStore.SetUserCredentials(userCredentials);
     }
@@ -110,8 +108,8 @@ public static class TrackerUtils
     public static void DisplayHeaderInfo()
     {
         var userName = DataStore.Instance.GetUserCredentials().Username;
-        CenteredMessage($"[yellow]MoodTracker[/] --- Logged in as [yellow]{userName}[/]");
-        CenteredMessage($"Tracking [yellow]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
+        CenteredMessage($"[{ConsoleColor.Emphasis}]MoodTracker[/] --- Logged in as [{ConsoleColor.Emphasis}]{userName}[/]");
+        CenteredMessage($"Tracking [{ConsoleColor.Emphasis}]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
     }
 
     public static void ShowExitMessages()

@@ -103,27 +103,29 @@ internal class Tracker
                 TrackerUtils.WarningMessageLeftJustified("PLEASE CONFIRM YOU WANT TO DELETE THE FOLLOWING UPDATE:");
                 TrackerUtils.WarningMessageLeftJustified(
                     $"Time: {lastRecord.Timestamp.ToLocalTime()} / Mood:{lastRecord.Mood} / Trigger: {lastRecord.Trigger}");
-                var confirmation = TrackerUtils.ConfirmYesNo();
-
-                // Echo the confirmation back to the terminal
-                Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then.");
-                if (confirmation) _dataStore.RemoveLastMoodRecord();
+                
+                if (TrackerUtils.ConfirmYesNo()) _dataStore.RemoveLastMoodRecord();
                 TrackerUtils.EnterToContinue();
-                break;
+                return;
+            
             case "Remove All Data":
                 TrackerUtils.WarningMessageCentered(
-                    "Removing all data will force you to login again and lose ALL DATA");
+                    "Removing all data is an irreversible action.");
                 TrackerUtils.WarningMessageCentered("PLEASE CONFIRM YOU WISH TO PROCEED");
-                TrackerUtils.ConfirmYesNo("red");
-                return;
+                var confirmDelete = TrackerUtils.ConfirmYesNo("red");
+                if (TrackerUtils.ConfirmYesNo()) _dataStore.RemoveAllMoodRecords();
+                break;
+            
             case "Add Demonstration Data":
                 _dataStore.AddTheDemoData();
                 TrackerUtils.CenteredMessageEnterContinue("Added Demonstration Data");
                 return;
+            
             case "Remove Demonstration Data":
                 _dataStore.DeleteDemoData();
                 TrackerUtils.CenteredMessageEnterContinue("Removed Demonstration data");
                 return;
+            
             case "Return to Main Menu":
                 AnsiConsole.Clear();
                 return;

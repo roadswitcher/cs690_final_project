@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Spectre.Console;
 
 namespace TrackerApp;
 
@@ -163,6 +164,28 @@ public class DataStore : IDataStore
         SaveData();
         TrackerUtils.DebugMessage(" *** Removed last mood record");
 
+        return true;
+    }
+
+    public bool RemoveAllMoodRecords()
+    {
+        if (_moodRecords.Count == 0) return false;
+        AnsiConsole.Progress()
+            .AutoClear(true)
+            .HideCompleted(true)
+            .Start(ctx =>
+            {
+                var task = ctx.AddTask($"[{TrackerUtils.ConsoleColor.Warning}]Removing all data[/]");
+
+                task.MaxValue = _moodRecords.Count;
+
+                foreach (var record in _moodRecords)
+                {
+                    RemoveLastMoodRecord();
+                    SaveData();
+                    task.Increment(1);
+                }
+            });
         return true;
     }
 
