@@ -75,8 +75,7 @@ internal class Tracker
                 TrackerUtils.EnterToContinue();
                 break;
             case "Pick a Day":
-                var chosenDate = _userInputHandler.PromptForDate();
-                _reportDisplay.DisplayDailyReport(chosenDate);
+                _reportDisplay.DisplayDailyReport(_userInputHandler.PromptForDate());
                 break;
             case "Past Week":
                 _reportDisplay.DisplayWeeklyReport();
