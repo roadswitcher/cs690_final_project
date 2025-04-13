@@ -99,7 +99,7 @@ public static class TrackerUtils
         AnsiConsole.Clear();
         AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
-        
+
         var userCredentials = LoginHandler.HandleLogin();
         var dataStore = DataStore.Instance;
         dataStore.SetUserCredentials(userCredentials);
@@ -108,7 +108,8 @@ public static class TrackerUtils
     public static void DisplayHeaderInfo()
     {
         var userName = DataStore.Instance.GetUserCredentials().Username;
-        CenteredMessage($"[{ConsoleColor.Emphasis}]MoodTracker[/] --- Logged in as [{ConsoleColor.Emphasis}]{userName}[/]");
+        CenteredMessage(
+            $"[{ConsoleColor.Emphasis}]MoodTracker[/] --- Logged in as [{ConsoleColor.Emphasis}]{userName}[/]");
         CenteredMessage($"Tracking [{ConsoleColor.Emphasis}]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
     }
 
