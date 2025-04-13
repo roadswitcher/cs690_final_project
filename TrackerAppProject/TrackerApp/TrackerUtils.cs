@@ -18,16 +18,18 @@ public static class TrackerUtils
         { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
     };
 
-    public static class ConsoleColor
+    public static class MsgColors
     {
+        // https://spectreconsole.net/appendix/colors
         public const string Emphasis = "green1";
         public const string Warning = "red";
         public const string Info = "blue";
-        public const string Success = "green3";
+        public const string Success = "lime";
         public const string Debug = "fuchsia";
+        public const string Query = "seagreen2";
     }
 
-    public static void DebugMessage(string message, string color = ConsoleColor.Debug)
+    public static void DebugMessage(string message, string color = MsgColors.Debug)
     {
 #if DEBUG
         AnsiConsole.MarkupLine($"[{color}]{message}[/]");
@@ -35,18 +37,18 @@ public static class TrackerUtils
     }
 
     // Reference link:  https://spectreconsole.net/appendix/colors
-    public static void LineMessage(string message, string color = ConsoleColor.Info)
+    public static void LineMessage(string message, string color = MsgColors.Info)
     {
         var rule = new Rule($"{message}").LeftJustified().RuleStyle(color);
         AnsiConsole.Write(rule);
     }
 
-    public static void WarningMessageLeftJustified(string message, string warningcolor = ConsoleColor.Warning)
+    public static void WarningMessageLeftJustified(string message, string warningcolor = MsgColors.Warning)
     {
         LineMessage(message, warningcolor);
     }
 
-    public static bool ConfirmYesNo(string color = ConsoleColor.Info, bool defaultChoice = false)
+    public static bool ConfirmYesNo(string color = MsgColors.Info, bool defaultChoice = false)
     {
         return AnsiConsole.Prompt(
             new TextPrompt<bool>("Please confirm yes/no: ")
@@ -54,11 +56,11 @@ public static class TrackerUtils
                 .AddChoice(false)
                 .DefaultValue(defaultChoice)
                 .WithConverter(choice => choice ? "y" : "n")
-                .PromptStyle(color)
+                .PromptStyle(color).DefaultValueStyle(MsgColors.Info)
         );
     }
 
-    public static void CenteredMessage(string message, string color = ConsoleColor.Info)
+    public static void CenteredMessage(string message, string color = MsgColors.Info)
     {
         var rule = new Rule($"{message}").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);
@@ -66,18 +68,12 @@ public static class TrackerUtils
 
     public static void WarningMessageCentered(string message)
     {
-        CenteredMessage(message, "red");
+        CenteredMessage(message, MsgColors.Warning);
     }
-
-    public static void ShowSelectedValue(string message, string color = ConsoleColor.Info)
-    {
-        var rule = new Rule($"You Selected: [green]{message}[/]").LeftJustified().RuleStyle(color);
-        AnsiConsole.Write(rule);
-    }
-
+    
     public static void EnterToContinue(bool clearscreen = true,
-        string textColor = ConsoleColor.Info,
-        string ruleColor = ConsoleColor.Info)
+        string textColor = MsgColors.Emphasis,
+        string ruleColor = MsgColors.Info)
     {
         var rule = new Rule($"[{textColor}]Please press Enter to continue[/]").Centered().RuleStyle(ruleColor);
         AnsiConsole.Write(rule);
@@ -85,7 +81,7 @@ public static class TrackerUtils
         if (clearscreen) AnsiConsole.Clear();
     }
 
-    public static void CenteredMessageEnterContinue(string message, string color = ConsoleColor.Emphasis,
+    public static void CenteredMessageEnterContinue(string message, string color = MsgColors.Emphasis,
         bool clearscreen = true)
     {
         var rule = new Rule($"{message} -- please select Enter to continue").Centered().RuleStyle(color);
@@ -109,8 +105,8 @@ public static class TrackerUtils
     {
         var userName = DataStore.Instance.GetUserCredentials().Username;
         CenteredMessage(
-            $"[{ConsoleColor.Emphasis}]MoodTracker[/] --- Logged in as [{ConsoleColor.Emphasis}]{userName}[/]");
-        CenteredMessage($"Tracking [{ConsoleColor.Emphasis}]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
+            $"[{MsgColors.Emphasis}]MoodTracker[/] --- Logged in as [{MsgColors.Emphasis}]{userName}[/]");
+        CenteredMessage($"Tracking [{MsgColors.Emphasis}]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
     }
 
     public static void ShowExitMessages()

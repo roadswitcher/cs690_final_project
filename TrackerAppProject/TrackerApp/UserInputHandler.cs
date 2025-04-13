@@ -2,32 +2,36 @@ using Spectre.Console;
 using TrackerApp.ObjectClasses;
 
 namespace TrackerApp;
+using msgColors = TrackerUtils.MsgColors;
 
 public class UserInputHandler(IAnsiConsole console)
 {
+   
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
     public string GetMainMenuChoice()
     {
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
-            .Title("[green]Update[/] mood, [aqua]Report[/] data, or [red]Exit[/] app?")
-            .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")));
+            .Title("[green]Update[/] mood, [aqua]Report[/] data, [red]Admin Options[/] or [red]Exit[/] app?")
+            .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")
+            .HighlightStyle(msgColors.Query)
+        )
+        );
     }
 
     public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
     {
-        TrackerUtils.LineMessage("Mood Update: [green]What is your current mood?[/]");
+        TrackerUtils.LineMessage($"[{msgColors.Emphasis}]Mood Update:[/] [{msgColors.Query}]What is your current mood?[/]");
         var mood = _console.Prompt(new SelectionPrompt<string>()
-            .AddChoices(trackedEmotions));
-
-        TrackerUtils.ShowSelectedValue(mood);
+            .AddChoices(trackedEmotions).HighlightStyle(msgColors.Query));
+        TrackerUtils.LineMessage($"[{msgColors.Emphasis}]You chose: {mood}[/]");
 
         TrackerUtils.LineMessage(
-            "External Factors: Do you want to record more information, like triggers or external factors?");
+            $"[{msgColors.Emphasis}]External Factors:[/] [{msgColors.Query}]Do you want to record more information, like triggers or external factors?[/]");
 
         var trigger =
             _console.Prompt(
-                new TextPrompt<string>("[green][[Optional]] (hit Enter):[/]")
+                new TextPrompt<string>($"[{msgColors.Query}][[Optional]] (hit Enter):[/]")
                     .AllowEmpty());
 
         var triggerPresent = !string.IsNullOrEmpty(trigger);
@@ -37,8 +41,8 @@ public class UserInputHandler(IAnsiConsole console)
 
         TrackerUtils.LineMessage(
             triggerPresent
-                ? $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], with additional note: [yellow]{trigger}[/]"
-                : $"Saving update:  Time [yellow]{localtime}[/], Mood [yellow]{mood}[/], no additional factors");
+                ? $"Saving update:  Time [{msgColors.Emphasis}]{localtime}[/], Mood [{msgColors.Emphasis}]{mood}[/], with additional note: [{msgColors.Emphasis}]{trigger}[/]"
+                : $"Saving update:  Time [{msgColors.Emphasis}]{localtime}[/], Mood [{msgColors.Emphasis}]{mood}[/], no additional factors");
 
         TrackerUtils.EnterToContinue();
 
@@ -57,7 +61,7 @@ public class UserInputHandler(IAnsiConsole console)
 
     public string GetAdminOption()
     {
-        TrackerUtils.LineMessage("[red]Admin Options:[/]", "red3");
+        TrackerUtils.WarningMessageLeftJustified("Admin Options:");
 
         var adminMenuChoices = new List<string>();
 
@@ -68,9 +72,10 @@ public class UserInputHandler(IAnsiConsole console)
 
         adminMenuChoices.Add("Exit to Main Menu");
 
-        return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
-            .Title("[bold red]Select Admin Option:[/]")
-            .AddChoices(adminMenuChoices)));
+        return Markup.Remove(
+            _console.Prompt(new SelectionPrompt<string>()
+            .Title($"[{msgColors.Warning}]Select Admin Option:[/]").AddChoices(adminMenuChoices).HighlightStyle(msgColors.Query))
+        );
     }
 
     public DateTime PromptForDate()
@@ -83,16 +88,16 @@ public class UserInputHandler(IAnsiConsole console)
 
         if (availableDates.Count == 0)
         {
-            TrackerUtils.CenteredMessage("[red]No mood records found![/]");
+            TrackerUtils.WarningMessageCentered("No mood records found!");
             return DateTime.Today;
         }
 
         var selection = new SelectionPrompt<DateTime>()
             .Title("Select a date to view reports:")
             .PageSize(10)
-            .MoreChoicesText("[grey](Move up and down to see more dates)[/]")
+            .MoreChoicesText($"[{msgColors.Query}](Move up and down to see more dates)[/]")
             .UseConverter(d => d.ToString("dddd, MMMM d, yyyy"))
-            .AddChoices(availableDates);
+            .AddChoices(availableDates).HighlightStyle(msgColors.Query);
 
         return _console.Prompt(selection);
     }
