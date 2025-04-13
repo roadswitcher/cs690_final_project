@@ -174,7 +174,6 @@ public class DataStore : IDataStore
         TrackerUtils.DebugMessage($" *** Mood Record Update: {moodRecord.Mood},  {moodRecord.Trigger}");
         TrackerUtils.DebugMessage($" *** New Mood Record Count: {GetMoodRecordCount()}");
     }
-    
 
 
     public static List<MoodRecord> GenerateMoodUpdates(int numberOfDays = 45)

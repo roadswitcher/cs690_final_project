@@ -164,5 +164,4 @@ public class ReportHandler(IDataStore dataStore)
 
         return tableData;
     }
-    
 }
