@@ -100,7 +100,7 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
 
     public void DisplayWeeklyReport()
     {
-        var report = GeneratePriorWeekReport();
+        var report = GeneratePriorWeekReport(DateTime.Now);
         var startDate = report.Date.AddDays(-6);
         AnsiConsole.Clear();
 
@@ -245,7 +245,6 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
     
     public WeeklyReport GeneratePriorWeekReport(DateTime today)
     {
-        var today = DateTime.Now;
         var weekAgo = today.Date.AddDays(-6);
         var records = _dataStore.GetMoodRecords()
             .Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();

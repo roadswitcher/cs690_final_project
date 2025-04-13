@@ -66,7 +66,6 @@ internal class Tracker
     private void HandleReportGeneration()
     {
         var reportChoice = _userInputHandler.GetReportChoice();
-        // var reportHandler = new ReportHandler(_dataStore);
         var today = DateTime.Now;
 
         switch (reportChoice)
