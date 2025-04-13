@@ -56,7 +56,7 @@ public static class TrackerUtils
                 .AddChoice(false)
                 .DefaultValue(defaultChoice)
                 .WithConverter(choice => choice ? "y" : "n")
-                .PromptStyle(color)
+                .PromptStyle(color).DefaultValueStyle(MsgColors.Info)
         );
     }
 
@@ -68,11 +68,11 @@ public static class TrackerUtils
 
     public static void WarningMessageCentered(string message)
     {
-        CenteredMessage(message, "red");
+        CenteredMessage(message, MsgColors.Warning);
     }
     
     public static void EnterToContinue(bool clearscreen = true,
-        string textColor = MsgColors.Info,
+        string textColor = MsgColors.Emphasis,
         string ruleColor = MsgColors.Info)
     {
         var rule = new Rule($"[{textColor}]Please press Enter to continue[/]").Centered().RuleStyle(ruleColor);

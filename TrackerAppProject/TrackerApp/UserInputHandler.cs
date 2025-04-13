@@ -12,8 +12,11 @@ public class UserInputHandler(IAnsiConsole console)
     public string GetMainMenuChoice()
     {
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
-            .Title("[green]Update[/] mood, [aqua]Report[/] data, or [red]Exit[/] app?")
-            .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")));
+            .Title("[green]Update[/] mood, [aqua]Report[/] data, [red]Admin Options[/] or [red]Exit[/] app?")
+            .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")
+            .HighlightStyle(msgColors.Query)
+        )
+        );
     }
 
     public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
@@ -58,7 +61,7 @@ public class UserInputHandler(IAnsiConsole console)
 
     public string GetAdminOption()
     {
-        TrackerUtils.LineMessage("[red]Admin Options:[/]", "red3");
+        TrackerUtils.WarningMessageLeftJustified("Admin Options:");
 
         var adminMenuChoices = new List<string>();
 
@@ -69,9 +72,10 @@ public class UserInputHandler(IAnsiConsole console)
 
         adminMenuChoices.Add("Exit to Main Menu");
 
-        return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
-            .Title("[bold red]Select Admin Option:[/]")
-            .AddChoices(adminMenuChoices)));
+        return Markup.Remove(
+            _console.Prompt(new SelectionPrompt<string>()
+            .Title($"[{msgColors.Warning}]Select Admin Option:[/]").AddChoices(adminMenuChoices).HighlightStyle(msgColors.Query))
+        );
     }
 
     public DateTime PromptForDate()
@@ -84,16 +88,16 @@ public class UserInputHandler(IAnsiConsole console)
 
         if (availableDates.Count == 0)
         {
-            TrackerUtils.CenteredMessage("[red]No mood records found![/]");
+            TrackerUtils.WarningMessageCentered("No mood records found!");
             return DateTime.Today;
         }
 
         var selection = new SelectionPrompt<DateTime>()
             .Title("Select a date to view reports:")
             .PageSize(10)
-            .MoreChoicesText("[grey](Move up and down to see more dates)[/]")
+            .MoreChoicesText($"[{msgColors.Query}](Move up and down to see more dates)[/]")
             .UseConverter(d => d.ToString("dddd, MMMM d, yyyy"))
-            .AddChoices(availableDates);
+            .AddChoices(availableDates).HighlightStyle(msgColors.Query);
 
         return _console.Prompt(selection);
     }
