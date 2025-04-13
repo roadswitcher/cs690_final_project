@@ -71,8 +71,8 @@ internal class Tracker
         switch (reportChoice)
         {
             case "Today":
-                // var dailyReport = reportHandler.GenerateDailyReport(today);
                 _reportDisplayer.DisplayDailyReport(today);
+                TrackerUtils.EnterToContinue();
                 break;
             case "Pick a Day":
                 var chosenDate = _userInputHandler.PromptForDate();

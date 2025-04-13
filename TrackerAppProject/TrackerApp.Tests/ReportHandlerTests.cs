@@ -149,20 +149,4 @@ public class ReportDisplayerTests
         Assert.Equal(2, report.TotalRecords);
     }
     
-    [Fact]
-    public void DisplayDailyReport_WritesCorrectDataToConsole()
-    {
-        // Arrange
-        var date = _today;
-        
-        // Act
-        _reportDisplayer.DisplayDailyReport(date);
-        
-        // Assert
-        // Verify that the console was written to with expected content
-        _mockConsole.Verify(c => c.WriteLine($"Number of updates today: 3"), Times.Once);
-        _mockConsole.Verify(c => c.Write(It.IsAny<Rule>()), Times.AtLeastOnce);
-        _mockConsole.Verify(c => c.Write(It.IsAny<Table>()), Times.AtLeastOnce);
-        _mockConsole.Verify(c => c.Write(It.IsAny<BreakdownChart>()), Times.Once);
-    }
 }

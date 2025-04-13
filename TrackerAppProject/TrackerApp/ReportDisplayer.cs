@@ -94,8 +94,6 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
         {
             _console.WriteLine("No mood records for past day.");
         }
-
-        TrackerUtils.EnterToContinue();
     }
 
     public void DisplayWeeklyReport()
