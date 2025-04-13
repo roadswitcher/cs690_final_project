@@ -5,7 +5,7 @@ public class DailyReport
     public DateTime Date { get; init; }
     public int TotalRecords { get; init; }
     public Dictionary<string, int> MoodDistribution { get; init; } = new();
-    public Dictionary<string, int> TimeOfDayDistribution { get; init; } = new();
+    public Dictionary<string, (int Count, string MostCommonMood)> TimeOfDayDistribution { get; init; } = new();
 
     public List<(string, string, string, string)> DailyBreakdown { get; init; } = [];
 }
@@ -15,7 +15,7 @@ public class WeeklyReport
     public DateTime Date { get; init; }
     public int TotalRecords { get; init; }
     public Dictionary<string, int> MoodDistribution { get; init; } = new();
-    public Dictionary<string, int> TimeOfDayDistribution { get; init; } = new();
+    public Dictionary<string, (int Count, string MostCommonMood)> TimeOfDayDistribution { get; init; } = new();
 }
 
 public class ReportHandler(IDataStore dataStore)
@@ -79,29 +79,65 @@ public class ReportHandler(IDataStore dataStore)
 
         return distribution;
     }
-
-    private static Dictionary<string, int> GetTimeOfDayDistribution(List<MoodRecord> records)
+private static Dictionary<string, (int Count, string MostCommonMood)> GetTimeOfDayDistribution(List<MoodRecord> records)
+{
+    var timePeriods = new[]
     {
-        var distribution = new Dictionary<string, int>
+        "Morning",
+        "Midday",
+        "Afternoon",
+        "Evening",
+        "Night"
+    };
+    
+    // Initialize the distribution dictionary with zero counts and empty most common moods
+    var distribution = timePeriods.ToDictionary(
+        period => period,
+        _ => (Count: 0, MostCommonMood: ""));
+    
+    // Track mood frequencies for each time period
+    var moodsByTimePeriod = new Dictionary<string, Dictionary<string, int>>();
+    
+    foreach (var period in timePeriods)
+    {
+        moodsByTimePeriod[period] = new Dictionary<string, int>();
+        foreach (var mood in TrackerUtils.MoodColors.Keys)
         {
-            { "Morning", 0 },
-            { "Afternoon", 0 },
-            { "Evening", 0 },
-            { "Night", 0 }
-        };
-
-        foreach (var timeOfDay in records.Select(record => record.Timestamp.ToLocalTime())
-                     .Select(localTime => localTime.Hour).Select(hour => hour switch
-                     {
-                         >= 5 and < 12 => "Morning",
-                         >= 12 and < 17 => "Afternoon",
-                         >= 17 and < 21 => "Evening",
-                         _ => "Night"
-                     }))
-            distribution[timeOfDay]++;
-
-        return distribution;
+            moodsByTimePeriod[period][mood] = 0;
+        }
     }
+
+    foreach (var record in records)
+    {
+        var localTime = record.Timestamp.ToLocalTime();
+        var hour = localTime.Hour;
+        
+        string timeOfDay = hour switch
+        {
+            >= 5 and < 11 => "Morning",
+            >= 11 and < 13 => "Midday",
+            >= 13 and < 17 => "Afternoon",
+            >= 17 and < 21 => "Evening",
+            _ => "Night"
+        };
+        
+        // Increment the count for this time period and track mood frequency
+        distribution[timeOfDay] = (distribution[timeOfDay].Count + 1, distribution[timeOfDay].MostCommonMood);
+        moodsByTimePeriod[timeOfDay][record.Mood]++;
+    }
+    
+    foreach (var period in timePeriods)
+    {
+        var moodFrequencies = moodsByTimePeriod[period];
+        if (moodFrequencies.Values.Sum() > 0) // Make sure there are records for this period
+        {
+            var mostCommonMood = moodFrequencies.OrderByDescending(kv => kv.Value).First().Key;
+            distribution[period] = (distribution[period].Count, mostCommonMood);
+        }
+    }
+    
+    return distribution;
+}
 
     private static List<(string TimeCategory, string Time, string Mood, string Trigger)> GetDailyBreakdownList(
         List<MoodRecord> records)

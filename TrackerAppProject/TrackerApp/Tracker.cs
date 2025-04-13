@@ -81,7 +81,7 @@ internal class Tracker
                 var specificDayReport = reportHandler.GetDailyReport(chosenDate);
                 _reportDisplayer.DisplayDailyReport(specificDayReport);
                 break;
-            case "Week":
+            case "Past Week":
                 var weeklyReport = reportHandler.GetWeeklyReport(today);
                 _reportDisplayer.DisplayWeeklyReport(weeklyReport);
                 break;
