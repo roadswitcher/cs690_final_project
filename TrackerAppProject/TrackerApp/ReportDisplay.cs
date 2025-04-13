@@ -3,7 +3,7 @@ using TrackerApp.ObjectClasses;
 
 namespace TrackerApp;
 
-public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
+public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
 {
     private static readonly Dictionary<string, Color> MoodColors = TrackerUtils.MoodColors;
     private readonly IDataStore _dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
@@ -28,6 +28,7 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
 
         return chart;
     }
+
     public DailyReport GenerateDailyReport(DateTime localDate)
     {
         localDate = localDate.Date;
@@ -53,10 +54,11 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
 
         return report;
     }
+
     public void DisplayDailyReport(DateTime date)
     {
         var report = GenerateDailyReport(date);
-        
+
         _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
             .RuleStyle("cyan2"));
         _console.WriteLine($"Number of updates today: {report.TotalRecords}");
@@ -154,11 +156,9 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
         {
             _console.WriteLine("No mood records for this week.");
         }
-
-        TrackerUtils.EnterToContinue();
     }
-    
-        private static Dictionary<string, (int Count, string MostCommonMood)> GetTimeOfDayDistributionFromListOfRecords(
+
+    private static Dictionary<string, (int Count, string MostCommonMood)> GetTimeOfDayDistributionFromListOfRecords(
         List<MoodRecord> records)
     {
         var timePeriods = new[]
@@ -240,7 +240,7 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
 
         return tableData;
     }
-    
+
     public WeeklyReport GeneratePriorWeekReport(DateTime today)
     {
         var weekAgo = today.Date.AddDays(-6);

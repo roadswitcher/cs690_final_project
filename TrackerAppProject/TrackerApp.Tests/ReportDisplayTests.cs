@@ -4,21 +4,20 @@ using TrackerApp.ObjectClasses;
 
 namespace TrackerApp.Tests;
 
-public class ReportDisplayerTests
+public class ReportDisplayTests
 {
     private readonly Mock<IDataStore> _mockDataStore;
     private readonly Mock<IAnsiConsole> _mockConsole;
-    private readonly ReportDisplayer _reportDisplayer;
+    private readonly ReportDisplay _reportDisplay;
     private readonly List<MoodRecord> _testData;
     private readonly DateTime _today;
 
-    public ReportDisplayerTests()
+    public ReportDisplayTests()
     {
-        
         _today = DateTime.UtcNow.Date;
         _mockDataStore = new Mock<IDataStore>();
         _mockConsole = new Mock<IAnsiConsole>();
-        _reportDisplayer = new ReportDisplayer(_mockConsole.Object, _mockDataStore.Object);
+        _reportDisplay = new ReportDisplay(_mockConsole.Object, _mockDataStore.Object);
 
         // Intent is to produce a Daily report, and a Last Week report
         // All "moods" are using Content as placeholder content
@@ -62,14 +61,14 @@ public class ReportDisplayerTests
     {
         var date = _today;
 
-        var report = _reportDisplayer.GenerateDailyReport(date);
+        var report = _reportDisplay.GenerateDailyReport(date);
 
         Assert.Equal(3, report.TotalRecords);
         Assert.Equal(date, report.Date);
 
         // Check another date
         date = date.AddDays(-3);
-        report = _reportDisplayer.GenerateDailyReport(date);
+        report = _reportDisplay.GenerateDailyReport(date);
         Assert.Equal(2, report.TotalRecords);
     }
 
@@ -77,7 +76,7 @@ public class ReportDisplayerTests
     public void GetWeeklyReport_ReturnsCorrectNumberOfRecords()
     {
         var date = _today;
-        var report = _reportDisplayer.GeneratePriorWeekReport(date);
+        var report = _reportDisplay.GeneratePriorWeekReport(date);
 
         Assert.Equal(8, report.TotalRecords);
     }
@@ -106,9 +105,9 @@ public class ReportDisplayerTests
         _mockDataStore.Setup(ds => ds.GetMoodRecords()).Returns(records);
 
         // Act - query for yesterday
-        var yesterdayReport = _reportDisplayer.GenerateDailyReport(_today.AddDays(-1));
+        var yesterdayReport = _reportDisplay.GenerateDailyReport(_today.AddDays(-1));
         // Act - query for today
-        var todayReport = _reportDisplayer.GenerateDailyReport(_today);
+        var todayReport = _reportDisplay.GenerateDailyReport(_today);
 
         // Assert
         Assert.Equal(1, yesterdayReport.TotalRecords);
@@ -142,11 +141,10 @@ public class ReportDisplayerTests
 
         // Act
         // Query for the target local date
-        var report = _reportDisplayer.GenerateDailyReport(targetLocalDate);
+        var report = _reportDisplay.GenerateDailyReport(targetLocalDate);
 
         // Assert
         // Both records should be in the report since they fall within the same UTC day
         Assert.Equal(2, report.TotalRecords);
     }
-    
 }
