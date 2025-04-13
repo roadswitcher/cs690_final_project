@@ -32,19 +32,20 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
-    public static void WarningMessage(string message, string color = "red")
+    public static void WarningMessageLeftJustified(string message, string color = "red")
     {
         LineMessage(message, color=color);
     }
 
-    public static bool ConfirmYesNo(string color = "cyan")
+    public static bool ConfirmYesNo(string color = "cyan", bool defaultChoice = false)
     {
         return AnsiConsole.Prompt(
         new TextPrompt<bool>("Please confirm yes/no: ")
             .AddChoice(true)
             .AddChoice(false)
-            .DefaultValue(false)
+            .DefaultValue(defaultChoice)
             .WithConverter(choice => choice ? "y" : "n" )
+            .PromptStyle(color)
         );
     }
 
@@ -52,6 +53,11 @@ public static class TrackerUtils
     {
         var rule = new Rule($"{message}").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);
+    }
+
+    public static void WarningMessageCentered(string message)
+    {
+        CenteredMessage(message,  "red");
     }
 
     public static void ShowSelectedValue(string message, string color = "cyan")

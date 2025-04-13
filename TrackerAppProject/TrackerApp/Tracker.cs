@@ -100,8 +100,8 @@ internal class Tracker
             // implement choices
             case "Remove Last Update":
                 var lastRecord = _dataStore.GetLastMoodRecord();
-                TrackerUtils.WarningMessage("PLEASE CONFIRM YOU WANT TO DELETE THE FOLLOWING UPDATE:");
-                TrackerUtils.WarningMessage(
+                TrackerUtils.WarningMessageLeftJustified("PLEASE CONFIRM YOU WANT TO DELETE THE FOLLOWING UPDATE:");
+                TrackerUtils.WarningMessageLeftJustified(
                     $"Time: {lastRecord.Timestamp.ToLocalTime()} / Mood:{lastRecord.Mood} / Trigger: {lastRecord.Trigger}");
                 var confirmation = TrackerUtils.ConfirmYesNo();
 
@@ -111,8 +111,9 @@ internal class Tracker
                 TrackerUtils.EnterToContinue();
                 break;
             case "Remove All Data":
-                TrackerUtils.CenteredMessage("Removing all data will force you to login again.");
-                
+                TrackerUtils.WarningMessageCentered("Removing all data will force you to login again and lose ALL DATA");
+                TrackerUtils.WarningMessageCentered("PLEASE CONFIRM YOU WISH TO PROCEED");
+                TrackerUtils.ConfirmYesNo( "red");
                 return;
             case "Add Demonstration Data":
                 _dataStore.AddTheDemoData();
