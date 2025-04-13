@@ -1,6 +1,6 @@
 using Spectre.Console;
 
-namespace TrackerApp.Utilities;
+namespace TrackerApp;
 
 public static class TrackerUtils
 {

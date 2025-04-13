@@ -1,5 +1,4 @@
 using Spectre.Console;
-using TrackerApp.Utilities;
 
 namespace TrackerApp;
 
