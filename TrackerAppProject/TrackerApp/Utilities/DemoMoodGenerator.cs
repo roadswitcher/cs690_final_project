@@ -2,9 +2,9 @@ namespace TrackerApp.Utilities;
 
 public class DemoMoodGenerator
 {
-    private static readonly Random random = new();
+    private static readonly Random Random = new();
 
-    private static readonly string[] triggers = new string[]
+    private static readonly string[] Triggers = new string[]
     {
         "Just got an A on my assignment",
         "Had a great conversation with a friend",
@@ -36,15 +36,15 @@ public class DemoMoodGenerator
         for (var i = 0; i < numberOfDays; i++)
         {
             var date = currentDate.AddDays(-i);
-            var updatesForDay = random.Next(2, 7); // Random number of updates between 2 and 6 per day
+            var updatesForDay = Random.Next(2, 7); // Random number of updates between 2 and 6 per day
 
             for (var j = 0; j < updatesForDay; j++)
             {
-                var mood = moods[random.Next(moods.Count)];
+                var mood = moods[Random.Next(moods.Count)];
                 var trigger = "(demo) "; // make deleting demo data easier
-                trigger = trigger + (random.NextDouble() < 0.5 ? triggers[random.Next(triggers.Length)] : null);
-                var hour = random.Next(7, 24); // Confine updates to likely waking hours
-                var minute = random.Next(60);
+                trigger = trigger + (Random.NextDouble() < 0.5 ? Triggers[Random.Next(Triggers.Length)] : null);
+                var hour = Random.Next(7, 24); // Confine updates to likely waking hours
+                var minute = Random.Next(60);
                 var timestamp = new DateTime(date.Year, date.Month, date.Day, hour, minute, 0);
 
                 moodRecords.Add(new MoodRecord

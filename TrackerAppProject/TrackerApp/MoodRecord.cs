@@ -16,7 +16,7 @@ public class MoodRecord
         // Default for deserialization
     }
 
-    public string Mood { get; set; } = string.Empty;
-    public string Trigger { get; set; } = string.Empty;
-    public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+    public string Mood { get; init; } = string.Empty;
+    public string Trigger { get; init; } = string.Empty;
+    public DateTime Timestamp { get; init; } = DateTime.UtcNow;
 }

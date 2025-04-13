@@ -11,7 +11,7 @@ public class LoginHandler
         return dataStore.IsFirstLaunch() ? HandleNewUser() : HandleReturningUser();
     }
 
-    public static UserAccount HandleNewUser()
+    private static UserAccount HandleNewUser()
     {
         AnsiConsole.MarkupLine("[yellow]First time using the app? Let's set up your account.[/]");
 
@@ -36,7 +36,7 @@ public class LoginHandler
         return newUser;
     }
 
-    public static UserAccount HandleReturningUser()
+    private static UserAccount HandleReturningUser()
     {
         var dataStore = DataStore.Instance;
         var userAccount = dataStore.GetUserCredentials();
@@ -86,6 +86,8 @@ public class LoginHandler
 
     private static string HashPassword(string password)
     {
-        return Convert.ToBase64String(password);
+        // Not using crypto at the moment, it's a class project
+        // return Convert.ToBase64String(password);
+        return password;
     }
 }

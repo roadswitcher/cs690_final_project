@@ -130,11 +130,9 @@ public class ReportHandler(IDataStore dataStore)
         foreach (var period in timePeriods)
         {
             var moodFrequencies = moodsByTimePeriod[period];
-            if (moodFrequencies.Values.Sum() > 0) // Make sure there are records for this period
-            {
-                var mostCommonMood = moodFrequencies.OrderByDescending(kv => kv.Value).First().Key;
-                distribution[period] = (distribution[period].Count, mostCommonMood);
-            }
+            if (moodFrequencies.Values.Sum() <= 0) continue; // Make sure there are records for this period
+            var mostCommonMood = moodFrequencies.OrderByDescending(kv => kv.Value).First().Key;
+            distribution[period] = (distribution[period].Count, mostCommonMood);
         }
 
         return distribution;
@@ -166,4 +164,5 @@ public class ReportHandler(IDataStore dataStore)
 
         return tableData;
     }
+    
 }
