@@ -66,24 +66,23 @@ internal class Tracker
     private void HandleReportGeneration()
     {
         var reportChoice = _userInputHandler.GetReportChoice();
-
-        var reportHandler = new ReportHandler(_dataStore);
+        // var reportHandler = new ReportHandler(_dataStore);
         var today = DateTime.Now;
 
         switch (reportChoice)
         {
             case "Today":
-                var dailyReport = reportHandler.GenerateDailyReport(today);
-                _reportDisplayer.DisplayDailyReport(dailyReport);
+                // var dailyReport = reportHandler.GenerateDailyReport(today);
+                _reportDisplayer.DisplayDailyReport(today);
                 break;
             case "Pick a Day":
                 var chosenDate = _userInputHandler.PromptForDate();
-                var specificDayReport = reportHandler.GenerateDailyReport(chosenDate);
-                _reportDisplayer.DisplayDailyReport(specificDayReport);
+                // var specificDayReport = reportHandler.GenerateDailyReport(chosenDate);
+                _reportDisplayer.DisplayDailyReport(chosenDate);
                 break;
             case "Past Week":
-                var weeklyReport = reportHandler.GeneratePriorWeekReport(today);
-                _reportDisplayer.DisplayWeeklyReport(weeklyReport);
+                // var weeklyReport = reportHandler.GeneratePriorWeekReport(today);
+                _reportDisplayer.DisplayWeeklyReport();
                 break;
             default:
                 AnsiConsole.Clear();

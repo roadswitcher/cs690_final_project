@@ -53,8 +53,10 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
 
         return report;
     }
-    public void DisplayDailyReport(DailyReport report)
+    public void DisplayDailyReport(DateTime date)
     {
+        var report = GenerateDailyReport(date);
+        
         _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
             .RuleStyle("cyan2"));
         _console.WriteLine($"Number of updates today: {report.TotalRecords}");
@@ -96,8 +98,9 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
         TrackerUtils.EnterToContinue();
     }
 
-    public void DisplayWeeklyReport(WeeklyReport report)
+    public void DisplayWeeklyReport()
     {
+        var report = GeneratePriorWeekReport();
         var startDate = report.Date.AddDays(-6);
         AnsiConsole.Clear();
 
@@ -242,6 +245,7 @@ public class ReportDisplayer(IAnsiConsole console, IDataStore dataStore)
     
     public WeeklyReport GeneratePriorWeekReport(DateTime today)
     {
+        var today = DateTime.Now;
         var weekAgo = today.Date.AddDays(-6);
         var records = _dataStore.GetMoodRecords()
             .Where(record => record.Timestamp.Date >= weekAgo && record.Timestamp.Date <= today).ToList();
