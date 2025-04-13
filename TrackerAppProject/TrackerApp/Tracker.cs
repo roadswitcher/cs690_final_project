@@ -100,15 +100,10 @@ internal class Tracker
             // implement choices
             case "Remove Last Update":
                 var lastRecord = _dataStore.GetLastMoodRecord();
-                TrackerUtils.LineMessage("Please confirm you want to remove this update:");
-                TrackerUtils.LineMessage(
-                    $"Time: {lastRecord.Timestamp.ToLocalTime().ToShortTimeString()} / Last Mood: {lastRecord.Mood} / Last Trigger: \"{lastRecord.Trigger}\"");
-                var confirmation = AnsiConsole.Prompt(
-                    new TextPrompt<bool>("Are you sure you want to delete that? [[Default: n]]")
-                        .AddChoice(true)
-                        .AddChoice(false)
-                        .DefaultValue(false)
-                        .WithConverter(choice => choice ? "y" : "n"));
+                TrackerUtils.WarningMessage("PLEASE CONFIRM YOU WANT TO DELETE THE FOLLOWING UPDATE:");
+                TrackerUtils.WarningMessage(
+                    $"Time: {lastRecord.Timestamp.ToLocalTime()} / Mood:{lastRecord.Mood} / Trigger: {lastRecord.Trigger}");
+                var confirmation = TrackerUtils.ConfirmYesNo();
 
                 // Echo the confirmation back to the terminal
                 Console.WriteLine(confirmation ? "Deletion Confirmed" : "Very well then.");

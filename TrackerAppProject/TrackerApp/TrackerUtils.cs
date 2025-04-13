@@ -32,6 +32,22 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
+    public static void WarningMessage(string message, string color = "red")
+    {
+        LineMessage(message, color=color);
+    }
+
+    public static bool ConfirmYesNo(string color = "cyan")
+    {
+        return AnsiConsole.Prompt(
+        new TextPrompt<bool>("Please confirm yes/no: ")
+            .AddChoice(true)
+            .AddChoice(false)
+            .DefaultValue(false)
+            .WithConverter(choice => choice ? "y" : "n" )
+        );
+    }
+
     public static void CenteredMessage(string message, string color = "cyan")
     {
         var rule = new Rule($"{message}").Centered().RuleStyle(color);
@@ -44,16 +60,15 @@ public static class TrackerUtils
         AnsiConsole.Write(rule);
     }
 
-
     public static void EnterToContinue(bool clearscreen = true)
     {
-        var rule = new Rule("[green]Please press Enter to continue[/]").Centered().RuleStyle("yellow");
+        var rule = new Rule("[yellow]Please press Enter to continue[/]").Centered().RuleStyle("cyan");
         AnsiConsole.Write(rule);
         AnsiConsole.Prompt(new TextPrompt<string>("").AllowEmpty());
         if (clearscreen) AnsiConsole.Clear();
     }
 
-    public static void CenteredMessageEnterContinue(string message, string color = "green", bool clearscreen = true)
+    public static void CenteredMessageEnterContinue(string message, string color = "yellow", bool clearscreen = true)
     {
         var rule = new Rule($"{message} -- please select Enter to continue").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);
@@ -77,15 +92,15 @@ public static class TrackerUtils
     public static void DisplayHeaderInfo()
     {
         var userName = DataStore.Instance.GetUserCredentials().Username;
-        CenteredMessage($"[green]MoodTracker[/] --- Logged in as [green]{userName}[/]");
-        CenteredMessage($"Tracking [orange3]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
+        CenteredMessage($"[yellow]MoodTracker[/] --- Logged in as [yellow]{userName}[/]");
+        CenteredMessage($"Tracking [yellow]{DataStore.Instance.GetMoodRecordCount()}[/] Mood Updates");
     }
 
     public static void ShowExitMessages()
     {
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
-        CenteredMessage("[orange3]Thanks for using the app[/]");
+        CenteredMessage("[yellow]Thanks for using the app[/]");
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
     }
