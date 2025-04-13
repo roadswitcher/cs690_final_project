@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+#set -x
 
 PROJECT=./TrackerAppProject/TrackerApp/TrackerApp.csproj
 STANDALONE_PROJECT=./TrackerAppProject/TrackerApp/TrackerApp-Standalone.csproj
@@ -23,13 +23,15 @@ dotnet publish "$PROJECT" \
     -c Release \
     -o "$CROSS_DIR"
 
-zip ./$DLL_ZIP_FILE $CROSS_DIR/*
+zip -q ./$DLL_ZIP_FILE $CROSS_DIR/*
 
 mkdir -p $OUT_DIR
 
 mv ./$DLL_ZIP_FILE ./$OUT_DIR/
 [ -d $CROSS_DIR ] && rm -rf $CROSS_DIR
 
+echo "Cross-platfrom DLL built, TrackerApp_CS690.zip moved to ${OUT_DIR}"
+echo ""
 
 # Second:   if we're going to build standalone binaries ( with pdb ), 
 #           let's build ALL the platforms
@@ -39,7 +41,8 @@ mv ./$DLL_ZIP_FILE ./$OUT_DIR/
 cp ./Utils/TrackerApp-Standalone.csproj ./TrackerAppProject/TrackerApp/
 
 RIDS=("win-x64" "linux-x64" "osx-arm64" "osx-x64" )
-
+echo "Building TrackerApp-Standalone for each of the following: ${RIDS[@]}"
+echo ""
 
 for RID in "${RIDS[@]}"; do
     echo "Publishing for $RID..."
