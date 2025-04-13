@@ -1,7 +1,6 @@
 ## ignore the published_binaries/ directory
 published_binaries/
 release_zipfiles/
-
 TrackerApp_CS690/
 *.zip
 
