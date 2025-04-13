@@ -2,7 +2,8 @@ namespace TrackerApp;
 
 public class DemoMoodGenerator
 {
-    private static readonly Random random = new Random();
+    private static readonly Random random = new();
+
     private static readonly string[] triggers = new string[]
     {
         "Just got an A on my assignment",
@@ -22,26 +23,26 @@ public class DemoMoodGenerator
         "Feeling tired and need a nap"
     };
 
-    public static List<MoodRecord> GenerateMoodUpdates(int numberOfDays=45)
+    public static List<MoodRecord> GenerateMoodUpdates(int numberOfDays = 45)
     {
         // Aim is to do the following:
         // - Generate N days of 'demo' updates going back from current local time when invoked
         // - Add (demo) into the trigger info for removal?  Or just an admin option to 'clear all data'?
-        
+
         var moods = TrackerUtils.MoodColors.Keys.ToList();
         var moodRecords = new List<MoodRecord>();
 
         var currentDate = DateTime.Now;
-        for (int i = 0; i < numberOfDays; i++)
+        for (var i = 0; i < numberOfDays; i++)
         {
             var date = currentDate.AddDays(-i);
             var updatesForDay = random.Next(2, 7); // Random number of updates between 2 and 6 per day
 
-            for (int j = 0; j < updatesForDay; j++)
+            for (var j = 0; j < updatesForDay; j++)
             {
                 var mood = moods[random.Next(moods.Count)];
                 var trigger = "(demo) "; // make deleting demo data easier
-                trigger = trigger + ( random.NextDouble() < 0.5 ? triggers[random.Next(triggers.Length)] : null );
+                trigger = trigger + (random.NextDouble() < 0.5 ? triggers[random.Next(triggers.Length)] : null);
                 var hour = random.Next(7, 24); // Confine updates to likely waking hours
                 var minute = random.Next(60);
                 var timestamp = new DateTime(date.Year, date.Month, date.Day, hour, minute, 0);
