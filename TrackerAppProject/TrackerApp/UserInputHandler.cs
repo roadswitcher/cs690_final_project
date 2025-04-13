@@ -63,7 +63,7 @@ public class UserInputHandler(IAnsiConsole console)
         if (DataStore.Instance.ContainsRecords()) AdminMenuChoices.Add("Remove All Updates");
         if (!DataStore.Instance.HasDemoTrigger()) AdminMenuChoices.Add("Add Demonstration Data");
         if (DataStore.Instance.HasDemoTrigger()) AdminMenuChoices.Add("Remove Demonstration Data");
-        
+
         AdminMenuChoices.Add("Exit to Main Menu");
 
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()

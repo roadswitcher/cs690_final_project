@@ -82,10 +82,11 @@ public class DataStore : IDataStore
         _moodRecords = [];
         _userCredentials = new UserAccount();
     }
-    
+
     public bool HasDemoTrigger()
     {
-        return _moodRecords.Any(record => record.Trigger != null && record.Trigger.StartsWith("(demo)", StringComparison.OrdinalIgnoreCase));
+        return _moodRecords.Any(record =>
+            record.Trigger != null && record.Trigger.StartsWith("(demo)", StringComparison.OrdinalIgnoreCase));
     }
 
     public void AddTheDemoData()
@@ -93,17 +94,15 @@ public class DataStore : IDataStore
         var demoRecords = DemoMoodGenerator.GenerateMoodUpdates();
 
         if (HasDemoTrigger()) return;
-        foreach (var record in demoRecords)
-        {
-            AddMoodRecord(record);
-        }
-        // Save it
+        foreach (var record in demoRecords) AddMoodRecord(record);
         SaveData();
     }
 
-    public bool DeleteDemoData()
+    public void DeleteDemoData()
     {
-         return _moodRecords.RemoveAll(record => record.Trigger != null && record.Trigger.StartsWith("(demo) ", StringComparison.OrdinalIgnoreCase)) > 0;
+        _moodRecords.RemoveAll(record =>
+            record.Trigger != null && record.Trigger.StartsWith("(demo) ", StringComparison.OrdinalIgnoreCase));
+        SaveData();
     }
 
     public bool IsFirstLaunch()
