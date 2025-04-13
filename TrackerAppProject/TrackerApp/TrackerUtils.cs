@@ -53,6 +53,12 @@ public static class TrackerUtils
         if (clearscreen) AnsiConsole.Clear();
     }
 
+    public static void CenteredMessageEnterContinue(string message, string color = "green")
+    {
+        var rule = new Rule($"{message} -- please select Enter to continue" ).Centered().RuleStyle(color);
+        AnsiConsole.Write(rule);
+    }
+    
     public static void WelcomeScreen(string[] args)
     {
         AnsiConsole.Clear();

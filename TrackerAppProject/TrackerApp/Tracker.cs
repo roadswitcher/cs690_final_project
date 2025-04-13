@@ -115,6 +115,16 @@ internal class Tracker
                 if (confirmation) _dataStore.RemoveLastMoodRecord();
                 TrackerUtils.EnterToContinue();
                 break;
+            case "Remove All Updates":
+                return;
+            case "Add Demonstration Data":
+                _dataStore.AddTheDemoData();
+                TrackerUtils.CenteredMessageEnterContinue("Added Demonstration Data");
+                return;
+            case "Remove Demonstration Data":
+                _dataStore.DeleteDemoData();
+                TrackerUtils.CenteredMessageEnterContinue("Removed Demonstration data");
+                return;
             case "Return to Main Menu":
                 AnsiConsole.Clear();
                 return;

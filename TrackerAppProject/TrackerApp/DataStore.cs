@@ -88,7 +88,7 @@ public class DataStore : IDataStore
         return _moodRecords.Any(record => record.Trigger != null && record.Trigger.StartsWith("(demo)", StringComparison.OrdinalIgnoreCase));
     }
 
-    private void LoadDemoData()
+    public void AddTheDemoData()
     {
         var demoRecords = DemoMoodGenerator.GenerateMoodUpdates();
 
@@ -97,7 +97,8 @@ public class DataStore : IDataStore
         {
             AddMoodRecord(record);
         }
-
+        // Save it
+        SaveData();
     }
 
     public bool DeleteDemoData()
