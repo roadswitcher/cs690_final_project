@@ -42,7 +42,7 @@ public class LoginHandler
         var userAccount = dataStore.GetUserCredentials();
         var storedUsername = userAccount.Username;
 
-       
+
         //
         // PASSWORD FUNCTIONALITY NOT BEING TESTED AT THIS TIME
         // CODE LEFT AS SKELETON FOR FUTURE

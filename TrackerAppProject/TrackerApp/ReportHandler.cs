@@ -40,7 +40,8 @@ public class ReportHandler(IDataStore dataStore)
 
         var report = new DailyReport
         {
-            Date = localDate, TotalRecords = records.Count, MoodDistribution = GetMoodDistributionFromListOfRecords(records),
+            Date = localDate, TotalRecords = records.Count,
+            MoodDistribution = GetMoodDistributionFromListOfRecords(records),
             TimeOfDayDistribution = GetTimeOfDayDistributionFromListOfRecords(records),
             DailyBreakdown = GetDailyBreakdownList(records)
         };

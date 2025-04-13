@@ -111,9 +111,10 @@ internal class Tracker
                 TrackerUtils.EnterToContinue();
                 break;
             case "Remove All Data":
-                TrackerUtils.WarningMessageCentered("Removing all data will force you to login again and lose ALL DATA");
+                TrackerUtils.WarningMessageCentered(
+                    "Removing all data will force you to login again and lose ALL DATA");
                 TrackerUtils.WarningMessageCentered("PLEASE CONFIRM YOU WISH TO PROCEED");
-                TrackerUtils.ConfirmYesNo( "red");
+                TrackerUtils.ConfirmYesNo("red");
                 return;
             case "Add Demonstration Data":
                 _dataStore.AddTheDemoData();

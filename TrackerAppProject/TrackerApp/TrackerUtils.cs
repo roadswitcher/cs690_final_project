@@ -18,38 +18,47 @@ public static class TrackerUtils
         { "Content", Color.Cyan1 } // Calm blue-green - peaceful and satisfied
     };
 
-    public static void DebugMessage(string message)
+    public static class ConsoleColor
+    {
+        public const string Emphasis = "green1";
+        public const string Warning = "red";
+        public const string Info = "blue";
+        public const string Success = "green3";
+        public const string Debug = "fuchsia";
+    }
+
+    public static void DebugMessage(string message, string color = ConsoleColor.Debug)
     {
 #if DEBUG
-        AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
+        AnsiConsole.MarkupLine($"[{color}]{message}[/]");
 #endif
     }
 
     // Reference link:  https://spectreconsole.net/appendix/colors
-    public static void LineMessage(string message, string color = "cyan")
+    public static void LineMessage(string message, string color = ConsoleColor.Info)
     {
         var rule = new Rule($"{message}").LeftJustified().RuleStyle(color);
         AnsiConsole.Write(rule);
     }
 
-    public static void WarningMessageLeftJustified(string message, string color = "red")
+    public static void WarningMessageLeftJustified(string message, string color = ConsoleColor.Warning)
     {
-        LineMessage(message, color=color);
+        LineMessage(message, color = color);
     }
 
-    public static bool ConfirmYesNo(string color = "cyan", bool defaultChoice = false)
+    public static bool ConfirmYesNo(string color = ConsoleColor.Info, bool defaultChoice = false)
     {
         return AnsiConsole.Prompt(
-        new TextPrompt<bool>("Please confirm yes/no: ")
-            .AddChoice(true)
-            .AddChoice(false)
-            .DefaultValue(defaultChoice)
-            .WithConverter(choice => choice ? "y" : "n" )
-            .PromptStyle(color)
+            new TextPrompt<bool>("Please confirm yes/no: ")
+                .AddChoice(true)
+                .AddChoice(false)
+                .DefaultValue(defaultChoice)
+                .WithConverter(choice => choice ? "y" : "n")
+                .PromptStyle(color)
         );
     }
 
-    public static void CenteredMessage(string message, string color = "cyan")
+    public static void CenteredMessage(string message, string color = ConsoleColor.Info)
     {
         var rule = new Rule($"{message}").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);
@@ -57,24 +66,27 @@ public static class TrackerUtils
 
     public static void WarningMessageCentered(string message)
     {
-        CenteredMessage(message,  "red");
+        CenteredMessage(message, "red");
     }
 
-    public static void ShowSelectedValue(string message, string color = "cyan")
+    public static void ShowSelectedValue(string message, string color = ConsoleColor.Info)
     {
         var rule = new Rule($"You Selected: [green]{message}[/]").LeftJustified().RuleStyle(color);
         AnsiConsole.Write(rule);
     }
 
-    public static void EnterToContinue(bool clearscreen = true)
+    public static void EnterToContinue(bool clearscreen = true,
+        string textColor = ConsoleColor.Info,
+        string ruleColor = ConsoleColor.Info)
     {
-        var rule = new Rule("[yellow]Please press Enter to continue[/]").Centered().RuleStyle("cyan");
+        var rule = new Rule($"[{textColor}]Please press Enter to continue[/]").Centered().RuleStyle(ruleColor);
         AnsiConsole.Write(rule);
         AnsiConsole.Prompt(new TextPrompt<string>("").AllowEmpty());
         if (clearscreen) AnsiConsole.Clear();
     }
 
-    public static void CenteredMessageEnterContinue(string message, string color = "yellow", bool clearscreen = true)
+    public static void CenteredMessageEnterContinue(string message, string color = ConsoleColor.Emphasis,
+        bool clearscreen = true)
     {
         var rule = new Rule($"{message} -- please select Enter to continue").Centered().RuleStyle(color);
         AnsiConsole.Write(rule);
