@@ -73,11 +73,10 @@ public class ReportDisplayer(IAnsiConsole console)
     public void DisplayWeeklyReport(WeeklyReport report)
     {
         var startDate = report.Date.AddDays(-6);
-        _console.Write(new Rule($"[cyan1]Weekly Report ({startDate:MMM dd} - {report.Date:MMM dd})[/]").LeftJustified()
+        AnsiConsole.Clear();
+        
+        _console.Write(new Rule($"[cyan1]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]").LeftJustified()
             .RuleStyle("cyan2"));
-
-        // Show total records
-        _console.WriteLine($"Total mood records: {report.TotalRecords}");
 
         if (report.TotalRecords > 0)
         {
@@ -107,11 +106,15 @@ public class ReportDisplayer(IAnsiConsole console)
                 timeTable.AddColumn("Time of Day");
                 timeTable.AddColumn("Count");
                 timeTable.AddColumn("Percentage");
+                timeTable.AddColumn("Most Common Mood");
 
                 foreach (var time in report.TimeOfDayDistribution)
                 {
-                    var percentage = (double)time.Value / report.TotalRecords * 100;
-                    timeTable.AddRow(time.Key, time.Value.ToString(), $"{percentage:F1}%");
+                    var percentage = (double)time.Value.Count / report.TotalRecords * 100;
+                    var moodDisplay = string.IsNullOrEmpty(time.Value.MostCommonMood)
+                        ? "-"
+                        : time.Value.MostCommonMood;
+                    timeTable.AddRow(time.Key, time.Value.Count.ToString(), $"{percentage:F1}%", moodDisplay);
                 }
 
                 _console.Write(timeTable);
