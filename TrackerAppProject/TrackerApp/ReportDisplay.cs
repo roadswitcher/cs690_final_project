@@ -59,9 +59,8 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
     {
         var report = GenerateDailyReport(date);
 
-        _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
+        _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/] - {report.TotalRecords} total updates").Centered()
             .RuleStyle("cyan2"));
-        _console.WriteLine($"Number of updates today: {report.TotalRecords}");
 
         // Show mood distribution
         if (report.TotalRecords > 0)
@@ -89,8 +88,9 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
             foreach (var (timeCategory, time, mood, trigger) in dailyBreakdown)
                 breakdownTable.AddRow(timeCategory, time, mood, trigger);
 
-            _console.Write(chart);
-            _console.Write(breakdownTable);
+            _console.Write(new Align(chart, HorizontalAlignment.Center));
+            _console.WriteLine("");
+            _console.Write(new Align(breakdownTable, HorizontalAlignment.Center));
         }
         else
         {
