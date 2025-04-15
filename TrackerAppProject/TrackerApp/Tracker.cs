@@ -80,7 +80,6 @@ internal class Tracker
                 break;
             case "Past Week":
                 _reportDisplay.DisplayWeeklyReport();
-                TrackerUtils.EnterToContinue();
                 break;
             default:
                 AnsiConsole.Clear();

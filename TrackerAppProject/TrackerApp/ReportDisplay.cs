@@ -7,9 +7,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
 {
     private static readonly Dictionary<string, Color> MoodColors = TrackerUtils.MoodColors;
     private readonly IDataStore _dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
-
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
-
 
     private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
     {
@@ -59,14 +57,15 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
     {
         var report = GenerateDailyReport(date);
 
-        _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/]").LeftJustified()
-            .RuleStyle("cyan2"));
-        _console.WriteLine($"Number of updates today: {report.TotalRecords}");
+        _console.Write(
+            new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/] - {report.TotalRecords} total updates")
+                .Centered()
+                .RuleStyle("cyan2"));
 
         // Show mood distribution
         if (report.TotalRecords > 0)
         {
-            var chart = BuildBreakdownChart(report.MoodDistribution).Width(75);
+            var chart = BuildBreakdownChart(report.MoodDistribution).Width(80);
 
             var moodTable = new Table().Border(TableBorder.Simple);
             moodTable.AddColumn("Mood");
@@ -81,7 +80,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
 
             var dailyBreakdown = report.DailyBreakdown;
 
-            var breakdownTable = new Table();
+            var breakdownTable = new Table().Title("Daily Breakdown");
             breakdownTable.AddColumn("Period");
             breakdownTable.AddColumn("Time");
             breakdownTable.AddColumn("Mood");
@@ -89,8 +88,9 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
             foreach (var (timeCategory, time, mood, trigger) in dailyBreakdown)
                 breakdownTable.AddRow(timeCategory, time, mood, trigger);
 
-            _console.Write(chart);
-            _console.Write(breakdownTable);
+            _console.Write(new Align(chart, HorizontalAlignment.Center));
+            _console.WriteLine("");
+            _console.Write(new Align(breakdownTable, HorizontalAlignment.Center));
         }
         else
         {
@@ -104,17 +104,14 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
         var startDate = report.Date.AddDays(-6);
         AnsiConsole.Clear();
 
-        _console.Write(
-            new Rule(
-                    $"[cyan1]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]")
-                .LeftJustified()
-                .RuleStyle("cyan2"));
+        var bannerMessage = new Rule(
+                $"[{TrackerUtils.MsgColors.Emphasis}]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]")
+            .Centered()
+            .RuleStyle(TrackerUtils.MsgColors.Emphasis);
 
         if (report.TotalRecords > 0)
         {
             // Show mood distribution
-            _console.WriteLine();
-            _console.WriteLine("Mood Record Distribution:");
             var moodTable = new Table().Border(TableBorder.Simple);
             moodTable.AddColumn("Mood");
             moodTable.AddColumn("Count");
@@ -126,14 +123,9 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
 
-            _console.Write(BuildBreakdownChart(report.MoodDistribution));
-            _console.Write(moodTable);
-
             // Show time of day distribution
             if (report.TimeOfDayDistribution?.Count > 0)
             {
-                _console.WriteLine();
-                _console.WriteLine("Time of Day Distribution for Reports:");
                 var timeTable = new Table().Border(TableBorder.Simple);
                 timeTable.AddColumn("Time of Day");
                 timeTable.AddColumn("Count");
@@ -149,7 +141,30 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                     timeTable.AddRow(time.Key, time.Value.Count.ToString(), $"{percentage:F1}%", moodDisplay);
                 }
 
-                _console.Write(timeTable);
+                var breakdownChart = BuildBreakdownChart(report.MoodDistribution).Width(95);
+
+                var newlayout = new Layout("Root").SplitRows(
+                    new Layout("Breakdown"),
+                    new Layout("Tables").SplitColumns(
+                        new Layout("MoodTable"),
+                        new Layout("TimeTable")),
+                    new Layout("ExitMessage"));
+
+                var panelHeader =
+                    $"[{TrackerUtils.MsgColors.Emphasis}]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]";
+
+                newlayout["Breakdown"].Update(new Panel(
+                        new Align(breakdownChart, HorizontalAlignment.Center, VerticalAlignment.Middle)).Expand()
+                    .Header(new PanelHeader(panelHeader)));
+
+                newlayout["MoodTable"].Update(new Align(moodTable, HorizontalAlignment.Center));
+                newlayout["TimeTable"].Update(new Align(timeTable, HorizontalAlignment.Center));
+                newlayout["ExitMessage"].Update(new Rule($"Hit Any Key to Continue").Centered()
+                    .RuleStyle(TrackerUtils.MsgColors.Emphasis));
+                _console.Write(newlayout);
+                // TODO: better way?
+                Console.ReadKey();
+                AnsiConsole.Clear();
             }
         }
         else

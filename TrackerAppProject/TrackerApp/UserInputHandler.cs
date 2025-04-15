@@ -2,26 +2,27 @@ using Spectre.Console;
 using TrackerApp.ObjectClasses;
 
 namespace TrackerApp;
+
 using msgColors = TrackerUtils.MsgColors;
 
 public class UserInputHandler(IAnsiConsole console)
 {
-   
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
 
     public string GetMainMenuChoice()
     {
         return Markup.Remove(_console.Prompt(new SelectionPrompt<string>()
-            .Title("[green]Update[/] mood, [aqua]Report[/] data, [red]Admin Options[/] or [red]Exit[/] app?")
-            .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")
-            .HighlightStyle(msgColors.Query)
-        )
+                .Title("[green]Update[/] mood, [aqua]Report[/] data, [red]Admin Options[/] or [red]Exit[/] app?")
+                .AddChoices("[green]Update[/]", "[aqua]Report[/]", "[red]Admin Options[/]", "[red]Exit[/]")
+                .HighlightStyle(msgColors.Query)
+            )
         );
     }
 
     public MoodRecord GetMoodRecordUpdate(List<string> trackedEmotions)
     {
-        TrackerUtils.LineMessage($"[{msgColors.Emphasis}]Mood Update:[/] [{msgColors.Query}]What is your current mood?[/]");
+        TrackerUtils.LineMessage(
+            $"[{msgColors.Emphasis}]Mood Update:[/] [{msgColors.Query}]What is your current mood?[/]");
         var mood = _console.Prompt(new SelectionPrompt<string>()
             .AddChoices(trackedEmotions).HighlightStyle(msgColors.Query));
         TrackerUtils.LineMessage($"[{msgColors.Emphasis}]You chose: {mood}[/]");
@@ -74,7 +75,8 @@ public class UserInputHandler(IAnsiConsole console)
 
         return Markup.Remove(
             _console.Prompt(new SelectionPrompt<string>()
-            .Title($"[{msgColors.Warning}]Select Admin Option:[/]").AddChoices(adminMenuChoices).HighlightStyle(msgColors.Query))
+                .Title($"[{msgColors.Warning}]Select Admin Option:[/]").AddChoices(adminMenuChoices)
+                .HighlightStyle(msgColors.Query))
         );
     }
 

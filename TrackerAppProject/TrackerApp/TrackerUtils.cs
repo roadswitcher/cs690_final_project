@@ -70,7 +70,7 @@ public static class TrackerUtils
     {
         CenteredMessage(message, MsgColors.Warning);
     }
-    
+
     public static void EnterToContinue(bool clearscreen = true,
         string textColor = MsgColors.Emphasis,
         string ruleColor = MsgColors.Info)
@@ -93,11 +93,14 @@ public static class TrackerUtils
     public static void WelcomeScreen(string[] args)
     {
         AnsiConsole.Clear();
-        AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
+        DebugMessage(
+            $" ***** INFO: Application was build in Debug configuration.  Rebuild with -c Release to suppress debug messages");
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
 
-        var userCredentials = LoginHandler.HandleLogin();
         var dataStore = DataStore.Instance;
+        if (dataStore.IsFirstLaunch()) AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
+
+        var userCredentials = LoginHandler.HandleLogin();
         dataStore.SetUserCredentials(userCredentials);
     }
 
