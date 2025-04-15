@@ -81,7 +81,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
 
             var dailyBreakdown = report.DailyBreakdown;
 
-            var breakdownTable = new Table();
+            var breakdownTable = new Table().Title("Daily Breakdown");
             breakdownTable.AddColumn("Period");
             breakdownTable.AddColumn("Time");
             breakdownTable.AddColumn("Mood");
