@@ -98,10 +98,7 @@ public static class TrackerUtils
         DebugMessage($"Current Console Width: {AnsiConsole.Profile.Width}");
 
         var dataStore = DataStore.Instance;
-        if (dataStore.IsFirstLaunch())
-        {
-            AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
-        }
+        if (dataStore.IsFirstLaunch()) AnsiConsole.Write(new FigletText("MoodTracker").Centered().Color(Color.Green));
 
         var userCredentials = LoginHandler.HandleLogin();
         dataStore.SetUserCredentials(userCredentials);

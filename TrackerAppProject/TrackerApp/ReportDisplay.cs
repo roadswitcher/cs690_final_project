@@ -59,8 +59,10 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
     {
         var report = GenerateDailyReport(date);
 
-        _console.Write(new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/] - {report.TotalRecords} total updates").Centered()
-            .RuleStyle("cyan2"));
+        _console.Write(
+            new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/] - {report.TotalRecords} total updates")
+                .Centered()
+                .RuleStyle("cyan2"));
 
         // Show mood distribution
         if (report.TotalRecords > 0)
@@ -108,7 +110,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                 $"[{TrackerUtils.MsgColors.Emphasis}]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]")
             .Centered()
             .RuleStyle(TrackerUtils.MsgColors.Emphasis);
-        
+
         if (report.TotalRecords > 0)
         {
             // Show mood distribution
@@ -122,7 +124,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                 var percentage = (double)mood.Value / report.TotalRecords * 100;
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
-            
+
             // Show time of day distribution
             if (report.TimeOfDayDistribution?.Count > 0)
             {
@@ -142,7 +144,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                 }
 
                 var breakdownChart = BuildBreakdownChart(report.MoodDistribution).Width(95);
-                
+
                 var newlayout = new Layout("Root").SplitRows(
                     new Layout("Breakdown"),
                     new Layout("Tables").SplitColumns(
@@ -150,19 +152,21 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                         new Layout("TimeTable")),
                     new Layout("ExitMessage"));
 
-                var panelHeader = $"[{TrackerUtils.MsgColors.Emphasis}]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]";
-                
+                var panelHeader =
+                    $"[{TrackerUtils.MsgColors.Emphasis}]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]";
+
                 newlayout["Breakdown"].Update(new Panel(
-                    new Align(breakdownChart, HorizontalAlignment.Center, VerticalAlignment.Middle)).Expand().Header(new PanelHeader(panelHeader)));
-                    
-                newlayout["MoodTable"].Update(new Align(moodTable,  HorizontalAlignment.Center));
+                        new Align(breakdownChart, HorizontalAlignment.Center, VerticalAlignment.Middle)).Expand()
+                    .Header(new PanelHeader(panelHeader)));
+
+                newlayout["MoodTable"].Update(new Align(moodTable, HorizontalAlignment.Center));
                 newlayout["TimeTable"].Update(new Align(timeTable, HorizontalAlignment.Center));
-                newlayout["ExitMessage"].Update( new Rule($"Hit Any Key to Continue").Centered().RuleStyle(TrackerUtils.MsgColors.Emphasis));
+                newlayout["ExitMessage"].Update(new Rule($"Hit Any Key to Continue").Centered()
+                    .RuleStyle(TrackerUtils.MsgColors.Emphasis));
                 _console.Write(newlayout);
                 // TODO: better way?
                 Console.ReadKey();
                 AnsiConsole.Clear();
-
             }
         }
         else
