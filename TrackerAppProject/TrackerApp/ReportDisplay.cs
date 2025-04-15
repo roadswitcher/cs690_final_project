@@ -7,9 +7,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
 {
     private static readonly Dictionary<string, Color> MoodColors = TrackerUtils.MoodColors;
     private readonly IDataStore _dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
-
     private readonly IAnsiConsole _console = console ?? throw new ArgumentNullException(nameof(console));
-
 
     private static BreakdownChart BuildBreakdownChart(Dictionary<string, int> distribution)
     {
