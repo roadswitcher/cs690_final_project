@@ -65,7 +65,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
         // Show mood distribution
         if (report.TotalRecords > 0)
         {
-            var chart = BuildBreakdownChart(report.MoodDistribution).Width(75);
+            var chart = BuildBreakdownChart(report.MoodDistribution).Width(80);
 
             var moodTable = new Table().Border(TableBorder.Simple);
             moodTable.AddColumn("Mood");
@@ -106,15 +106,13 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
 
         _console.Write(
             new Rule(
-                    $"[cyan1]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]")
-                .LeftJustified()
-                .RuleStyle("cyan2"));
+                    $"[{TrackerUtils.MsgColors.Emphasis}]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]")
+                .Centered()
+                .RuleStyle(TrackerUtils.MsgColors.Emphasis));
 
         if (report.TotalRecords > 0)
         {
             // Show mood distribution
-            _console.WriteLine();
-            _console.WriteLine("Mood Record Distribution:");
             var moodTable = new Table().Border(TableBorder.Simple);
             moodTable.AddColumn("Mood");
             moodTable.AddColumn("Count");
@@ -125,10 +123,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                 var percentage = (double)mood.Value / report.TotalRecords * 100;
                 moodTable.AddRow(mood.Key, mood.Value.ToString(), $"{percentage:F1}%");
             }
-
-            _console.Write(BuildBreakdownChart(report.MoodDistribution));
-            _console.Write(moodTable);
-
+            
             // Show time of day distribution
             if (report.TimeOfDayDistribution?.Count > 0)
             {
@@ -149,7 +144,17 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
                     timeTable.AddRow(time.Key, time.Value.Count.ToString(), $"{percentage:F1}%", moodDisplay);
                 }
 
-                _console.Write(timeTable);
+                _console.WriteLine();
+                _console.Write(new Align(BuildBreakdownChart(report.MoodDistribution).Width(95), HorizontalAlignment.Center));
+                var layout = new Layout("Root");
+                layout.SplitRows(
+                    new Layout("Tables").SplitColumns(
+                        new Layout("MoodTable"),
+                        new Layout("TimeTable")));
+
+                layout["MoodTable"].Update(moodTable);
+                layout["TimeTable"].Update(timeTable);
+                _console.Write(layout);
             }
         }
         else
