@@ -58,9 +58,9 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
         var report = GenerateDailyReport(date);
 
         _console.Write(
-            new Rule($"[cyan1]Daily Report for {report.Date:yyyy-MM-dd}[/] - {report.TotalRecords} total updates")
+            new Rule($"[{TrackerUtils.MsgColors.Emphasis}]Daily Report for {report.Date:yyyy-MM-dd}[/] - {report.TotalRecords} total updates")
                 .Centered()
-                .RuleStyle("cyan2"));
+                .RuleStyle(TrackerUtils.MsgColors.Info));
 
         // Show mood distribution
         if (report.TotalRecords > 0)
@@ -107,7 +107,7 @@ public class ReportDisplay(IAnsiConsole console, IDataStore dataStore)
         var bannerMessage = new Rule(
                 $"[{TrackerUtils.MsgColors.Emphasis}]Past Week Report: ({startDate:MMM dd} - {report.Date:MMM dd}) - {report.TotalRecords} mood updates[/]")
             .Centered()
-            .RuleStyle(TrackerUtils.MsgColors.Emphasis);
+            .RuleStyle(TrackerUtils.MsgColors.Info);
 
         if (report.TotalRecords > 0)
         {
