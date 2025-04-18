@@ -17,6 +17,10 @@ handling user login to an app -- there are many considerations that would need t
 lifecycle such as where the data is stored ( on device or remotely ) and given the intense personal nature of the data,
 how would it need to be properly secured.
 
+- Better Testing
+
+I haven't done much with unit testing in the past few years outside of C++ using Catch2 -- I'm really impressed with xUnit and Moq. ( Catch2 doesn't have a mocking library, it's a HUGE shortfall. )
+
 - CLI Logic Standardization -- "no magic numbers, no magic colors"
 
 Handling the color options within Spectre Console CLI interface elements shouldn't be done on color alone, but instead
